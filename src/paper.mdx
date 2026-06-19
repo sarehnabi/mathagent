@@ -8,24 +8,24 @@ authors:
   - name: Roland Vogl
     url: https://law.stanford.edu/roland-vogl/
 # conference: ICLR 2026 (Under Review)
-links:
-  - name: Paper
-    url: "#"
-    icon: ri:file-pdf-2-line
-  - name: Code
-    url: "#"
-    icon: ri:github-line
-  - name: Data
-    url: "#"
-    icon: ri:database-2-line
-  - name: arXiv
-    url: "#"
-    icon: academicons:arxiv
+# links:
+#   - name: Paper
+#     url: "#"
+#     icon: ri:file-pdf-2-line
+#   - name: Code
+#     url: "#"
+#     icon: ri:github-line
+#   - name: Data
+#     url: "#"
+#     icon: ri:database-2-line
+#   - name: arXiv
+#     url: "#"
+#     icon: academicons:arxiv
 
 theme: light
 favicon: favicon.svg
 description: "MathAgent: Does Structured Knowledge Help Formal Mathematical Reasoning and Exploration?"
-thumbnail: screenshot-light.png
+# thumbnail: screenshot-light.png
 ---
 
 import HighlightedSection from "./components/HighlightedSection.astro";
@@ -40,21 +40,23 @@ import architecture from "./assets/architecture.png";
 
 ## Abstract
 
-We investigate whether structured mathematical knowledge helps LLMs reason and explore mathematics more effectively. We introduce **MathAgent**, a multi-agent system that augments LLM theorem provers with a semantically enriched knowledge graph (**MathKG**: 364 verified theorems, 9,434 typed edges across 7 domains) and Mathlib library retrieval. Evaluated across 1,520 benchmark problems from miniF2F, PutnamBench, and MathOlympiadBench with multiple models (Claude Sonnet 4.6, Goedel-Prover-V2-32B, Qwen3-8B), we find a striking **complementarity effect**: knowledge augmentation solves *different* problems than unaugmented proving, expanding the frontier of provable theorems by 18-53% through union of strategies. We further evaluate on 134 open OEIS conjectures and 9 Erdos problems solved by DeepMind's AlphaProof Nexus, identifying monolithic proof generation and computational decidability barriers as fundamental limitations of current single-shot approaches.
+We investigate whether structured mathematical knowledge helps LLMs reason and explore mathematics more effectively. We introduce **MathAgent**, a multi-agent system that augments LLM-based formal theorem proving in Lean 4 with a semantically enriched knowledge graph (**MathKG**) and Mathlib library retrieval. MathKG contains 364 Lean-verified theorems from Mathlib connected by 9,434 LLM-extracted semantic edges across seven mathematical domains including number theory, combinatorics, algebra, and analysis.
 
-*This is an ongoing research project. Results and content are being actively updated.*
+Evaluated across 1,520 problems from miniF2F, PutnamBench, and MathOlympiadBench with multiple open-weight and proprietary LLMs, we find a **complementarity effect**: each knowledge augmentation mode solves problems the others cannot, with the union of all strategies solving up to 53% more problems than the best single approach. We further evaluate on open problems from DeepMind's Formal Conjectures repository, identifying compositional subgoal decomposition as a key bottleneck of single-shot proving approaches.
+
+*Paper, code, and data will be made publicly available upon completion of experiments.*
 
 </HighlightedSection>
 
-## Key Findings
+## MathKG
 
-- **Complementarity effect**: Different knowledge sources (KG, Mathlib retrieval) solve different problems. Combining all strategies yields 18-53% more solved problems than any single approach.
+MathKG is a directed graph where each node represents a Lean-verified mathematical object from Mathlib and edges encode semantic relationships extracted by an LLM. Unlike simple dependency graphs, MathKG captures *mathematical meaning* — how theorems relate through generalization, analogy, and cross-domain structure.
 
-- **Knowledge substitution hypothesis**: External knowledge augmentation is most valuable for models near their capability frontier. Lean-specialized models (Goedel-V2-32B) gain less from augmentation but still benefit on specific hard problems.
+Edges are typed across eight semantic relations — *prerequisite*, *generalizes*, *specializes*, *equivalent-to*, *applied-in*, *analogous-to*, *cross-domain-bridge*, and *instance-of* — capturing how theorems relate through logical dependency, structural analogy, and cross-domain transfer. The graph spans number theory, combinatorics, algebra, analysis, geometry, linear algebra, and abstract algebra, with balanced coverage across all domains.
 
-- **Cross-model validation**: On MathOlympiadBench, Goedel-V2-32B solves 16/360 problems (4.4%) with prover-only, while KG uniquely solves 3 additional IMO problems (including Imo1988P3 and Imo2000P2) that prover-only cannot reach.
+<span style="color: #3b82f6; font-style: italic;">Interactive MathKG visualization — drag, zoom, hover, and click to explore.</span>
 
-- **Open problem exploration**: On genuinely unsolved problems (OEIS conjectures, Erdos problems), we identify that the key bottleneck is monolithic proof generation— not knowledge availability — motivating iterative proof construction as future work.
+<iframe src="./mathkg_visualization.html" width="100%" height="450" style="border: 1px solid #e4e4e7; border-radius: 8px;"></iframe>
 
 ## System Overview
 
@@ -62,16 +64,19 @@ We investigate whether structured mathematical knowledge helps LLMs reason and e
   <div slot="figure" style="width: 85%;">
     <Picture src={architecture} alt="MathAgent five-agent architecture" />
   </div>
-  <span slot="caption">The MathAgent five-agent architecture. MathKG serves as persistent shared memory. An Orchestrator (not shown) coordinates the discovery loop: Explorer → Conjecturer → Prover → Integrator → Explorer..., with each verified theorem enriching the graph for subsequent iterations.</span>
 </Figure>
 
 MathAgent consists of five agents:
 
-1. **Explorer** — Navigates the knowledge graph and retrieves relevant Mathlib declarations
-2. **Conjecturer** — Generates formal conjectures grounded in KG structure
-3. **Prover** — Generates Lean 4 tactic proofs with compiler feedback
-4. **Integrator** — Validates and integrates proven theorems back into the KG
-5. **Orchestrator** — Coordinates the pipeline across four evaluation modes
+1. **Explorer**: Navigates the knowledge graph and retrieves relevant Mathlib declarations
+2. **Conjecturer**: Generates formal conjectures grounded in KG structure
+3. **Prover**: Generates Lean 4 tactic proofs with compiler feedback
+4. **Integrator**: Validates and integrates proven theorems back into the KG
+5. **Orchestrator**: Coordinates the pipeline across four evaluation modes
+
+The Orchestrator coordinates the discovery loop: Explorer → Conjecturer → Prover → Integrator → Explorer..., with MathKG serving as the structured knowledge source that guides proof strategy.
+
+The system supports two complementary settings: **targeted problem-solving**, where the Prover attempts to prove a given formal statement, and **open-ended exploration**, where the full agent loop generates novel conjectures grounded in KG structure and attempts formal verification.
 
 ### Evaluation Modes
 
@@ -79,69 +84,72 @@ MathAgent consists of five agents:
 |------|-----------------|-------------|
 | `prover_only` | None | Baseline: LLM proves from theorem statement alone |
 | `with_kg` | MathKG | KG-guided: relevant theorems retrieved via semantic edges |
-| `with_mathlib` | Mathlib | Retrieval-augmented: keyword search over 100K+ declarations |
-| `full_system` | Both | Full pipeline: KG + Mathlib retrieval combined |
+| `with_mathlib` | Mathlib | Retrieval-augmented: LLM-guided search over 400K+ Mathlib declarations |
+| `full_system` | MathKG + Mathlib | Full pipeline: KG + Mathlib retrieval combined |
 
 ### Benchmarks
 
-We evaluate on three established formal mathematics benchmarks:
+We evaluate on three established, publicly available formal mathematics benchmarks:
 
-- **miniF2F** (488 problems) — High-school and undergraduate competition mathematics formalized in Lean 4
-- **PutnamBench** (672 problems) — Problems from the William Lowell Putnam Mathematical Competition
-- **MathOlympiadBench** (360 problems) — International Mathematical Olympiad and regional competition problems
+- **miniF2F** (488 problems): Problems from AMC, AIME, and IMO mathematical competitions formalized in Lean 4
+- **MathOlympiadBench** (360 problems): High-school competition problems (AMC/AIME level) with Lean 4 formalizations
+- **PutnamBench** (672 problems): Undergraduate/research-level problems from the Putnam Mathematical Competition
 
-For open-ended exploration, we additionally evaluate on:
+For open-ended exploration, we additionally evaluate on problems from:
 
-- **OEIS Conjectures** (134 problems) — Open conjectures about integer sequences from the Formal Conjectures repository
-- **Erdos Problems** (335 problems) — Open number theory and combinatorics conjectures from the same repository
+- **OEIS Conjectures**: Open conjectures about integer sequences from DeepMind's Formal Conjectures repository
+- **Erdos Problems**: Open number theory and combinatorics conjectures from the same repository
 
 ## Results
 
+We present pass@k solve rate curves (where pass@k measures whether at least one of k attempts succeeds), pass@32 ablation results, and complementarity analysis for Claude Sonnet 4.6 across all four modes on 1,520 benchmark problems. Each problem is given 32 attempts, with Lean compiler error feedback guiding each subsequent attempt.
+
 <Figure>
   <Picture slot="figure" src="../assets/plot_passk_curves.pdf" alt="Pass@k curves across augmentation modes" />
-  <span slot="caption">Pass@k curves showing solve rate as a function of proof attempts across all four augmentation modes and three benchmarks.</span>
 </Figure>
 
-The pass@k curves show that all augmentation modes achieve similar scaling behavior, with diminishing returns beyond k=16. While aggregate solve rates are comparable across modes, the key finding emerges at the problem level: each mode solves a distinct subset of problems.
+#### Benchmark Performance (pass@32)
 
-### Benchmark Performance (pass@32)
+| Benchmark | prover_only | with_kg | with_mathlib | full_system |
+|-----------|:-----------:|:-------:|:------------:|:-----------:|
+| miniF2F (488) | **366 (75.0%)** | 359 (73.6%) | 360 (73.8%) | **366 (75.0%)** |
+| MathOlympiadBench (360) | **45 (12.5%)** | 38 (10.6%) | 41 (11.4%) | 42 (11.7%) |
+| PutnamBench (672) | **85 (12.6%)** | 73 (10.9%) | 78 (11.6%) | 80 (11.9%) |
+| **Total (1,520)** | **496 (32.6%)** | 470 (30.9%) | 479 (31.5%) | 488 (32.1%) |
 
-| Model | Benchmark | prover_only | with_kg | with_mathlib | full_system |
-|-------|-----------|:-----------:|:-------:|:------------:|:-----------:|
-| Sonnet 4.6 | miniF2F (488) | 151 (30.9%) | 148 (30.3%) | 143 (29.3%) | 145 (29.7%) |
-| Sonnet 4.6 | PutnamBench (672) | 21 (3.1%) | 18 (2.7%) | 19 (2.8%) | 20 (3.0%) |
-| Sonnet 4.6 | MathOlympiadBench (360) | 13 (3.6%) | 12 (3.3%) | 11 (3.1%) | 12 (3.3%) |
-| Goedel-V2-32B | MathOlympiadBench (360) | 16 (4.4%) | 14 (3.9%) | *TBD* | *TBD* |
-| Qwen3-8B | miniF2F (488) | 33 (6.8%) | 35 (7.2%) | 31 (6.4%) | 36 (7.4%) |
+`prover_only` achieves the highest aggregate solve rate on 2 of 3 benchmarks, with `full_system` tying on miniF2F — suggesting that Sonnet 4.6 possesses sufficient internal Lean 4 and Mathlib knowledge that additional context acts as a distractor on aggregate. However, among augmented modes, `full_system` consistently dominates both `with_kg` and `with_mathlib` individually across all benchmarks, indicating that combining KG and Mathlib produces synergy even when neither helps in isolation.
 
-*Note: Experiments are ongoing for Goedel-V2-32B (full benchmark), Goedel-V2-8B, and Qwen3-32B. Results will be updated as they become available.*
+Solve rates increase monotonically with attempt budget for all modes, and the gap between `prover_only` and augmented modes narrows as attempts increase — closing from -22 at pass@3 to -8 at pass@32 — suggesting that error-guided refinement eventually leverages the provided context. Notably, context hurts early attempts most severely: on miniF2F, `with_mathlib` leads at pass@1 (+12 over baseline) but `prover_only` dominates at pass@3-20, while on PutnamBench, `prover_only` leads at every k.
 
-### Complementarity: Union of Strategies
+#### Complementarity: Union of Strategies
+
+While aggregate solve rates favor `prover_only`, the more important finding emerges at the problem level: each augmentation mode solves problems that others cannot. The union of all four strategies substantially exceeds any single mode.
 
 <Figure>
   <Picture slot="figure" src="../assets/plot_venn_complementarity.pdf" alt="Venn diagram showing complementarity across augmentation modes" />
-  <span slot="caption">Complementarity across augmentation modes (Sonnet 4.6, miniF2F). Different modes solve different problems — the union of all strategies significantly expands the frontier of provable theorems.</span>
 </Figure>
 
-The Venn diagram reveals our central finding: knowledge augmentation does not simply improve or hurt performance uniformly — it shifts *which* problems become solvable. This complementarity suggests that adaptive strategy selection (choosing augmentation based on problem characteristics) could outperform any fixed approach.
+| Benchmark | Baseline (prover_only) | +KG unique | +Mathlib unique | +Full unique | Union | Lost |
+|-----------|:----------------------:|:----------:|:---------------:|:------------:|:-----:|:----:|
+| miniF2F | 366 | +10 | +9 | +18 | 389 | -7 |
+| MathOlympiadBench | 45 | +7 | +6 | +10 | 58 | -5 |
+| PutnamBench | 85 | +20 | +21 | +26 | 130 | -13 |
 
-The key insight is not aggregate solve rates but the *union* of solved problems across modes:
+**Union** = problems solved by *any* of the four modes (the maximum achievable with adaptive selection). **Lost** = problems solved by `prover_only` but not by any augmented mode (where context caused failure).
 
-- **Sonnet 4.6**: Union across all 4 modes solves 29-53% more problems than any single mode
-- **Goedel-V2-32B**: Union of prover_only + with_kg solves 19 problems (18% more than best single mode of 16)
-- **Qwen3-8B**: KG provides +9% relative improvement on miniF2F, consistent with knowledge substitution hypothesis
+An adaptive strategy that tries all four modes per problem would solve **29-53% more problems** than the best single mode on hard benchmarks (MathOlympiadBench and PutnamBench), and **6% more** on miniF2F where most problems are already solvable. PutnamBench benefits most (+53%: 85→130), indicating that research-level problems exhibit the strongest complementarity between proof strategies.
 
-### Open-Ended Exploration: Pushing Beyond Benchmarks
+At the problem level: 81 problems are solved by at least one augmented mode but not by `prover_only` ("context helps"), while 25 are solved only by `prover_only` ("context hurts") — a **3:1 ratio** in favor of augmentation, even though aggregate counts favor the baseline.
 
-We additionally evaluate MathAgent on genuinely unsolved problems from DeepMind's Formal Conjectures repository — the same dataset used by AlphaProof Nexus. Our system uses error-guided retry (pass@32 for Erdos, pass@64 for OEIS), where each failed attempt's compiler error is fed back to guide the next proof attempt.
+*Note: Experiments are ongoing for Goedel-V2-32B, Goedel-V2-8B, Qwen3-8B, and Qwen3-32B across all benchmarks. Early results suggest complementarity effects hold across model scales. Full results will be updated as they become available.*
 
-**Key findings from 134 OEIS conjectures** (Goedel-V2-32B):
-- 80%+ of attempts reach "unsolved goals" — meaning the proof *structure* (induction, case splits, intermediate lemmas) is correct, but the final mathematical step cannot be discharged
-- The model generates 53–59 line proofs on average with proper `have...by` nesting, induction, and Mathlib API usage
-- Knowledge augmentation drives diverse proof strategies (different modes attempt different mathematical approaches) but does not bridge the final gap
+#### Open-Ended Exploration: Pushing Beyond Benchmarks
 
-**What we learned — the capability frontier hypothesis:**
-Our error-guided retry loop provides compiler feedback between attempts, but each attempt must produce a *complete* proof from scratch. The model cannot preserve partially-correct subproofs across retries. This contrasts with AlphaProof Nexus's iterative refinement, where proof sketches with `sorry` holes are verified for structural correctness, then individual subgoals are independently refined. We find that knowledge augmentation helps when problems are near the model's capability frontier (as on benchmarks), but cannot substitute for architectural advances in proof construction when problems exceed that frontier.
+We additionally evaluate MathAgent on open problems from DeepMind's Formal Conjectures repository using Goedel-V2-32B (a Lean-specialized open-weight model). Our system uses error-guided retry (pass@32 for Erdos, pass@64 for OEIS), where each failed attempt's compiler error is fed back to guide the next proof attempt.
+
+On OEIS conjectures, we observed that over 80% of attempts reach "unsolved goals" — meaning the proof structure (induction, case splits, intermediate lemmas) is correct, but the final mathematical step cannot be discharged. Knowledge augmentation drives diverse proof strategies across modes, with different configurations attempting qualitatively different mathematical approaches to the same problem.
+
+These results suggest that for problems beyond the model's capability frontier, a key bottleneck is the lack of compositional subgoal decomposition. A promising future direction is an architecture where a high-level proof strategy is established first, then individual subgoals are tackled independently across retries, rather than regenerating the entire proof from scratch with each attempt.
 
 ## Acknowledgments
 
