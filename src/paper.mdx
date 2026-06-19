@@ -1,208 +1,158 @@
 ---
-title: Academic Project Page Template
+title: "MathAgent: Does Structured Knowledge Help Formal Mathematical Reasoning and Exploration?"
 authors:
-  - name: Roman Hauksson
-    url: https://roman.technology
-    institution: University of Texas at Dallas
-    notes: ["*", †]
-  - name: Author Two
-    institution: Institution Two
-    notes: ["*", †]
-  - name: Author Three
-    institution: Institution Three
-    notes: ["*"]
-  - name: Author Four
-    institution: Institution Four
-conference: Conference Name
-notes:
-  - symbol: "*"
-    text: author note one
-  - symbol: †
-    text: author note two
+  - name: Sareh Nabi
+    url: https://www.sarehnabi.com/
+  - name: Marzieh Nabi
+    url: https://law.stanford.edu/marzieh-nabi/
+  - name: Roland Vogl
+    url: https://law.stanford.edu/roland-vogl/
+# conference: ICLR 2026 (Under Review)
 links:
   - name: Paper
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: "#"
     icon: ri:file-pdf-2-line
   - name: Code
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: "#"
     icon: ri:github-line
+  - name: Data
+    url: "#"
+    icon: ri:database-2-line
   - name: arXiv
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: "#"
     icon: academicons:arxiv
-  - name: Slides
-    url: https://github.com/RomanHauksson/academic-project-astro-template
-    icon: ri:slideshow-2-line
 
-# The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
-theme: device
-
-# This is the icon that appears in the user's browser tab. To customize, change the favicon.svg file in /public/, or add your own file to /public/ and change the filename here.
+theme: light
 favicon: favicon.svg
-
-# These keys are optional. If a link to your project page is in a Google search result, text message, or social media post, it will often appear as a "link preview card" based on its title, description, favicon, and thumbnail. After you publish your page, you can double check that these previews look right using [this tool](https://linkpreview.xyz/)
-description: Simple project page template for your research paper, built with Astro and Tailwind
+description: "MathAgent: Does Structured Knowledge Help Formal Mathematical Reasoning and Exploration?"
 thumbnail: screenshot-light.png
 ---
 
-import Video from "./components/Video.astro";
 import HighlightedSection from "./components/HighlightedSection.astro";
 import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
-import ModelViewer from "./components/ModelViewer.astro"
-import TwoColumns from "./components/TwoColumns.astro";
-import YouTubeVideo from "./components/YouTubeVideo.astro";
-import Carousel from "./components/Carousel.astro";
-import CarouselSlide from "./components/CarouselSlide.astro";
 import Wide from "./components/Wide.astro";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/starwind/tabs";
-import { Comparison } from "./components/Comparison.tsx";
 
-import outside from "./assets/outside.mp4";
-import dogsDiffc from "./assets/dogs-diffc.png"
-import dogsTrue from "./assets/dogs-true.png"
-import dogsMsillm from "@/assets/dogs-msillm.jpg"
-
-<Video src={outside} />
+import architecture from "./assets/architecture.png";
 
 <HighlightedSection>
 
 ## Abstract
 
-This is a template you can use to create a professional project page for your research paper. [See the code for the template and instructions on how to use it yourself on GitHub](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+We investigate whether structured mathematical knowledge helps LLMs reason and explore mathematics more effectively. We introduce **MathAgent**, a multi-agent system that augments LLM theorem provers with a semantically enriched knowledge graph (**MathKG**: 364 verified theorems, 9,434 typed edges across 7 domains) and Mathlib library retrieval. Evaluated across 1,520 benchmark problems from miniF2F, PutnamBench, and MathOlympiadBench with multiple models (Claude Sonnet 4.6, Goedel-Prover-V2-32B, Qwen3-8B), we find a striking **complementarity effect**: knowledge augmentation solves *different* problems than unaugmented proving, expanding the frontier of provable theorems by 18-53% through union of strategies. We further evaluate on 134 open OEIS conjectures and 9 Erdos problems solved by DeepMind's AlphaProof Nexus, identifying monolithic proof generation and computational decidability barriers as fundamental limitations of current single-shot approaches.
+
+*This is an ongoing research project. Results and content are being actively updated.*
 
 </HighlightedSection>
 
-## Visuals
+## Key Findings
 
-### Picture
+- **Complementarity effect**: Different knowledge sources (KG, Mathlib retrieval) solve different problems. Combining all strategies yields 18-53% more solved problems than any single approach.
 
-Use the `Picture` component to display images. If you have a figure in PDF format, you can pass in its path as the `src` prop and it will be converted into a web-friendly image automatically.
+- **Knowledge substitution hypothesis**: External knowledge augmentation is most valuable for models near their capability frontier. Lean-specialized models (Goedel-V2-32B) gain less from augmentation but still benefit on specific hard problems.
 
-<Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
+- **Cross-model validation**: On MathOlympiadBench, Goedel-V2-32B solves 16/360 problems (4.4%) with prover-only, while KG uniquely solves 3 additional IMO problems (including Imo1988P3 and Imo2000P2) that prover-only cannot reach.
 
-### Wide visual
+- **Open problem exploration**: On genuinely unsolved problems (OEIS conjectures, Erdos problems), we identify that the key bottleneck is monolithic proof generation— not knowledge availability — motivating iterative proof construction as future work.
 
-I constrained the maximum width of the text column to make sure it's readable even when the screen is wide. But images and other visuals should "break out" and take up more horizontal space: for this, try wrapping them in the `Wide` component.
-
-<Wide>
-  <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-</Wide>
-
-### Figure with caption
-
-Wrap a visual in a `Figure` component to add a caption.
+## System Overview
 
 <Figure>
-  <Picture slot="figure" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+  <div slot="figure" style="width: 85%;">
+    <Picture src={architecture} alt="MathAgent five-agent architecture" />
+  </div>
+  <span slot="caption">The MathAgent five-agent architecture. MathKG serves as persistent shared memory. An Orchestrator (not shown) coordinates the discovery loop: Explorer → Conjecturer → Prover → Integrator → Explorer..., with each verified theorem enriching the graph for subsequent iterations.</span>
 </Figure>
 
-### Comparison slider
+MathAgent consists of five agents:
 
-Use the `Comparison` component to compare two visuals with an interactive slider.
+1. **Explorer** — Navigates the knowledge graph and retrieves relevant Mathlib declarations
+2. **Conjecturer** — Generates formal conjectures grounded in KG structure
+3. **Prover** — Generates Lean 4 tactic proofs with compiler feedback
+4. **Integrator** — Validates and integrates proven theorems back into the KG
+5. **Orchestrator** — Coordinates the pipeline across four evaluation modes
 
-<Comparison client:idle >
-  <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Picture slot="itemTwo" src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-</Comparison>
+### Evaluation Modes
 
-### Tab panels
+| Mode | Knowledge Source | Description |
+|------|-----------------|-------------|
+| `prover_only` | None | Baseline: LLM proves from theorem statement alone |
+| `with_kg` | MathKG | KG-guided: relevant theorems retrieved via semantic edges |
+| `with_mathlib` | Mathlib | Retrieval-augmented: keyword search over 100K+ declarations |
+| `full_system` | Both | Full pipeline: KG + Mathlib retrieval combined |
 
-Tab panels are a great way to display a labeled collection of related visuals without taking up too much space.
+### Benchmarks
 
-<Tabs defaultValue="true">
-  <TabsList>
-    <TabsTrigger value="true">Ground truth</TabsTrigger>
-    <TabsTrigger value="diffc">DiffC (Flux-dev)</TabsTrigger>
-    <TabsTrigger value="msillm">MS-ILLM</TabsTrigger>
-  </TabsList>
-  <TabsContent value="true">
-    <Picture
-      src={dogsTrue}
-      alt="True photo of two dogs running side-by-side in shallow water"
-    />
-  </TabsContent>
-  <TabsContent value="diffc">
-    <Picture
-      src={dogsDiffc}
-      alt="Photo of two running dogs, lossily compressed using the DiffC algorithm"
-    />
-  </TabsContent>
-  <TabsContent value="msillm">
-    <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
-    />
-  </TabsContent>
-</Tabs>
+We evaluate on three established formal mathematics benchmarks:
 
-### Carousel
+- **miniF2F** (488 problems) — High-school and undergraduate competition mathematics formalized in Lean 4
+- **PutnamBench** (672 problems) — Problems from the William Lowell Putnam Mathematical Competition
+- **MathOlympiadBench** (360 problems) — International Mathematical Olympiad and regional competition problems
 
-A carousel is another useful pattern for a collection of visuals that don't necessarily have meaningful labels.
+For open-ended exploration, we additionally evaluate on:
 
-<Carousel>
-  <CarouselSlide>
-    <Picture src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
-    />
-  </CarouselSlide>
-</Carousel>
+- **OEIS Conjectures** (134 problems) — Open conjectures about integer sequences from the Formal Conjectures repository
+- **Erdos Problems** (335 problems) — Open number theory and combinatorics conjectures from the same repository
 
-## Two columns
+## Results
 
-Use the two columns component to display two columns of content. In this example, the first column contains a YouTube video embed and the second column contains an interactive 3D model viewer. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+<Figure>
+  <Picture slot="figure" src="../assets/plot_passk_curves.pdf" alt="Pass@k curves across augmentation modes" />
+  <span slot="caption">Pass@k curves showing solve rate as a function of proof attempts across all four augmentation modes and three benchmarks.</span>
+</Figure>
 
-<TwoColumns>
-  <YouTubeVideo slot="left" videoId="wjZofJX0v4M" />
-  <ModelViewer slot="right" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
-</TwoColumns>
+The pass@k curves show that all augmentation modes achieve similar scaling behavior, with diminishing returns beyond k=16. While aggregate solve rates are comparable across modes, the key finding emerges at the problem level: each mode solves a distinct subset of problems.
 
-## $\LaTeX$
+### Benchmark Performance (pass@32)
 
-You can also add $\LaTeX$ formulas, rendered during the build process using [$\KaTeX$](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: $a^2 + b^2 = c^2$. Or, you can write them as a block:
+| Model | Benchmark | prover_only | with_kg | with_mathlib | full_system |
+|-------|-----------|:-----------:|:-------:|:------------:|:-----------:|
+| Sonnet 4.6 | miniF2F (488) | 151 (30.9%) | 148 (30.3%) | 143 (29.3%) | 145 (29.7%) |
+| Sonnet 4.6 | PutnamBench (672) | 21 (3.1%) | 18 (2.7%) | 19 (2.8%) | 20 (3.0%) |
+| Sonnet 4.6 | MathOlympiadBench (360) | 13 (3.6%) | 12 (3.3%) | 11 (3.1%) | 12 (3.3%) |
+| Goedel-V2-32B | MathOlympiadBench (360) | 16 (4.4%) | 14 (3.9%) | *TBD* | *TBD* |
+| Qwen3-8B | miniF2F (488) | 33 (6.8%) | 35 (7.2%) | 31 (6.4%) | 36 (7.4%) |
 
-$$
-\int_a^b f(x) dx
-$$
+*Note: Experiments are ongoing for Goedel-V2-32B (full benchmark), Goedel-V2-8B, and Qwen3-32B. Results will be updated as they become available.*
+
+### Complementarity: Union of Strategies
+
+<Figure>
+  <Picture slot="figure" src="../assets/plot_venn_complementarity.pdf" alt="Venn diagram showing complementarity across augmentation modes" />
+  <span slot="caption">Complementarity across augmentation modes (Sonnet 4.6, miniF2F). Different modes solve different problems — the union of all strategies significantly expands the frontier of provable theorems.</span>
+</Figure>
+
+The Venn diagram reveals our central finding: knowledge augmentation does not simply improve or hurt performance uniformly — it shifts *which* problems become solvable. This complementarity suggests that adaptive strategy selection (choosing augmentation based on problem characteristics) could outperform any fixed approach.
+
+The key insight is not aggregate solve rates but the *union* of solved problems across modes:
+
+- **Sonnet 4.6**: Union across all 4 modes solves 29-53% more problems than any single mode
+- **Goedel-V2-32B**: Union of prover_only + with_kg solves 19 problems (18% more than best single mode of 16)
+- **Qwen3-8B**: KG provides +9% relative improvement on miniF2F, consistent with knowledge substitution hypothesis
+
+### Open-Ended Exploration: Pushing Beyond Benchmarks
+
+We additionally evaluate MathAgent on genuinely unsolved problems from DeepMind's Formal Conjectures repository — the same dataset used by AlphaProof Nexus. Our system uses error-guided retry (pass@32 for Erdos, pass@64 for OEIS), where each failed attempt's compiler error is fed back to guide the next proof attempt.
+
+**Key findings from 134 OEIS conjectures** (Goedel-V2-32B):
+- 80%+ of attempts reach "unsolved goals" — meaning the proof *structure* (induction, case splits, intermediate lemmas) is correct, but the final mathematical step cannot be discharged
+- The model generates 53–59 line proofs on average with proper `have...by` nesting, induction, and Mathlib API usage
+- Knowledge augmentation drives diverse proof strategies (different modes attempt different mathematical approaches) but does not bridge the final gap
+
+**What we learned — the capability frontier hypothesis:**
+Our error-guided retry loop provides compiler feedback between attempts, but each attempt must produce a *complete* proof from scratch. The model cannot preserve partially-correct subproofs across retries. This contrasts with AlphaProof Nexus's iterative refinement, where proof sketches with `sorry` holes are verified for structural correctness, then individual subgoals are independently refined. We find that knowledge augmentation helps when problems are near the model's capability frontier (as on benchmarks), but cannot substitute for architectural advances in proof construction when problems exceed that frontier.
+
+## Acknowledgments
+
+We gratefully acknowledge the Laude Institute for generously providing the compute resources that made this research possible. We also thank Prof. Tatsunori Hashimoto and Prof. Michael Genesereth for their support and insightful feedback.
 
 ## Citation
 
-If you copy your bibliography into `./bibliography.bib`, you can cite papers using their BibTeX keys, and they'll be automatically formatted and included in the bibliography section at the end. For example: [@vaswani2017attention]. Note that these citations are distinct from footnotes[^mynote], which show up in a separate section if you use them.
-
-[^mynote]: On the web, they should really be called "endnotes", since each page constitutes a full document.
-
-## Table
-
-Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
-
-## BibTeX citation
-
-Displaying the BibTeX entry for your paper in a code block makes it easy to copy and paste.
-
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+@article{nabi2026mathagent,
+  title={MathAgent: Does Structured Knowledge Help Formal Mathematical Reasoning and Exploration?},
+  author={Nabi, Sareh and Nabi, Marzieh and Vogl, Roland},
+  year={2026}
 }
 ```
-
-## Bibliography
-
-[^ref]
