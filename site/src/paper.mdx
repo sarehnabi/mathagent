@@ -1,0 +1,242 @@
+---
+title: "When Does Structured Knowledge Help Neural Theorem Proving?"
+authors:
+  - name: Sareh Nabi
+    url: https://www.sarehnabi.com/
+  - name: Roland Vogl
+    url: https://law.stanford.edu/roland-vogl/
+  - name: Marzieh Nabi
+    url: https://law.stanford.edu/marzieh-nabi/
+links:
+  - name: arXiv
+    url: https://arxiv.org/abs/2609.34460
+    icon: academicons:arxiv
+  - name: Code & Data
+    url: https://github.com/sarehnabi/mathagent
+    icon: ri:github-line
+  - name: Slides
+    url: ./slides.pdf
+    icon: ri:slideshow-3-line
+theme: light
+favicon: favicon.svg
+description: "Does structured mathematical knowledge help LLMs prove theorems in Lean 4? A controlled ablation of knowledge-graph and Mathlib augmentation across five models."
+---
+
+import HighlightedSection from "./components/HighlightedSection.astro";
+import Figure from "./components/Figure.astro";
+import Picture from "./components/Picture.astro";
+
+import fig1 from "./assets/fig1_architecture.png";
+import fig2 from "./assets/fig2_minif2f_bars.png";
+import fig3 from "./assets/fig3_oracle_relgain.png";
+import fig4 from "./assets/fig4_venn_complementarity.png";
+import alg1 from "./assets/alg1_targeted_mode.png";
+
+<HighlightedSection>
+
+## Abstract
+
+Does structured mathematical knowledge help LLMs prove theorems in Lean 4? If so, for which models, and does the answer vary by problem? Formal libraries such as Mathlib encode 285,000+ verified theorems with syntactic dependencies, but the semantic layer mathematicians rely on for discovery, such as analogies, generalizations, and cross-domain bridges, remains implicit. We introduce **MathAgent**, a system that builds this missing layer as a knowledge graph called **MathKG**, and uses it to augment LLM theorem provers. MathKG connects 364 Mathlib theorems and definitions by 9,434 typed semantic edges, inferred via LLM-based relation extraction anchored to verified Mathlib declarations. We run a controlled ablation across four augmentation modes (no external context, knowledge-graph context, Mathlib library retrieval, and both combined) and five models: the general-purpose Qwen3-8B/32B, their Lean-specialized derivatives Goedel-Prover-V2-8B/32B, and the proprietary Claude Sonnet 4.6. We evaluate on miniF2F, adding PutnamBench and MathOlympiadBench for the proprietary model.
+
+Three findings emerge. **(i) Specialization dominates augmentation** by an order of magnitude: Lean fine-tuning adds 33–38 percentage points of solve rate in *every* augmentation mode, and a specialized 8B model even beats a 4× larger general one by 29–35 points in every mode; by contrast, no single augmentation mode improves solve rate by more than 3 points, so external knowledge does not substitute for competence in the weights. **(ii) Augmentation's aggregate effect is capability-conditioned:** knowledge-graph context helps small models but hurts large ones, with the specialized model gaining more relative to its general base at every scale. **(iii) Yet across every model the augmentation modes solve *different* problems**, so an oracle that selects the best augmentation mode per problem solves 6% to 58% more problems than the unaugmented prover (least for the proprietary model, most for a weak general one), revealing a *complementarity effect* that strengthens on harder problems (32% more on PutnamBench). Together these results motivate adaptive strategies that select augmentation by model capability and problem.
+
+</HighlightedSection>
+
+## MathKG: A Semantic Knowledge Graph
+
+MathKG organizes a curated core of Mathlib, 364 nodes in seven domains, into a semantic graph.
+
+**Node selection.** The seven domains cover the subject areas of the three evaluation benchmarks. Within each domain we asked Claude Opus 4.7, Gemini 3.1 Pro, and GPT-5.4 for the fundamental theorems and definitions of a standard undergraduate mathematics curriculum, cross-checked the lists against one another, and kept only entries whose formalization exists in Mathlib. The lists were also reviewed by a PhD mathematician. This yields 229 theorems and 135 definitions, 49 to 55 nodes per domain: number theory, combinatorics, algebra, abstract algebra, linear algebra, analysis, and Euclidean geometry. The core is deliberately small: a graph over all of Mathlib would have over $10^{11}$ ordered pairs, beyond exhaustive relation extraction, and would bury the fundamentals under specialized lemmas. A fundamentals-only graph keeps exhaustive pairwise extraction feasible (132,132 calls) and leaves specialized lemmas to Mathlib retrieval.
+
+### Graph schema
+
+MathKG is a directed graph $\mathcal{G} = (\mathcal{V}, \mathcal{E})$.
+
+**Nodes.** Each node is a mathematical object with an identifier, a human-readable name, a domain, a natural-language statement, a type (theorem or definition), keywords, its Mathlib declaration name and import, and a verification status. Every declaration name is verified against the 404,440-entry Mathlib declaration database, so each node names a theorem or definition formalized in Mathlib.
+
+**Edges.** Each directed edge from node $A$ to node $B$, encoded as $(A, B, r, c, \rho)$, carries a relation type $r$, a confidence $c \in [0,1]$, and a natural-language justification $\rho$. The eight edge types carry node-type restrictions and range from logical relations (generalizes, specializes, equivalent-to) to discovery-oriented ones (analogous-to, cross-domain-bridge).
+
+| Edge type | Semantics | $A$/$B$ restriction | Example |
+|---|---|---|---|
+| prerequisite | $A$ is needed to state $B$ | $A$: definition | Prime Number → Fermat's Little Theorem |
+| generalizes | $A$ is more general than $B$ | both theorems | Binomial Theorem → Sum of Binomial Coefficients |
+| specializes | $A$ is a special case of $B$ | both theorems | Fermat's Little Theorem → Lagrange's Theorem |
+| equivalent-to | $A \leftrightarrow B$, same level | both theorems | Open Mapping ↔ Closed Graph |
+| applied-in | $A$'s result used in $B$'s proof | both theorems | FTA → Lifting the Exponent Lemma |
+| analogous-to | Same structure, other context | both theorems | Hensel ↔ Implicit Function Theorem |
+| cross-domain-bridge | Formal link across domains | different domains | Vector Space → Field |
+| instance-of | Concrete $A$ exemplifies $B$ | both definitions | ZMod $n$ → Ring |
+
+*Table 1. The eight semantic edge types (directed edge $A \to B$) in MathKG.*
+
+### Relation extraction pipeline
+
+Given an ordered pair of nodes $(A, B)$, we prompt Claude Sonnet 4.6 to infer the directed semantic relationship $A \to B$. The prompt provides both nodes' natural-language names and statements, keywords and domain labels, and Mathlib declaration names and imports, together with definitions, usage restrictions, and an illustrative pair for each of the eight edge types, plus few-shot examples. Hard type restrictions (for example, generalizes requires both endpoints to be theorems) are stated in the prompt and enforced again in post-processing, and a "none" fallback lets the model reject weak connections.
+
+The model returns a JSON object with the relationship, a confidence, and its reasoning; edges with confidence below $\tau = 0.75$ are discarded. We check both directions $A \to B$ and $B \to A$ for all pairs, as relationships are generally asymmetric. A post-processing pass then (i) removes edges that violate the type restrictions, (ii) removes contradictory bidirectional generalizes/specializes cycles, and (iii) fills in inverses for the symmetric types and the generalizes/specializes pair.
+
+The released graph has 364 nodes and 9,434 edges: 8,026 LLM-inferred plus 1,408 auto-inverse. Of the 8,026 LLM-inferred edges, cross-domain-bridge (3,481) and prerequisite (2,293) account for 72%, applied-in and analogous-to for most of the rest (1,503 and 578), and the logical types are infrequent (instance-of 80, generalizes 48, specializes 30, equivalent-to 13).
+
+<span style="color: #3b82f6; font-style: italic;">Interactive MathKG: drag, zoom, hover, and click to explore the released graph.</span>
+
+<iframe src="./mathkg_visualization.html" width="100%" height="450" style="border: 1px solid #e4e4e7; border-radius: 8px;"></iframe>
+
+## MathAgent: Four-Agent Discovery System
+
+<Figure>
+  <div slot="figure" style="width: 70%;">
+    <Picture src={fig1} alt="MathAgent architecture: four LLM agents with MathKG as shared memory" />
+  </div>
+  <span slot="caption">Figure 1. The MathAgent architecture: four LLM agents with MathKG as persistent shared memory (the Orchestrator, which coordinates the cycle, is omitted).</span>
+</Figure>
+
+MathAgent implements a four-agent architecture where MathKG serves as the shared persistent memory substrate. The four agents, **Explorer**, **Conjecturer**, **Prover**, and **Integrator**, are LLM-powered modules with specialized roles that share access to the graph; a deterministic **Orchestrator** sequences them.
+
+The system supports two operation modes. In *open-ended exploration*, the Explorer identifies investigation targets (structural gaps, cross-domain analogies) in MathKG, the Conjecturer proposes a candidate theorem, the Prover attempts a Lean 4 proof, and the Integrator evaluates novelty and writes verified results back into the graph. This mode is implemented but not evaluated in the paper. *Targeted problem-solving*, the focus of our work, is shown in Algorithm 1: the Explorer searches MathKG and Mathlib for context relevant to a given problem and the Prover attempts a proof using that context.
+
+### Explorer agent
+
+In targeted problem-solving, the Explorer performs a *two-layer search* to gather the Prover's context.
+
+**Layer 1: MathKG semantic search.** The Explorer (1) pre-filters MathKG to nodes in the problem's domain plus their cross-domain-bridge neighbors, (2) selects $s = 5$ seeds by LLM relevance scoring, (3) walks MathKG edges one hop from each seed, and (4) attaches to each retrieved node the edges that connect it to the seeds. The output is a context block of the seeds and their one-hop neighbors, each with its statement and a relevance rationale, and each neighbor with its connecting edges (type, confidence, and reasoning).
+
+**Layer 2: Mathlib declaration search.** The Explorer (1) extracts search terms (Lean 4 identifiers regex-extracted from the formal statement plus LLM-suggested Mathlib namespace prefixes), (2) prefix-matches them against the declaration names of the Mathlib documentation index, (3) scores and ranks the matches by source priority, match precision, name specificity, declaration kind, and module proximity, and (4) enriches the top-ranked declarations with their Lean 4 type signatures and docstrings, so the Prover receives exact names and argument types.
+
+**Full system (Layers 1+2).** When both layers run, their context blocks are concatenated, knowledge-graph context first; Layer 2 then favors modules of the KG seeds and drops declarations the KG block already lists.
+
+### Prover agent
+
+The Prover attempts a complete Lean 4 proof with error-guided refinement:
+
+1. **Initial generation.** Prompt the prover LLM (the evaluated model) with the natural-language and Lean 4 statements plus the Explorer's context.
+2. **Lean 4 verification.** Submit the generated code to the Lean 4 type-checker.
+3. **Error-guided refinement.** On failure, feed the previous code and its error messages (up to ten) back to the model to fix. Repeat steps 2–3 until success or $K$ attempts ($K = 32$ for benchmark evaluation, i.e. pass@32).
+
+An attempt counts as a solve only if the Lean file compiles cleanly and passes a statement-fidelity check: the assigned theorem must be present with its statement unchanged and every supplied definition intact, with no `sorry`, `admit`, or `axiom`.
+
+<Figure>
+  <div slot="figure" style="width: 100%;">
+    <Picture src={alg1} alt="Algorithm 1: MathAgent targeted problem-solving mode" />
+  </div>
+  <span slot="caption">Algorithm 1. MathAgent targeted problem-solving mode: Explorer context (Layers 1 and 2) is injected once, then error-guided refinement continues up to K = 32 attempts in total.</span>
+</Figure>
+
+## Experimental setup
+
+**Benchmarks.** Three standard formal-mathematics benchmarks: **miniF2F** (488 olympiad-level problems: the full validation and test splits), **MathOlympiadBench** (360 competition problems), and **PutnamBench** (672 undergraduate/research-level problems).
+
+**Augmentation modes.** Four conditions isolate each component:
+
+- `prover_only`: no external context (baseline)
+- `with_kg`: MathKG semantic search (Layer 1)
+- `with_mathlib`: lexical Mathlib library retrieval (Layer 2)
+- `full_system`: both (Layers 1 and 2)
+
+Comparing each augmented mode against the baseline isolates each component's contribution; the combined mode tests for synergy.
+
+**Models.** Five models along two axes, general-purpose vs. Lean-specialized and 8B vs. 32B, forming a controlled 2×2, plus a proprietary reference:
+
+- **Qwen3-8B** and **Qwen3-32B**: general-purpose
+- **Goedel-Prover-V2-8B** and **Goedel-Prover-V2-32B**: Lean-specialized, fine-tuned from the matching Qwen3 base through expert iteration and self-correction training
+- **Claude Sonnet 4.6**: proprietary, larger reference
+
+All five models are evaluated on miniF2F; PutnamBench and MathOlympiadBench are evaluated with Claude Sonnet 4.6 only.
+
+**Protocol.** pass@32 with sequential, error-guided refinement rather than 32 independent samples. Every LLM call in a run, including the Explorer's relevance scoring and search-term suggestion, uses that run's model, so each result measures the end-to-end system a practitioner would deploy with that model. All five models use the same generic prompt; only the injected context varies across modes. Temperature 0.3 for initial generation and 0.2 for refinement; Lean 4 compilation has a 1,200 s timeout per attempt.
+
+## Results
+
+### Specialization dominates knowledge augmentation
+
+The dominant factor is neither scale nor augmentation but *specialization*: Goedel-8B solves 205/488 (42.0%) versus 62/488 (12.7%) for Qwen3-32B without external context, a 29-point gap, even though Goedel-8B is four times smaller. Within each matched pair, specialization adds 35.2 points at 8B and 35.9 points at 32B in `prover_only`. By contrast, no single augmentation mode improves solve rate by more than 3 percentage points. This dominance holds across every mode: the specialization gap never falls below ~33 percentage points, and `with_kg` in fact widens it. No augmentation mode we tested lets a general model close the gap that Lean fine-tuning opens.
+
+| Type | Model | prover_only | with_kg | with_mathlib | full_system |
+|---|---|:---:|:---:|:---:|:---:|
+| General | Qwen3-8B | 33 (6.8%) | 35 (7.2%) | 31 (6.4%) | **36 (7.4%)** |
+| General | Qwen3-32B | **62 (12.7%)** | 48 (9.8%) | **62 (12.7%)** | 46 (9.4%) |
+| Specialized | Goedel-8B | 205 (42.0%) | **219 (44.9%)** | 204 (41.8%) | 205 (42.0%) |
+| Specialized | Goedel-32B | **237 (48.6%)** | 234 (48.0%) | 235 (48.2%) | 208 (42.6%) |
+| Proprietary | Claude Sonnet 4.6 | 365 (74.8%) | 358 (73.4%) | 359 (73.6%) | **366 (75.0%)** |
+
+*Table 2. Cross-model pass@32 solve rates on miniF2F (488 problems). Best mode in bold.*
+
+<Figure>
+  <div slot="figure" style="width: 90%;">
+    <Picture src={fig2} alt="Cross-model pass@32 solve rates on miniF2F for five models under four augmentation modes" />
+  </div>
+  <span slot="caption">Figure 2. Cross-model pass@32 on miniF2F (Table 2).</span>
+</Figure>
+
+### Augmentation is capability-conditioned
+
+Whether augmentation helps *on aggregate* depends on the model. KG augmentation helps the specialized small model most (Goedel-8B, +14), helps the weak general model marginally (Qwen3-8B, +2), is roughly neutral on the large specialized model (Goedel-32B, −3), and *hurts* the large general model (Qwen3-32B, −14) and the proprietary model (Sonnet, −7). Lexical Mathlib retrieval never helps on aggregate (−6 to 0). Combining both shows no consistent synergy.
+
+KG augmentation's effect is governed jointly by scale and specialization: scale decides the sign (KG context helps at 8B and is neutral or harmful at 32B), while specialization decides how much better than the general baseline a model does. KG augmentation is thus *capability-conditioned*: its value depends on the model that receives it. Mathlib retrieval, by contrast, is uniformly unhelpful; this holds for our lexical retriever, which prefix-matches declaration names, and does not speak to learned premise selection.
+
+| Question | Qwen3-8B | Qwen3-32B | Goedel-8B | Goedel-32B | Sonnet |
+|---|:---:|:---:|:---:|:---:|:---:|
+| KG helps? (kg − PO) | +2 | −14\* | +14\* | −3 | −7 |
+| Mathlib helps? (mathlib − PO) | −2 | 0 | −1 | −2 | −6 |
+| KG beyond Mathlib? (full − mathlib) | +5 | −16\* | +1 | −27\* | +7 |
+| Synergy? (full − max(kg, mathlib)) | +1 | −16\* | −14\* | −27\* | +7 |
+| Best fixed mode | full | PO/mathlib | KG | PO | full |
+
+*Table 3. Solve-count deltas on miniF2F (positive: augmented mode solves more); \*: p &lt; .05 under an exact McNemar test on the discordant problems.*
+
+### Complementarity: augmentation modes solve different problems
+
+Aggregate solve rates understate augmentation's value, because the modes solve *different* problems. For every model the oracle, a selector that picks the best mode per problem (equivalent in solve count to the union of the four modes), exceeds `prover_only`: +23 for Sonnet (365→388), +36 for Goedel-8B (205→241), +29 for Goedel-32B (237→266), and +19/+18 for the two general models. The oracle uses four runs' worth of attempts; at a matched budget, with 8 attempts per mode (32 in total, the same as `prover_only` at pass@32), the union still exceeds `prover_only` for every model: +5 for Sonnet, +27 for Goedel-8B, +22 for Goedel-32B, and +18/+17 for the two general models.
+
+| Model | prover_only | best single mode | oracle | oracle − prover_only |
+|---|:---:|:---:|:---:|:---:|
+| Qwen3-8B | 33 (6.8%) | 36 (7.4%) | 52 (10.7%) | +19 (+3.9%) |
+| Qwen3-32B | 62 (12.7%) | 62 (12.7%) | 80 (16.4%) | +18 (+3.7%) |
+| Goedel-8B | 205 (42.0%) | 219 (44.9%) | 241 (49.4%) | +36 (+7.4%) |
+| Goedel-32B | 237 (48.6%) | 237 (48.6%) | 266 (54.5%) | +29 (+5.9%) |
+| Claude Sonnet 4.6 | 365 (74.8%) | 366 (75.0%) | 388 (79.5%) | +23 (+4.7%) |
+
+*Table 4. Complementarity on miniF2F (488 problems). Best single mode: the best fixed augmentation mode per model. Oracle: union of problems solved by any of the four modes. Last column: oracle minus prover_only, in problems and solve-rate points.*
+
+<Figure>
+  <div slot="figure" style="width: 85%;">
+    <Picture src={fig3} alt="Relative gain of the oracle over prover_only on miniF2F for five models" />
+  </div>
+  <span slot="caption">Figure 3. Relative gain in the number of problems solved by the oracle (union of the four modes) over prover_only (no augmentation) on miniF2F; the gain shrinks as model capability grows.</span>
+</Figure>
+
+This complementarity is not specific to miniF2F, and it *strengthens* on harder problems. For Sonnet across all three benchmarks, each augmented mode recovers a different set of problems: the oracle exceeds the `prover_only` baseline by +6% on miniF2F, +28% on MathOlympiadBench, and +32% on PutnamBench, so an adaptive augmentation selector gains most on the two harder benchmarks. Across the three benchmarks, augmentation recovers 45 problems that `prover_only` misses and loses 13, roughly a 3:1 ratio.
+
+| Benchmark | prover_only | with_kg | with_mathlib | full_system | oracle | Δ vs. prover_only |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| MathOlympiadBench (360) | **39 (10.8%)** | 33 (9.2%) | 36 (10.0%) | 38 (10.6%) | 50 (13.9%) | +11 (+28%) |
+| miniF2F (488) | 365 (74.8%) | 358 (73.4%) | 359 (73.6%) | **366 (75.0%)** | 388 (79.5%) | +23 (+6%) |
+| PutnamBench (672) | **34 (5.1%)** | 30 (4.5%) | 31 (4.6%) | 25 (3.7%) | 45 (6.7%) | +11 (+32%) |
+| **Total (1,520)** | **438 (28.8%)** | 421 (27.7%) | 426 (28.0%) | 429 (28.2%) | **483 (31.8%)** | +45 (+10%) |
+
+*Table 5. Sonnet 4.6 four-mode ablation across three benchmarks (pass@32), with the per-problem oracle (union of all four modes). Best fixed mode per row in bold.*
+
+<Figure>
+  <div slot="figure" style="width: 100%;">
+    <Picture src={fig4} alt="Venn diagrams of problems recovered beyond prover_only by each augmentation mode, per benchmark" />
+  </div>
+  <span slot="caption">Figure 4. Complementarity for Sonnet 4.6: problems recovered beyond prover_only by each augmentation mode combination. Baseline: solved by prover_only; Oracle: solved by any mode (union of the four modes); Lost: solved only by prover_only.</span>
+</Figure>
+
+## Code and data
+
+The [repository](https://github.com/sarehnabi/mathagent) releases the complete implementation (agents, Orchestrator, graph construction, benchmark evaluation), the MathKG graph and node files, and the per-problem results of all 28 evaluation runs, under the MIT license.
+
+## Acknowledgments
+
+We gratefully acknowledge the Laude Institute for generously providing the compute resources that made this research possible. We also thank Prof. Tatsunori Hashimoto, Prof. Michael Genesereth, and Dr. Simon Rubinstein-Salzedo for their insightful feedback and support.
+
+## Citation
+
+```bibtex
+@article{nabi2026structured,
+  title={When Does Structured Knowledge Help Neural Theorem Proving?},
+  author={Nabi, Sareh and Vogl, Roland and Nabi, Marzieh},
+  journal={arXiv preprint arXiv:2609.34460},
+  year={2026}
+}
+```

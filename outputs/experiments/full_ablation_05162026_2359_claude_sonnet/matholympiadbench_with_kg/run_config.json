@@ -1,0 +1,12 @@
+{
+  "benchmark": "matholympiadbench",
+  "eval_mode": "with_kg",
+  "num_problems": 360,
+  "max_attempts": 32,
+  "parallel": true,
+  "workers": 20,
+  "model": "arn:aws:bedrock:<region>:<account-id>:application-inference-profile/<profile-id>",
+  "kg_path": "/path/to/repo/outputs/experiments/exp_04302026_0611_mathlib_fundamentals_verified_364n/mathkg_clean.json",
+  "timestamp": "2026-05-17T06:18:00.380279",
+  "total_time_seconds": 11581.2
+}

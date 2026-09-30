@@ -1,0 +1,27 @@
+{
+  "benchmark": "minif2f",
+  "eval_mode": "full_system",
+  "num_problems": 488,
+  "max_attempts": 32,
+  "parallel": true,
+  "workers": 64,
+  "model": "Goedel-LM/Goedel-Prover-V2-8B",
+  "serving_model": "Goedel-LM/Goedel-Prover-V2-8B",
+  "use_local_vllm": "true",
+  "prompt_style": "default",
+  "vllm_max_tokens_override": "16384",
+  "temperature": 0.3,
+  "refine_temperature": 0.2,
+  "vllm_request_timeout_seconds": 1800.0,
+  "vllm_thinking": "off",
+  "lean_timeout_seconds": 1200,
+  "mathlib": {
+    "project": "/path/to/mathlib4",
+    "git_describe": "v4.32.0-rc1",
+    "git_commit": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+    "lean_toolchain": "leanprover/lean4:v4.32.0-rc1"
+  },
+  "kg_path": "/path/to/repo/outputs/experiments/exp_04302026_0611_mathlib_fundamentals_verified_364n/mathkg_clean.json",
+  "timestamp": "2026-08-29T08:06:06.382224",
+  "total_time_seconds": 30271.7
+}

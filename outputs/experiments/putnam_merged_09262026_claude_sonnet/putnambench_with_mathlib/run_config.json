@@ -1,0 +1,62 @@
+{
+  "merged_from": {
+    "answer_slot_problems_346": {
+      "run": "putnam_rerun_09262026_claude_sonnet",
+      "solved": 18,
+      "run_config": {
+        "benchmark": "putnambench",
+        "eval_mode": "with_mathlib",
+        "num_problems": 346,
+        "max_attempts": 32,
+        "parallel": true,
+        "workers": 20,
+        "model": "arn:aws:bedrock:<region>:<account-id>:application-inference-profile/<profile-id>",
+        "serving_model": null,
+        "use_local_vllm": null,
+        "prompt_style": "default",
+        "vllm_max_tokens_override": "2000",
+        "temperature": 0.3,
+        "refine_temperature": 0.2,
+        "vllm_request_timeout_seconds": 1800.0,
+        "vllm_thinking": null,
+        "lean_timeout_seconds": 1200,
+        "mathlib": {
+          "project": "/path/to/mathlib4",
+          "git_describe": "master-2026-04-30-15-g49f1034433",
+          "git_commit": "49f10344339f99fda2d3bb0aa1455bfa6801fd93",
+          "lean_toolchain": "leanprover/lean4:v4.30.0-rc2"
+        },
+        "kg_path": null,
+        "statement_check": true,
+        "putnambench_answers": "inlined",
+        "problem_ids_file": "outputs/validation/putnam_answer_slot_ids.txt",
+        "timestamp": "2026-09-26T13:42:28.259416",
+        "total_time_seconds": 16362.5
+      }
+    },
+    "slot_free_problems_326": {
+      "run": "full_ablation_05162026_2359_claude_sonnet",
+      "solved": 13,
+      "relabeled_statement_check_failed": 0,
+      "run_config": {
+        "benchmark": "putnambench",
+        "eval_mode": "with_mathlib",
+        "num_problems": 672,
+        "max_attempts": 32,
+        "parallel": true,
+        "workers": 20,
+        "model": "arn:aws:bedrock:<region>:<account-id>:application-inference-profile/<profile-id>",
+        "kg_path": null,
+        "timestamp": "2026-05-18T18:26:38.036634",
+        "total_time_seconds": 25780.8
+      }
+    }
+  },
+  "benchmark": "putnambench",
+  "eval_mode": "with_mathlib",
+  "num_problems": 672,
+  "max_attempts": 32,
+  "model": "arn:aws:bedrock:<region>:<account-id>:application-inference-profile/<profile-id>",
+  "statement_check": true,
+  "putnambench_answers": "inlined"
+}

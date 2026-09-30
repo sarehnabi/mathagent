@@ -1,0 +1,12 @@
+{
+  "benchmark": "matholympiadbench",
+  "eval_mode": "prover_only",
+  "num_problems": 360,
+  "max_attempts": 32,
+  "parallel": true,
+  "workers": 20,
+  "model": "arn:aws:bedrock:<region>:<account-id>:application-inference-profile/<profile-id>",
+  "kg_path": null,
+  "timestamp": "2026-05-17T03:04:58.811714",
+  "total_time_seconds": 11099.0
+}

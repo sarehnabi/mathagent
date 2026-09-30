@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "When Does Structured Knowledge Help Neural Theorem Proving?"
+authors:
+  - family-names: Nabi
+    given-names: Sareh
+    affiliation: Stanford University
+  - family-names: Vogl
+    given-names: Roland
+    affiliation: Stanford University
+  - family-names: Nabi
+    given-names: Marzieh
+    affiliation: Stanford University
+date-released: 2026-09-28
+license: MIT
+repository-code: "https://github.com/sarehnabi/mathagent"
+url: "https://sarehnabi.github.io/mathagent/"
+preferred-citation:
+  type: article
+  title: "When Does Structured Knowledge Help Neural Theorem Proving?"
+  authors:
+    - family-names: Nabi
+      given-names: Sareh
+    - family-names: Vogl
+      given-names: Roland
+    - family-names: Nabi
+      given-names: Marzieh
+  journal: "arXiv preprint arXiv:2609.34460"
+  year: 2026
+  url: "https://arxiv.org/abs/2609.34460"

@@ -1,0 +1,15 @@
+{
+  "benchmark": "minif2f",
+  "eval_mode": "prover_only",
+  "num_problems": 488,
+  "max_attempts": 32,
+  "parallel": true,
+  "workers": 15,
+  "model": "Qwen/Qwen3-8B",
+  "kg_path": null,
+  "timestamp": "2026-05-21T20:42:21.300045",
+  "total_time_seconds": 37946.8,
+  "serving_model": "Qwen/Qwen3-8B",
+  "use_local_vllm": "true",
+  "note": "The original run_config recorded the default config.MODEL_ID (an AWS Bedrock profile) because the May 2026 evaluator did not log the vLLM settings; this run served Qwen3-8B with vLLM on a g6e.24xlarge (paper, Appendix F). Fields corrected at release time."
+}

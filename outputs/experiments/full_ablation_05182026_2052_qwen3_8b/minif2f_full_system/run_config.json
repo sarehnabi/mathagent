@@ -1,0 +1,15 @@
+{
+  "benchmark": "minif2f",
+  "eval_mode": "full_system",
+  "num_problems": 488,
+  "max_attempts": 32,
+  "parallel": true,
+  "workers": 15,
+  "model": "Qwen/Qwen3-8B",
+  "kg_path": "/path/to/repo/outputs/experiments/exp_04302026_0611_mathlib_fundamentals_verified_364n/mathkg_clean.json",
+  "timestamp": "2026-05-23T11:04:56.521666",
+  "total_time_seconds": 40575.2,
+  "serving_model": "Qwen/Qwen3-8B",
+  "use_local_vllm": "true",
+  "note": "The original run_config recorded the default config.MODEL_ID (an AWS Bedrock profile) because the May 2026 evaluator did not log the vLLM settings; this run served Qwen3-8B with vLLM on a g6e.24xlarge (paper, Appendix F). Fields corrected at release time."
+}

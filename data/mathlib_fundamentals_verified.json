@@ -1,0 +1,5427 @@
+[
+  {
+    "id": "def_nt_001",
+    "name": "Prime Number",
+    "domain": "Number Theory",
+    "statement": "A natural number p >= 2 whose only divisors are 1 and p.",
+    "type": "definition",
+    "keywords": [
+      "prime",
+      "divisibility"
+    ],
+    "lean4_mathlib_name": "Nat.Prime",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Prime.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_002",
+    "name": "Greatest Common Divisor",
+    "domain": "Number Theory",
+    "statement": "gcd(a,b) is the largest natural number dividing both a and b.",
+    "type": "definition",
+    "keywords": [
+      "GCD",
+      "divisibility",
+      "Euclidean"
+    ],
+    "lean4_mathlib_name": "Nat.gcd",
+    "lean4_mathlib_import": "Init.Data.Nat.Gcd",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_003",
+    "name": "Coprime Integers",
+    "domain": "Number Theory",
+    "statement": "a and b are coprime if gcd(a,b) = 1.",
+    "type": "definition",
+    "keywords": [
+      "coprime",
+      "GCD"
+    ],
+    "lean4_mathlib_name": "Nat.Coprime",
+    "lean4_mathlib_import": "Init.Data.Nat.Coprime",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_004",
+    "name": "Modular Congruence",
+    "domain": "Number Theory",
+    "statement": "a \u2261 b (mod n) iff n divides a - b.",
+    "type": "definition",
+    "keywords": [
+      "congruence",
+      "modular arithmetic"
+    ],
+    "lean4_mathlib_name": "Nat.ModEq",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.ModEq",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_005",
+    "name": "Ring ZMod n",
+    "domain": "Number Theory",
+    "statement": "ZMod n is the ring of integers modulo n.",
+    "type": "definition",
+    "keywords": [
+      "modular arithmetic",
+      "ring",
+      "quotient"
+    ],
+    "lean4_mathlib_name": "ZMod",
+    "lean4_mathlib_import": "Mathlib.Data.ZMod.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_006",
+    "name": "Euler's Totient Function",
+    "domain": "Number Theory",
+    "statement": "phi(n) counts integers 1 <= k <= n coprime to n.",
+    "type": "definition",
+    "keywords": [
+      "totient",
+      "Euler",
+      "multiplicative"
+    ],
+    "lean4_mathlib_name": "Nat.totient",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Totient",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_007",
+    "name": "Legendre Symbol",
+    "domain": "Number Theory",
+    "statement": "(a/p) = 1 if a is a QR mod p, -1 if not, 0 if p | a.",
+    "type": "definition",
+    "keywords": [
+      "Legendre",
+      "quadratic residue"
+    ],
+    "lean4_mathlib_name": "legendreSym",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LegendreSymbol.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_008",
+    "name": "Moebius Function",
+    "domain": "Number Theory",
+    "statement": "mu(n) = (-1)^k if n is product of k distinct primes, 0 if n has squared prime factor.",
+    "type": "definition",
+    "keywords": [
+      "Moebius",
+      "multiplicative",
+      "sieve"
+    ],
+    "lean4_mathlib_name": "ArithmeticFunction.moebius",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.ArithmeticFunction.Moebius",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_009",
+    "name": "p-adic Valuation",
+    "domain": "Number Theory",
+    "statement": "v_p(n) is the largest power of prime p dividing n.",
+    "type": "definition",
+    "keywords": [
+      "p-adic",
+      "valuation",
+      "prime"
+    ],
+    "lean4_mathlib_name": "padicValNat",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.MaxPowDiv",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_nt_010",
+    "name": "Primitive Root",
+    "domain": "Number Theory",
+    "statement": "g is a primitive root mod n if its multiplicative order equals phi(n).",
+    "type": "definition",
+    "keywords": [
+      "primitive root",
+      "generator",
+      "cyclic"
+    ],
+    "lean4_mathlib_name": "IsPrimitiveRoot",
+    "lean4_mathlib_import": "Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_001",
+    "name": "Fermat's Little Theorem",
+    "domain": "Number Theory",
+    "statement": "If p is prime and gcd(a,p) = 1, then a^{p-1} \u2261 1 (mod p).",
+    "type": "theorem",
+    "keywords": [
+      "Fermat",
+      "prime",
+      "modular"
+    ],
+    "lean4_mathlib_name": "ZMod.pow_card_sub_one_eq_one",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Finite.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_002",
+    "name": "Euler's Theorem",
+    "domain": "Number Theory",
+    "statement": "If gcd(a,n) = 1 then a^{phi(n)} \u2261 1 (mod n).",
+    "type": "theorem",
+    "keywords": [
+      "Euler",
+      "totient",
+      "modular"
+    ],
+    "lean4_mathlib_name": "ZMod.pow_totient",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Finite.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_003",
+    "name": "Wilson's Theorem",
+    "domain": "Number Theory",
+    "statement": "p >= 2 is prime iff (p-1)! \u2261 -1 (mod p).",
+    "type": "theorem",
+    "keywords": [
+      "Wilson",
+      "factorial",
+      "prime"
+    ],
+    "lean4_mathlib_name": "ZMod.wilsons_lemma",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.Wilson",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_004",
+    "name": "Chinese Remainder Theorem",
+    "domain": "Number Theory",
+    "statement": "If gcd(m,n) = 1 then ZMod(mn) \u2245 ZMod(m) \u00d7 ZMod(n).",
+    "type": "theorem",
+    "keywords": [
+      "CRT",
+      "modular",
+      "isomorphism"
+    ],
+    "lean4_mathlib_name": "ZMod.chineseRemainder",
+    "lean4_mathlib_import": "Mathlib.Data.ZMod.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_005",
+    "name": "Quadratic Reciprocity",
+    "domain": "Number Theory",
+    "statement": "For odd primes p,q: (p/q)(q/p) = (-1)^{(p-1)/2\u00b7(q-1)/2}.",
+    "type": "theorem",
+    "keywords": [
+      "QR",
+      "Legendre",
+      "Gauss"
+    ],
+    "lean4_mathlib_name": "legendreSym.quadratic_reciprocity",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_006",
+    "name": "Bezout's Identity",
+    "domain": "Number Theory",
+    "statement": "For a,b \u2208 Z, there exist x,y with ax + by = gcd(a,b).",
+    "type": "theorem",
+    "keywords": [
+      "Bezout",
+      "GCD",
+      "linear combination"
+    ],
+    "lean4_mathlib_name": "Int.gcd_eq_gcd_ab",
+    "lean4_mathlib_import": "Mathlib.Data.Int.GCD",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_007",
+    "name": "Fundamental Theorem of Arithmetic",
+    "domain": "Number Theory",
+    "statement": "Every integer > 1 has a unique prime factorization.",
+    "type": "theorem",
+    "keywords": [
+      "FTA",
+      "unique factorization",
+      "prime"
+    ],
+    "lean4_mathlib_name": "UniqueFactorizationMonoid.factors_unique",
+    "lean4_mathlib_import": "Mathlib.RingTheory.UniqueFactorizationDomain.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_008",
+    "name": "Infinitude of Primes",
+    "domain": "Number Theory",
+    "statement": "There are infinitely many prime numbers.",
+    "type": "theorem",
+    "keywords": [
+      "Euclid",
+      "primes",
+      "infinite"
+    ],
+    "lean4_mathlib_name": "Nat.exists_infinite_primes",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Prime.Infinite",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_009",
+    "name": "Euclid's Lemma",
+    "domain": "Number Theory",
+    "statement": "If prime p divides ab, then p divides a or p divides b.",
+    "type": "theorem",
+    "keywords": [
+      "Euclid",
+      "prime",
+      "divisibility"
+    ],
+    "lean4_mathlib_name": "Nat.Prime.dvd_mul",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Prime.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_010",
+    "name": "Bertrand's Postulate",
+    "domain": "Number Theory",
+    "statement": "For every n >= 1, there exists a prime p with n < p <= 2n.",
+    "type": "theorem",
+    "keywords": [
+      "Bertrand",
+      "prime gaps"
+    ],
+    "lean4_mathlib_name": "Nat.bertrand",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.Bertrand",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_011",
+    "name": "Dirichlet's Theorem on Primes in APs",
+    "domain": "Number Theory",
+    "statement": "For coprime a,d, there are infinitely many primes \u2261 a (mod d).",
+    "type": "theorem",
+    "keywords": [
+      "Dirichlet",
+      "arithmetic progression",
+      "primes"
+    ],
+    "lean4_mathlib_name": "Nat.setOf_prime_and_eq_mod_infinite",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LSeries.PrimesInAP",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_012",
+    "name": "Sum of Two Squares",
+    "domain": "Number Theory",
+    "statement": "Odd prime p = a\u00b2 + b\u00b2 iff p \u2261 1 (mod 4).",
+    "type": "theorem",
+    "keywords": [
+      "Fermat",
+      "sum of squares",
+      "Gaussian integers"
+    ],
+    "lean4_mathlib_name": "Nat.Prime.sq_add_sq",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.SumTwoSquares",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_013",
+    "name": "Lagrange's Four Squares Theorem",
+    "domain": "Number Theory",
+    "statement": "Every positive integer is the sum of four squares.",
+    "type": "theorem",
+    "keywords": [
+      "Lagrange",
+      "Waring",
+      "sum of squares"
+    ],
+    "lean4_mathlib_name": "Nat.sum_four_squares",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.SumFourSquares",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_016",
+    "name": "Sum of Totient over Divisors",
+    "domain": "Number Theory",
+    "statement": "\u03a3_{d|n} phi(d) = n for all n >= 1.",
+    "type": "theorem",
+    "keywords": [
+      "totient",
+      "divisor sum"
+    ],
+    "lean4_mathlib_name": "Nat.sum_totient",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Totient",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_017",
+    "name": "Chevalley-Warning Theorem",
+    "domain": "Number Theory",
+    "statement": "If polynomials over F_p have total degree < number of variables, p divides the number of common zeros.",
+    "type": "theorem",
+    "keywords": [
+      "Chevalley",
+      "Warning",
+      "finite field"
+    ],
+    "lean4_mathlib_name": "char_dvd_card_solutions_of_sum_lt",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.ChevalleyWarning",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_018",
+    "name": "Hensel's Lemma",
+    "domain": "Number Theory",
+    "statement": "A simple root mod p lifts uniquely to Z_p.",
+    "type": "theorem",
+    "keywords": [
+      "Hensel",
+      "p-adic",
+      "lifting"
+    ],
+    "lean4_mathlib_name": "HenselianLocalRing.is_henselian",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Henselian",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_019",
+    "name": "QR First Supplement",
+    "domain": "Number Theory",
+    "statement": "(-1/p) = (-1)^{(p-1)/2}: -1 is a QR mod p iff p \u2261 1 (mod 4).",
+    "type": "theorem",
+    "keywords": [
+      "quadratic reciprocity",
+      "supplement"
+    ],
+    "lean4_mathlib_name": "legendreSym.at_neg_one",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LegendreSymbol.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_020",
+    "name": "QR Second Supplement",
+    "domain": "Number Theory",
+    "statement": "(2/p) = (-1)^{(p\u00b2-1)/8}: 2 is a QR mod p iff p \u2261 \u00b11 (mod 8).",
+    "type": "theorem",
+    "keywords": [
+      "quadratic reciprocity",
+      "supplement"
+    ],
+    "lean4_mathlib_name": "legendreSym.at_two",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_021",
+    "name": "Lucas' Theorem",
+    "domain": "Number Theory",
+    "statement": "C(m,n) \u2261 \u03a0 C(m_i,n_i) (mod p) where m_i,n_i are base-p digits.",
+    "type": "theorem",
+    "keywords": [
+      "Lucas",
+      "binomial",
+      "prime"
+    ],
+    "lean4_mathlib_name": "Choose.lucas_theorem_nat",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Lucas",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_022",
+    "name": "Legendre's Formula",
+    "domain": "Number Theory",
+    "statement": "v_p(n!) = \u03a3_{i\u22651} floor(n/p^i).",
+    "type": "theorem",
+    "keywords": [
+      "Legendre",
+      "factorial",
+      "p-adic"
+    ],
+    "lean4_mathlib_name": "Nat.factorization_factorial",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Factorization",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_025",
+    "name": "Freshman's Dream",
+    "domain": "Number Theory",
+    "statement": "In characteristic p: (a + b)^p = a^p + b^p.",
+    "type": "theorem",
+    "keywords": [
+      "characteristic p",
+      "Frobenius",
+      "binomial"
+    ],
+    "lean4_mathlib_name": "add_pow_char",
+    "lean4_mathlib_import": "Mathlib.Algebra.CharP.Lemmas",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_027",
+    "name": "Finite Field Multiplicative Group is Cyclic",
+    "domain": "Number Theory",
+    "statement": "The multiplicative group of any finite field is cyclic.",
+    "type": "theorem",
+    "keywords": [
+      "finite field",
+      "cyclic",
+      "multiplicative group"
+    ],
+    "lean4_mathlib_name": "IsCyclic",
+    "lean4_mathlib_import": "Mathlib.Algebra.Group.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_030",
+    "name": "Square Root of 2 is Irrational",
+    "domain": "Number Theory",
+    "statement": "\u221a2 is not rational.",
+    "type": "theorem",
+    "keywords": [
+      "irrational",
+      "sqrt 2"
+    ],
+    "lean4_mathlib_name": "irrational_sqrt_two",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.Real.Irrational",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_031",
+    "name": "Pi is Irrational",
+    "domain": "Number Theory",
+    "statement": "\u03c0 is irrational.",
+    "type": "theorem",
+    "keywords": [
+      "pi",
+      "irrational",
+      "transcendental"
+    ],
+    "lean4_mathlib_name": "irrational_pi",
+    "lean4_mathlib_import": "Mathlib.Analysis.Real.Pi.Irrational",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_033",
+    "name": "Euler Product Formula",
+    "domain": "Number Theory",
+    "statement": "\u03b6(s) = \u03a0_p (1 - p^{-s})^{-1} for Re(s) > 1.",
+    "type": "theorem",
+    "keywords": [
+      "Euler",
+      "product",
+      "zeta",
+      "Riemann"
+    ],
+    "lean4_mathlib_name": "ArithmeticFunction.IsMultiplicative.eulerProduct",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.EulerProduct.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_034",
+    "name": "Lifting the Exponent Lemma",
+    "domain": "Number Theory",
+    "statement": "For odd prime p with p | a-b, p \u2224 a: v_p(a\u207f - b\u207f) = v_p(a-b) + v_p(n).",
+    "type": "theorem",
+    "keywords": [
+      "LTE",
+      "p-adic",
+      "power"
+    ],
+    "lean4_mathlib_name": "Int.emultiplicity_pow_sub_pow",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.Multiplicity",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_039",
+    "name": "Geometric Series",
+    "domain": "Algebra",
+    "statement": "\u03a3_{k=0}^{n-1} r^k = (r^n - 1)/(r - 1) for r \u2260 1.",
+    "type": "theorem",
+    "keywords": [
+      "geometric series",
+      "sum"
+    ],
+    "lean4_mathlib_name": "geom_sum_eq",
+    "lean4_mathlib_import": "Mathlib.Algebra.Field.GeomSum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_040",
+    "name": "Order Divides Group Order",
+    "domain": "Number Theory",
+    "statement": "In a finite group, ord(g) divides |G|.",
+    "type": "theorem",
+    "keywords": [
+      "Lagrange",
+      "order",
+      "group"
+    ],
+    "lean4_mathlib_name": "orderOf_dvd_card",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.OrderOfElement",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_001",
+    "name": "Finite Set (Finset)",
+    "domain": "Combinatorics",
+    "statement": "A finite set with decidable membership and cardinality.",
+    "type": "definition",
+    "keywords": [
+      "finite set",
+      "cardinality"
+    ],
+    "lean4_mathlib_name": "Finset",
+    "lean4_mathlib_import": "Mathlib.Data.Finset.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_002",
+    "name": "Binomial Coefficient",
+    "domain": "Combinatorics",
+    "statement": "C(n,k) = n!/(k!(n-k)!) counts k-element subsets of [n].",
+    "type": "definition",
+    "keywords": [
+      "choose",
+      "counting"
+    ],
+    "lean4_mathlib_name": "Nat.choose",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_003",
+    "name": "Simple Graph",
+    "domain": "Combinatorics",
+    "statement": "G = (V,E) with irreflexive symmetric edge relation.",
+    "type": "definition",
+    "keywords": [
+      "graph",
+      "adjacency"
+    ],
+    "lean4_mathlib_name": "SimpleGraph",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_004",
+    "name": "Chromatic Number",
+    "domain": "Combinatorics",
+    "statement": "\u03c7(G) is the minimum colors for a proper vertex coloring.",
+    "type": "definition",
+    "keywords": [
+      "coloring",
+      "chromatic"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.chromaticNumber",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Coloring.VertexColoring",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_005",
+    "name": "Antichain",
+    "domain": "Combinatorics",
+    "statement": "A set of pairwise incomparable elements in a poset.",
+    "type": "definition",
+    "keywords": [
+      "antichain",
+      "poset",
+      "Dilworth"
+    ],
+    "lean4_mathlib_name": "IsAntichain",
+    "lean4_mathlib_import": "Mathlib.Order.Antichain",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_006",
+    "name": "Partition of n",
+    "domain": "Combinatorics",
+    "statement": "A multiset of positive integers summing to n.",
+    "type": "definition",
+    "keywords": [
+      "partition",
+      "Young diagram"
+    ],
+    "lean4_mathlib_name": "Nat.Partition",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Enumerative.Partition.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_007",
+    "name": "Catalan Numbers",
+    "domain": "Combinatorics",
+    "statement": "C_n = C(2n,n)/(n+1) counts binary trees, Dyck paths, etc.",
+    "type": "definition",
+    "keywords": [
+      "Catalan",
+      "counting"
+    ],
+    "lean4_mathlib_name": "catalan",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Enumerative.Catalan",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_008",
+    "name": "Matroid",
+    "domain": "Combinatorics",
+    "statement": "A combinatorial structure generalizing linear independence.",
+    "type": "definition",
+    "keywords": [
+      "matroid",
+      "independence",
+      "rank"
+    ],
+    "lean4_mathlib_name": "Matroid",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Matroid.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_009",
+    "name": "Graph Matching",
+    "domain": "Combinatorics",
+    "statement": "A set of pairwise non-adjacent edges.",
+    "type": "definition",
+    "keywords": [
+      "matching",
+      "graph"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.Subgraph.IsMatching",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Matching",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_010",
+    "name": "Graph Connectivity",
+    "domain": "Combinatorics",
+    "statement": "G is connected if every two vertices are joined by a path.",
+    "type": "definition",
+    "keywords": [
+      "connected",
+      "path",
+      "graph"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.Connected",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_001",
+    "name": "Pigeonhole Principle",
+    "domain": "Combinatorics",
+    "statement": "If n+1 objects go in n boxes, some box has \u2265 2.",
+    "type": "theorem",
+    "keywords": [
+      "pigeonhole",
+      "Dirichlet",
+      "counting"
+    ],
+    "lean4_mathlib_name": "Fintype.exists_ne_map_eq_of_card_lt",
+    "lean4_mathlib_import": "Mathlib.Data.Fintype.Pigeonhole",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_002",
+    "name": "Inclusion-Exclusion Principle",
+    "domain": "Combinatorics",
+    "statement": "|A\u2081\u222a...\u222aA\u2099| = \u03a3|A\u1d62| - \u03a3|A\u1d62\u2229A\u2c7c| + ... \u00b1 |A\u2081\u2229...\u2229A\u2099|.",
+    "type": "theorem",
+    "keywords": [
+      "inclusion-exclusion",
+      "sieve"
+    ],
+    "lean4_mathlib_name": "Finset.card_biUnion_le",
+    "lean4_mathlib_import": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_003",
+    "name": "Binomial Theorem",
+    "domain": "Combinatorics",
+    "statement": "(x+y)^n = \u03a3 C(n,k) x^{n-k} y^k.",
+    "type": "theorem",
+    "keywords": [
+      "binomial",
+      "expansion"
+    ],
+    "lean4_mathlib_name": "Commute.add_pow",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Sum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_004",
+    "name": "Sperner's Theorem",
+    "domain": "Combinatorics",
+    "statement": "Max antichain in P([n]) has size C(n, \u230an/2\u230b).",
+    "type": "theorem",
+    "keywords": [
+      "Sperner",
+      "antichain",
+      "extremal"
+    ],
+    "lean4_mathlib_name": "IsAntichain.sperner",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SetFamily.LYM",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_005",
+    "name": "Erdos-Ko-Rado Theorem",
+    "domain": "Combinatorics",
+    "statement": "Max intersecting k-uniform family of [n] (n\u22652k) has size C(n-1,k-1).",
+    "type": "theorem",
+    "keywords": [
+      "EKR",
+      "intersecting",
+      "extremal"
+    ],
+    "lean4_mathlib_name": "Finset.erdos_ko_rado",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SetFamily.KruskalKatona",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_009",
+    "name": "Turan's Theorem",
+    "domain": "Combinatorics",
+    "statement": "Max edges in K_{r+1}-free graph on n vertices is (1-1/r)n\u00b2/2.",
+    "type": "theorem",
+    "keywords": [
+      "Turan",
+      "extremal",
+      "clique-free"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.IsTuranMaximal",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Extremal.Turan",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_010",
+    "name": "Handshaking Lemma",
+    "domain": "Combinatorics",
+    "statement": "Sum of degrees = 2 \u00d7 number of edges.",
+    "type": "theorem",
+    "keywords": [
+      "handshaking",
+      "degree sum"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.sum_degrees_eq_twice_card_edges",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.DegreeSum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_014",
+    "name": "Kruskal-Katona Theorem",
+    "domain": "Combinatorics",
+    "statement": "Initial segments in colex minimize shadow size among k-uniform families of given size.",
+    "type": "theorem",
+    "keywords": [
+      "Kruskal-Katona",
+      "shadow",
+      "extremal"
+    ],
+    "lean4_mathlib_name": "Finset.kruskal_katona",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SetFamily.KruskalKatona",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_020",
+    "name": "Pascal's Rule",
+    "domain": "Combinatorics",
+    "statement": "C(n+1,k+1) = C(n,k) + C(n,k+1).",
+    "type": "theorem",
+    "keywords": [
+      "Pascal",
+      "binomial",
+      "recurrence"
+    ],
+    "lean4_mathlib_name": "Nat.choose_succ_succ",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_021",
+    "name": "Vandermonde's Identity",
+    "domain": "Combinatorics",
+    "statement": "C(m+n,r) = \u03a3_{k=0}^r C(m,k)C(n,r-k).",
+    "type": "theorem",
+    "keywords": [
+      "Vandermonde",
+      "convolution"
+    ],
+    "lean4_mathlib_name": "Nat.add_choose_eq",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Vandermonde",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_022",
+    "name": "Derangement Formula",
+    "domain": "Combinatorics",
+    "statement": "D_n = n! \u03a3_{k=0}^n (-1)^k/k! \u2248 n!/e.",
+    "type": "theorem",
+    "keywords": [
+      "derangement",
+      "inclusion-exclusion"
+    ],
+    "lean4_mathlib_name": "card_derangements_eq_numDerangements",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Derangements.Finite",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_023",
+    "name": "Catalan Recurrence",
+    "domain": "Combinatorics",
+    "statement": "C_{n+1} = \u03a3_{i=0}^n C_i\u00b7C_{n-i}.",
+    "type": "theorem",
+    "keywords": [
+      "Catalan",
+      "recurrence"
+    ],
+    "lean4_mathlib_name": "catalan_succ",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Enumerative.Catalan",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_024",
+    "name": "Zorn's Lemma",
+    "domain": "Combinatorics",
+    "statement": "If every chain in a poset has an upper bound, there exists a maximal element.",
+    "type": "theorem",
+    "keywords": [
+      "Zorn",
+      "maximal",
+      "choice"
+    ],
+    "lean4_mathlib_name": "zorn_le",
+    "lean4_mathlib_import": "Mathlib.Order.Zorn",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_027",
+    "name": "Sum of Binomial Coefficients",
+    "domain": "Combinatorics",
+    "statement": "\u03a3_{k=0}^n C(n,k) = 2^n.",
+    "type": "theorem",
+    "keywords": [
+      "binomial",
+      "sum"
+    ],
+    "lean4_mathlib_name": "Nat.sum_range_choose",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Sum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_028",
+    "name": "Binomial Symmetry",
+    "domain": "Combinatorics",
+    "statement": "C(n,k) = C(n,n-k).",
+    "type": "theorem",
+    "keywords": [
+      "binomial",
+      "symmetry"
+    ],
+    "lean4_mathlib_name": "Nat.choose_symm",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_029",
+    "name": "Stirling Second Kind Recurrence",
+    "domain": "Combinatorics",
+    "statement": "S(n+1,k) = k\u00b7S(n,k) + S(n,k-1).",
+    "type": "theorem",
+    "keywords": [
+      "Stirling",
+      "recurrence"
+    ],
+    "lean4_mathlib_name": "Nat.stirlingSecond_succ_succ",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Enumerative.Stirling",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_001",
+    "name": "Polynomial Ring",
+    "domain": "Algebra",
+    "statement": "R[X] is the ring of polynomials with coefficients in R.",
+    "type": "definition",
+    "keywords": [
+      "polynomial",
+      "ring"
+    ],
+    "lean4_mathlib_name": "Polynomial",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_002",
+    "name": "Complex Numbers",
+    "domain": "Algebra",
+    "statement": "\u2102 = \u211d \u00d7 \u211d with multiplication (a,b)(c,d) = (ac-bd, ad+bc).",
+    "type": "definition",
+    "keywords": [
+      "complex",
+      "field"
+    ],
+    "lean4_mathlib_name": "Complex",
+    "lean4_mathlib_import": "Mathlib.Data.Complex.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_003",
+    "name": "Inner Product Space",
+    "domain": "Algebra",
+    "statement": "A vector space with a positive-definite Hermitian form \u27e8\u00b7,\u00b7\u27e9.",
+    "type": "definition",
+    "keywords": [
+      "inner product",
+      "Hilbert",
+      "norm"
+    ],
+    "lean4_mathlib_name": "InnerProductSpace",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_004",
+    "name": "Norm",
+    "domain": "Algebra",
+    "statement": "A function \u2016\u00b7\u2016 satisfying positivity, homogeneity, triangle inequality.",
+    "type": "definition",
+    "keywords": [
+      "norm",
+      "Banach",
+      "metric"
+    ],
+    "lean4_mathlib_name": "Norm",
+    "lean4_mathlib_import": "Mathlib.Analysis.Normed.Group.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_005",
+    "name": "Algebraic Closure",
+    "domain": "Algebra",
+    "statement": "An algebraically closed field extension in which every polynomial splits.",
+    "type": "definition",
+    "keywords": [
+      "algebraic closure",
+      "splitting field"
+    ],
+    "lean4_mathlib_name": "IsAlgClosed",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.IsAlgClosed.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_006",
+    "name": "Absolute Value",
+    "domain": "Algebra",
+    "statement": "|x| = x if x \u2265 0, -x if x < 0.",
+    "type": "definition",
+    "keywords": [
+      "absolute value",
+      "distance"
+    ],
+    "lean4_mathlib_name": "abs",
+    "lean4_mathlib_import": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_007",
+    "name": "Root of Polynomial",
+    "domain": "Algebra",
+    "statement": "r is a root of f if f(r) = 0.",
+    "type": "definition",
+    "keywords": [
+      "root",
+      "zero",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.IsRoot",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Eval.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_008",
+    "name": "Degree of Polynomial",
+    "domain": "Algebra",
+    "statement": "deg(f) is the highest power with nonzero coefficient.",
+    "type": "definition",
+    "keywords": [
+      "degree",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.natDegree",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Degree.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_001",
+    "name": "Fundamental Theorem of Algebra",
+    "domain": "Algebra",
+    "statement": "Every non-constant polynomial over \u2102 has a root in \u2102.",
+    "type": "theorem",
+    "keywords": [
+      "FTA",
+      "complex",
+      "root"
+    ],
+    "lean4_mathlib_name": "Complex.isAlgClosed",
+    "lean4_mathlib_import": "Mathlib.Analysis.Complex.Polynomial.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_002",
+    "name": "AM-GM Inequality",
+    "domain": "Algebra",
+    "statement": "For non-negative reals: (a\u2081+...+a\u2099)/n \u2265 (a\u2081\u00b7...\u00b7a\u2099)^{1/n}.",
+    "type": "theorem",
+    "keywords": [
+      "AM-GM",
+      "inequality",
+      "mean"
+    ],
+    "lean4_mathlib_name": "Real.geom_mean_le_arith_mean_weighted",
+    "lean4_mathlib_import": "Mathlib.Analysis.MeanInequalities",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_004",
+    "name": "Triangle Inequality",
+    "domain": "Algebra",
+    "statement": "\u2016a + b\u2016 \u2264 \u2016a\u2016 + \u2016b\u2016 in any normed space.",
+    "type": "theorem",
+    "keywords": [
+      "triangle",
+      "norm",
+      "metric"
+    ],
+    "lean4_mathlib_name": "norm_add_le",
+    "lean4_mathlib_import": "Mathlib.Analysis.Normed.Group.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_007",
+    "name": "Factor Theorem",
+    "domain": "Algebra",
+    "statement": "r is a root of f iff (x-r) divides f.",
+    "type": "theorem",
+    "keywords": [
+      "factor",
+      "root",
+      "divisibility"
+    ],
+    "lean4_mathlib_name": "Polynomial.dvd_iff_isRoot",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Div",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_010",
+    "name": "Power Mean Inequality",
+    "domain": "Algebra",
+    "statement": "M_r(x) \u2264 M_s(x) for r \u2264 s, where M_r is the r-th power mean.",
+    "type": "theorem",
+    "keywords": [
+      "power mean",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "Real.rpow_natCast_mul",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Pow.Real",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_015",
+    "name": "Hilbert Basis Theorem",
+    "domain": "Algebra",
+    "statement": "If R is Noetherian, then R[X] is Noetherian.",
+    "type": "theorem",
+    "keywords": [
+      "Hilbert",
+      "Noetherian",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.isNoetherianRing",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Polynomial.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_016",
+    "name": "Polynomial GCD Exists",
+    "domain": "Algebra",
+    "statement": "k[X] is a Euclidean domain, so GCDs exist.",
+    "type": "theorem",
+    "keywords": [
+      "GCD",
+      "polynomial",
+      "Euclidean"
+    ],
+    "lean4_mathlib_name": "Polynomial.instEuclideanDomain",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.FieldDivision",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_022",
+    "name": "Minkowski's Inequality",
+    "domain": "Algebra",
+    "statement": "(\u03a3|a\u1d62+b\u1d62|\u1d56)^{1/p} \u2264 (\u03a3|a\u1d62|\u1d56)^{1/p} + (\u03a3|b\u1d62|\u1d56)^{1/p}.",
+    "type": "theorem",
+    "keywords": [
+      "Minkowski",
+      "Lp",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "NNReal.Lp_add_le",
+    "lean4_mathlib_import": "Mathlib.Analysis.MeanInequalities",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_001",
+    "name": "Continuous Function",
+    "domain": "Analysis",
+    "statement": "f is continuous at a if lim_{x\u2192a} f(x) = f(a).",
+    "type": "definition",
+    "keywords": [
+      "continuous",
+      "limit",
+      "topology"
+    ],
+    "lean4_mathlib_name": "Continuous",
+    "lean4_mathlib_import": "Mathlib.Topology.Defs.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_002",
+    "name": "Differentiable Function",
+    "domain": "Analysis",
+    "statement": "f is differentiable at a if the limit (f(a+h)-f(a))/h exists.",
+    "type": "definition",
+    "keywords": [
+      "derivative",
+      "differentiable"
+    ],
+    "lean4_mathlib_name": "Differentiable",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.FDeriv.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_003",
+    "name": "Riemann Integral",
+    "domain": "Analysis",
+    "statement": "\u222b_a^b f(x)dx as limit of Riemann sums.",
+    "type": "definition",
+    "keywords": [
+      "integral",
+      "Riemann",
+      "area"
+    ],
+    "lean4_mathlib_name": "intervalIntegral",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_004",
+    "name": "Compact Set",
+    "domain": "Analysis",
+    "statement": "A set is compact if every open cover has a finite subcover.",
+    "type": "definition",
+    "keywords": [
+      "compact",
+      "cover",
+      "topology"
+    ],
+    "lean4_mathlib_name": "IsCompact",
+    "lean4_mathlib_import": "Mathlib.Topology.Defs.Filter",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_005",
+    "name": "Sequence Convergence",
+    "domain": "Analysis",
+    "statement": "a\u2099 \u2192 L if for every \u03b5 > 0, |a\u2099 - L| < \u03b5 for sufficiently large n.",
+    "type": "definition",
+    "keywords": [
+      "convergence",
+      "limit",
+      "sequence"
+    ],
+    "lean4_mathlib_name": "Filter.Tendsto",
+    "lean4_mathlib_import": "Mathlib.Order.Filter.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_006",
+    "name": "Series Convergence",
+    "domain": "Analysis",
+    "statement": "\u03a3 a\u2099 converges if its partial sums converge.",
+    "type": "definition",
+    "keywords": [
+      "series",
+      "convergence",
+      "summable"
+    ],
+    "lean4_mathlib_name": "Summable",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.InfiniteSum.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_007",
+    "name": "Metric Space",
+    "domain": "Analysis",
+    "statement": "A set with a distance function d satisfying positivity, symmetry, triangle inequality.",
+    "type": "definition",
+    "keywords": [
+      "metric",
+      "distance",
+      "topology"
+    ],
+    "lean4_mathlib_name": "MetricSpace",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_008",
+    "name": "Measure",
+    "domain": "Analysis",
+    "statement": "A countably additive set function \u03bc: \u03a3 \u2192 [0,\u221e].",
+    "type": "definition",
+    "keywords": [
+      "measure",
+      "Lebesgue",
+      "sigma-algebra"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.Measure",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Measure.MeasureSpaceDef",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_001",
+    "name": "Mean Value Theorem",
+    "domain": "Analysis",
+    "statement": "If f is continuous on [a,b] and differentiable on (a,b), \u2203c: f'(c) = (f(b)-f(a))/(b-a).",
+    "type": "theorem",
+    "keywords": [
+      "MVT",
+      "derivative",
+      "Lagrange"
+    ],
+    "lean4_mathlib_name": "exists_ratio_hasDerivAt_eq_ratio_slope",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_002",
+    "name": "Intermediate Value Theorem",
+    "domain": "Analysis",
+    "statement": "A continuous function on [a,b] takes every value between f(a) and f(b).",
+    "type": "theorem",
+    "keywords": [
+      "IVT",
+      "continuous",
+      "connected"
+    ],
+    "lean4_mathlib_name": "intermediate_value_Icc",
+    "lean4_mathlib_import": "Mathlib.Topology.Order.IntermediateValue",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_003",
+    "name": "Fundamental Theorem of Calculus (Part 1)",
+    "domain": "Analysis",
+    "statement": "If F' = f (continuous), then \u222b_a^b f(x)dx = F(b) - F(a).",
+    "type": "theorem",
+    "keywords": [
+      "FTC",
+      "integral",
+      "antiderivative"
+    ],
+    "lean4_mathlib_name": "intervalIntegral.integral_eq_sub_of_hasDerivAt",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_004",
+    "name": "Fundamental Theorem of Calculus (Part 2)",
+    "domain": "Analysis",
+    "statement": "d/dx \u222b_a^x f(t)dt = f(x) for continuous f.",
+    "type": "theorem",
+    "keywords": [
+      "FTC",
+      "derivative",
+      "integral"
+    ],
+    "lean4_mathlib_name": "intervalIntegral.deriv_integral_right",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_005",
+    "name": "Taylor's Theorem",
+    "domain": "Analysis",
+    "statement": "f(x) = \u03a3_{k=0}^n f\u207d\u1d4f\u207e(a)/k! (x-a)^k + R_n(x).",
+    "type": "theorem",
+    "keywords": [
+      "Taylor",
+      "approximation",
+      "remainder"
+    ],
+    "lean4_mathlib_name": "taylor_mean_remainder",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Taylor",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_007",
+    "name": "Rolle's Theorem",
+    "domain": "Analysis",
+    "statement": "If f(a) = f(b) and f is differentiable on (a,b), \u2203c: f'(c) = 0.",
+    "type": "theorem",
+    "keywords": [
+      "Rolle",
+      "zero derivative",
+      "critical point"
+    ],
+    "lean4_mathlib_name": "exists_hasDerivAt_eq_zero",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.LocalExtr.Rolle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_008",
+    "name": "Extreme Value Theorem",
+    "domain": "Analysis",
+    "statement": "A continuous function on a compact set attains its max and min.",
+    "type": "theorem",
+    "keywords": [
+      "extreme value",
+      "compact",
+      "maximum"
+    ],
+    "lean4_mathlib_name": "IsCompact.exists_isMaxOn",
+    "lean4_mathlib_import": "Mathlib.Topology.Order.Compact",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_010",
+    "name": "Monotone Convergence Theorem",
+    "domain": "Analysis",
+    "statement": "If f\u2099 \u2191 f pointwise (non-negative measurable), then \u222bf\u2099 \u2192 \u222bf.",
+    "type": "theorem",
+    "keywords": [
+      "monotone convergence",
+      "Lebesgue",
+      "integral"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.lintegral_iSup",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.Lebesgue.Add",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_011",
+    "name": "Dominated Convergence Theorem",
+    "domain": "Analysis",
+    "statement": "If f\u2099 \u2192 f a.e. and |f\u2099| \u2264 g (integrable), then \u222bf\u2099 \u2192 \u222bf.",
+    "type": "theorem",
+    "keywords": [
+      "dominated convergence",
+      "Lebesgue"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.tendsto_integral_of_dominated_convergence",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.DominatedConvergence",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_012",
+    "name": "Squeeze Theorem",
+    "domain": "Analysis",
+    "statement": "If a\u2099 \u2264 b\u2099 \u2264 c\u2099 and a\u2099,c\u2099 \u2192 L, then b\u2099 \u2192 L.",
+    "type": "theorem",
+    "keywords": [
+      "squeeze",
+      "sandwich",
+      "limit"
+    ],
+    "lean4_mathlib_name": "tendsto_of_tendsto_of_tendsto_of_le_of_le",
+    "lean4_mathlib_import": "Mathlib.Topology.Order.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_013",
+    "name": "Comparison Test for Series",
+    "domain": "Analysis",
+    "statement": "If 0 \u2264 a\u2099 \u2264 b\u2099 and \u03a3b\u2099 converges, then \u03a3a\u2099 converges.",
+    "type": "theorem",
+    "keywords": [
+      "comparison",
+      "series",
+      "convergence"
+    ],
+    "lean4_mathlib_name": "Summable.of_nonneg_of_le",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.InfiniteSum.ENNReal",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_014",
+    "name": "Ratio Test",
+    "domain": "Analysis",
+    "statement": "If |a\u2099\u208a\u2081/a\u2099| \u2192 L < 1, then \u03a3a\u2099 converges absolutely.",
+    "type": "theorem",
+    "keywords": [
+      "ratio test",
+      "series"
+    ],
+    "lean4_mathlib_name": "summable_of_ratio_norm_eventually_le",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecificLimits.Normed",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_017",
+    "name": "Stone-Weierstrass Theorem",
+    "domain": "Analysis",
+    "statement": "A subalgebra of C(X,\u211d) separating points is dense in C(X,\u211d).",
+    "type": "theorem",
+    "keywords": [
+      "Stone-Weierstrass",
+      "approximation",
+      "dense"
+    ],
+    "lean4_mathlib_name": "ContinuousMap.subalgebra_topologicalClosure_eq_top_of_separatesPoints",
+    "lean4_mathlib_import": "Mathlib.Topology.ContinuousMap.StoneWeierstrass",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_019",
+    "name": "Inverse Function Theorem",
+    "domain": "Analysis",
+    "statement": "If f'(a) is invertible, then f is a local diffeomorphism near a.",
+    "type": "theorem",
+    "keywords": [
+      "inverse function",
+      "diffeomorphism"
+    ],
+    "lean4_mathlib_name": "HasStrictFDerivAt.localInverse",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_020",
+    "name": "Implicit Function Theorem",
+    "domain": "Analysis",
+    "statement": "If F(a,b)=0 and \u2202F/\u2202y is invertible at (a,b), there exists g with F(x,g(x))=0 near a.",
+    "type": "theorem",
+    "keywords": [
+      "implicit function",
+      "smooth"
+    ],
+    "lean4_mathlib_name": "ImplicitFunctionData.implicitFunction",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Implicit",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_021",
+    "name": "Heine-Borel Theorem",
+    "domain": "Analysis",
+    "statement": "In \u211d\u207f, a set is compact iff closed and bounded.",
+    "type": "theorem",
+    "keywords": [
+      "Heine-Borel",
+      "compact",
+      "closed bounded"
+    ],
+    "lean4_mathlib_name": "Metric.isCompact_iff_isClosed_bounded",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Bounded",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_022",
+    "name": "Banach Fixed Point Theorem",
+    "domain": "Analysis",
+    "statement": "A contraction on a complete metric space has a unique fixed point.",
+    "type": "theorem",
+    "keywords": [
+      "Banach",
+      "contraction",
+      "fixed point"
+    ],
+    "lean4_mathlib_name": "ContractingWith.fixedPoint_unique",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Contracting",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_002",
+    "name": "Angle Between Vectors",
+    "domain": "Geometry",
+    "statement": "The angle \u03b8 with cos \u03b8 = \u27e8u,v\u27e9/(\u2016u\u2016\u00b7\u2016v\u2016).",
+    "type": "definition",
+    "keywords": [
+      "angle",
+      "inner product",
+      "cosine"
+    ],
+    "lean4_mathlib_name": "InnerProductGeometry.angle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_003",
+    "name": "Convex Set",
+    "domain": "Geometry",
+    "statement": "S is convex if for x,y \u2208 S and t \u2208 [0,1]: tx + (1-t)y \u2208 S.",
+    "type": "definition",
+    "keywords": [
+      "convex",
+      "line segment"
+    ],
+    "lean4_mathlib_name": "Convex",
+    "lean4_mathlib_import": "Mathlib.Analysis.Convex.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_005",
+    "name": "Triangle",
+    "domain": "Geometry",
+    "statement": "Three non-collinear points in an affine space.",
+    "type": "definition",
+    "keywords": [
+      "triangle",
+      "vertices",
+      "simplex"
+    ],
+    "lean4_mathlib_name": "Affine.Triangle",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Simplex.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_001",
+    "name": "Pythagorean Theorem",
+    "domain": "Geometry",
+    "statement": "In a right triangle: a\u00b2 + b\u00b2 = c\u00b2.",
+    "type": "theorem",
+    "keywords": [
+      "Pythagoras",
+      "right triangle",
+      "hypotenuse"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.dist_sq_eq_dist_sq_add_dist_sq_iff_angle_eq_pi_div_two",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.RightAngle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_002",
+    "name": "Law of Cosines",
+    "domain": "Geometry",
+    "statement": "c\u00b2 = a\u00b2 + b\u00b2 - 2ab\u00b7cos(C).",
+    "type": "theorem",
+    "keywords": [
+      "law of cosines",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.dist_sq_eq_dist_sq_add_dist_sq_sub_two_mul_dist_mul_dist_mul_cos_angle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_003",
+    "name": "Triangle Inequality",
+    "domain": "Geometry",
+    "statement": "d(x,z) \u2264 d(x,y) + d(y,z) in any metric space.",
+    "type": "theorem",
+    "keywords": [
+      "triangle inequality",
+      "metric",
+      "distance"
+    ],
+    "lean4_mathlib_name": "dist_triangle",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Pseudo.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_007",
+    "name": "Parallelogram Law",
+    "domain": "Geometry",
+    "statement": "\u2016u+v\u2016\u00b2 + \u2016u-v\u2016\u00b2 = 2(\u2016u\u2016\u00b2 + \u2016v\u2016\u00b2).",
+    "type": "theorem",
+    "keywords": [
+      "parallelogram",
+      "inner product",
+      "norm"
+    ],
+    "lean4_mathlib_name": "parallelogram_law",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_046",
+    "name": "Riesz Representation (Hilbert)",
+    "domain": "Analysis",
+    "statement": "Every continuous linear functional on a Hilbert space is \u27e8\u00b7,y\u27e9 for unique y.",
+    "type": "theorem",
+    "keywords": [
+      "Riesz",
+      "representation",
+      "Hilbert"
+    ],
+    "lean4_mathlib_name": "InnerProductSpace.toDual",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Dual",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_001",
+    "name": "Vector Space",
+    "domain": "Linear Algebra",
+    "statement": "A module over a field.",
+    "type": "definition",
+    "keywords": [
+      "vector space",
+      "module",
+      "field"
+    ],
+    "lean4_mathlib_name": "Module",
+    "lean4_mathlib_import": "Mathlib.Algebra.Module.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_002",
+    "name": "Linear Map",
+    "domain": "Linear Algebra",
+    "statement": "f(\u03b1u + \u03b2v) = \u03b1f(u) + \u03b2f(v).",
+    "type": "definition",
+    "keywords": [
+      "linear map",
+      "homomorphism"
+    ],
+    "lean4_mathlib_name": "LinearMap",
+    "lean4_mathlib_import": "Mathlib.Algebra.Module.LinearMap.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_003",
+    "name": "Matrix",
+    "domain": "Linear Algebra",
+    "statement": "An m \u00d7 n array of elements from a ring.",
+    "type": "definition",
+    "keywords": [
+      "matrix",
+      "array"
+    ],
+    "lean4_mathlib_name": "Matrix",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_004",
+    "name": "Determinant",
+    "domain": "Linear Algebra",
+    "statement": "det(A) = \u03a3_{\u03c3\u2208S\u2099} sgn(\u03c3) \u03a0 a\u1d62,\u03c3(\u1d62).",
+    "type": "definition",
+    "keywords": [
+      "determinant",
+      "permutation",
+      "sign"
+    ],
+    "lean4_mathlib_name": "Matrix.det",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_006",
+    "name": "Rank",
+    "domain": "Linear Algebra",
+    "statement": "rank(f) = dim(image(f)) for a linear map f.",
+    "type": "definition",
+    "keywords": [
+      "rank",
+      "dimension",
+      "image"
+    ],
+    "lean4_mathlib_name": "LinearMap.rank",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.LinearMap",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_007",
+    "name": "Kernel",
+    "domain": "Linear Algebra",
+    "statement": "ker(f) = {v : f(v) = 0}.",
+    "type": "definition",
+    "keywords": [
+      "kernel",
+      "null space"
+    ],
+    "lean4_mathlib_name": "LinearMap.ker",
+    "lean4_mathlib_import": "Mathlib.Algebra.Module.Submodule.Ker",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_001",
+    "name": "Rank-Nullity Theorem",
+    "domain": "Linear Algebra",
+    "statement": "dim(V) = rank(f) + nullity(f) for linear f: V \u2192 W.",
+    "type": "theorem",
+    "keywords": [
+      "rank-nullity",
+      "dimension"
+    ],
+    "lean4_mathlib_name": "LinearMap.finrank_range_add_finrank_ker",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.FiniteDimensional.Lemmas",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_002",
+    "name": "Cayley-Hamilton Theorem",
+    "domain": "Linear Algebra",
+    "statement": "Every square matrix satisfies its own characteristic polynomial.",
+    "type": "theorem",
+    "keywords": [
+      "Cayley-Hamilton",
+      "characteristic polynomial"
+    ],
+    "lean4_mathlib_name": "Matrix.aeval_self_charpoly",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_004",
+    "name": "Determinant is Multiplicative",
+    "domain": "Linear Algebra",
+    "statement": "det(AB) = det(A)\u00b7det(B).",
+    "type": "theorem",
+    "keywords": [
+      "determinant",
+      "multiplicative"
+    ],
+    "lean4_mathlib_name": "Matrix.det_mul",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_005",
+    "name": "Cramer's Rule",
+    "domain": "Linear Algebra",
+    "statement": "x\u1d62 = det(A\u1d62)/det(A) where A\u1d62 replaces column i with b.",
+    "type": "theorem",
+    "keywords": [
+      "Cramer",
+      "determinant",
+      "system"
+    ],
+    "lean4_mathlib_name": "Matrix.cramer_apply",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Adjugate",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_007",
+    "name": "Every Vector Space Has a Basis",
+    "domain": "Linear Algebra",
+    "statement": "Every vector space (over a division ring) has a basis.",
+    "type": "theorem",
+    "keywords": [
+      "basis",
+      "existence",
+      "Zorn"
+    ],
+    "lean4_mathlib_name": "Module.Free.exists_basis",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.FreeModule.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_008",
+    "name": "Dimension is Well-Defined",
+    "domain": "Linear Algebra",
+    "statement": "All bases of a vector space have the same cardinality.",
+    "type": "theorem",
+    "keywords": [
+      "dimension",
+      "invariant",
+      "basis"
+    ],
+    "lean4_mathlib_name": "LinearIndependent.cardinal_le_rank",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_010",
+    "name": "Trace equals Sum of Eigenvalues",
+    "domain": "Linear Algebra",
+    "statement": "tr(A) = \u03a3 \u03bb\u1d62 (counted with multiplicity).",
+    "type": "theorem",
+    "keywords": [
+      "trace",
+      "eigenvalue",
+      "sum"
+    ],
+    "lean4_mathlib_name": "Matrix.trace_eq_sum_roots_charpoly",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Eigs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_001",
+    "name": "Group",
+    "domain": "Abstract Algebra",
+    "statement": "A set with associative binary operation, identity, and inverses.",
+    "type": "definition",
+    "keywords": [
+      "group",
+      "identity",
+      "inverse"
+    ],
+    "lean4_mathlib_name": "Group",
+    "lean4_mathlib_import": "Mathlib.Algebra.Group.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_002",
+    "name": "Ring",
+    "domain": "Abstract Algebra",
+    "statement": "A set with addition (abelian group) and multiplication (monoid) satisfying distributivity.",
+    "type": "definition",
+    "keywords": [
+      "ring",
+      "distributive"
+    ],
+    "lean4_mathlib_name": "Ring",
+    "lean4_mathlib_import": "Mathlib.Algebra.Ring.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_003",
+    "name": "Field",
+    "domain": "Abstract Algebra",
+    "statement": "A commutative ring where every nonzero element has a multiplicative inverse.",
+    "type": "definition",
+    "keywords": [
+      "field",
+      "division",
+      "inverse"
+    ],
+    "lean4_mathlib_name": "Field",
+    "lean4_mathlib_import": "Mathlib.Algebra.Field.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_004",
+    "name": "Ideal",
+    "domain": "Abstract Algebra",
+    "statement": "A subgroup I of (R,+) with rI \u2286 I for all r \u2208 R.",
+    "type": "definition",
+    "keywords": [
+      "ideal",
+      "ring",
+      "quotient"
+    ],
+    "lean4_mathlib_name": "Ideal",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_005",
+    "name": "Normal Subgroup",
+    "domain": "Abstract Algebra",
+    "statement": "N \u25c1 G if gNg\u207b\u00b9 = N for all g \u2208 G.",
+    "type": "definition",
+    "keywords": [
+      "normal",
+      "subgroup",
+      "conjugation"
+    ],
+    "lean4_mathlib_name": "Subgroup.Normal",
+    "lean4_mathlib_import": "Mathlib.Algebra.Group.Subgroup.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_007",
+    "name": "Group Homomorphism",
+    "domain": "Abstract Algebra",
+    "statement": "f: G \u2192 H with f(ab) = f(a)f(b).",
+    "type": "definition",
+    "keywords": [
+      "homomorphism",
+      "group map"
+    ],
+    "lean4_mathlib_name": "MonoidHom",
+    "lean4_mathlib_import": "Mathlib.Algebra.Group.Hom.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_008",
+    "name": "Galois Group",
+    "domain": "Abstract Algebra",
+    "statement": "Aut(E/F) is the group of field automorphisms of E fixing F.",
+    "type": "definition",
+    "keywords": [
+      "Galois",
+      "automorphism",
+      "field extension"
+    ],
+    "lean4_mathlib_name": "IntermediateField.fixingSubgroup",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Galois.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_001",
+    "name": "Lagrange's Theorem (Groups)",
+    "domain": "Abstract Algebra",
+    "statement": "|H| divides |G| for any subgroup H of finite group G.",
+    "type": "theorem",
+    "keywords": [
+      "Lagrange",
+      "subgroup",
+      "index"
+    ],
+    "lean4_mathlib_name": "Subgroup.card_subgroup_dvd_card",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Coset.Card",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_002",
+    "name": "First Isomorphism Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "G/ker(f) \u2245 im(f) for any group homomorphism f.",
+    "type": "theorem",
+    "keywords": [
+      "isomorphism",
+      "kernel",
+      "image"
+    ],
+    "lean4_mathlib_name": "QuotientGroup.quotientKerEquivRange",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.QuotientGroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_003",
+    "name": "Sylow's First Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "If p^k divides |G|, then G has a subgroup of order p^k.",
+    "type": "theorem",
+    "keywords": [
+      "Sylow",
+      "p-group",
+      "existence"
+    ],
+    "lean4_mathlib_name": "Sylow.exists_subgroup_card_pow_prime",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Sylow",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_008",
+    "name": "Cauchy's Theorem (Groups)",
+    "domain": "Abstract Algebra",
+    "statement": "If prime p divides |G|, then G has an element of order p.",
+    "type": "theorem",
+    "keywords": [
+      "Cauchy",
+      "prime",
+      "order"
+    ],
+    "lean4_mathlib_name": "exists_prime_orderOf_dvd_card",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Perm.Cycle.Type",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_010",
+    "name": "Fundamental Theorem of Galois Theory",
+    "domain": "Abstract Algebra",
+    "statement": "There is an order-reversing bijection between intermediate fields and subgroups of the Galois group.",
+    "type": "theorem",
+    "keywords": [
+      "Galois",
+      "correspondence",
+      "intermediate field"
+    ],
+    "lean4_mathlib_name": "IsGalois.intermediateFieldEquivSubgroup",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Galois.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_011",
+    "name": "Second Isomorphism Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "(HN)/N \u2245 H/(H\u2229N) for subgroup H and normal N.",
+    "type": "theorem",
+    "keywords": [
+      "isomorphism",
+      "diamond"
+    ],
+    "lean4_mathlib_name": "QuotientGroup.quotientInfEquivProdNormalQuotient",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.QuotientGroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_012",
+    "name": "Class Equation",
+    "domain": "Abstract Algebra",
+    "statement": "|G| = |Z(G)| + \u03a3 [G:C_G(g\u1d62)] summing over conjugacy class representatives.",
+    "type": "theorem",
+    "keywords": [
+      "class equation",
+      "center",
+      "conjugacy"
+    ],
+    "lean4_mathlib_name": "Group.sum_card_conj_classes_eq_card",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.ClassEquation",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_015",
+    "name": "Primitive Element Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "Every finite separable extension is simple: E = F(\u03b1) for some \u03b1.",
+    "type": "theorem",
+    "keywords": [
+      "primitive element",
+      "simple extension"
+    ],
+    "lean4_mathlib_name": "Field.exists_primitive_element",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.PrimitiveElement",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_041",
+    "name": "Totient is Multiplicative",
+    "domain": "Number Theory",
+    "statement": "phi(mn) = phi(m)phi(n) when gcd(m,n) = 1.",
+    "type": "theorem",
+    "keywords": [
+      "totient",
+      "multiplicative",
+      "Euler"
+    ],
+    "lean4_mathlib_name": "Nat.totient_mul",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Totient",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_042",
+    "name": "Moebius Inversion Formula",
+    "domain": "Number Theory",
+    "statement": "If g(n) = sum_{d|n} f(d) then f(n) = sum_{d|n} mu(n/d)g(d).",
+    "type": "theorem",
+    "keywords": [
+      "Moebius",
+      "inversion",
+      "arithmetic function"
+    ],
+    "lean4_mathlib_name": "IncidenceAlgebra.moebius_inversion_bot",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.IncidenceAlgebra",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_043",
+    "name": "FLT for n=4",
+    "domain": "Number Theory",
+    "statement": "x^4 + y^4 = z^4 has no positive integer solutions.",
+    "type": "theorem",
+    "keywords": [
+      "Fermat",
+      "FLT",
+      "infinite descent"
+    ],
+    "lean4_mathlib_name": "fermatLastTheoremFour",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.FLT.Four",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_044",
+    "name": "Cyclotomic Polynomial Irreducibility",
+    "domain": "Number Theory",
+    "statement": "The n-th cyclotomic polynomial Phi_n(x) is irreducible over Q.",
+    "type": "theorem",
+    "keywords": [
+      "cyclotomic",
+      "irreducible",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.cyclotomic.irreducible",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Polynomial.Cyclotomic.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_045",
+    "name": "Gauss's Lemma (Polynomials)",
+    "domain": "Number Theory",
+    "statement": "A primitive polynomial over Z is irreducible over Z iff irreducible over Q.",
+    "type": "theorem",
+    "keywords": [
+      "Gauss",
+      "polynomial",
+      "primitive",
+      "irreducible"
+    ],
+    "lean4_mathlib_name": "Polynomial.IsPrimitive.irreducible_iff_irreducible_map_fraction_map",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Polynomial.GaussLemma",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_031",
+    "name": "Hall's Marriage Theorem",
+    "domain": "Combinatorics",
+    "statement": "A bipartite graph has a perfect matching iff |N(S)| >= |S| for all S.",
+    "type": "theorem",
+    "keywords": [
+      "Hall",
+      "matching",
+      "bipartite",
+      "marriage"
+    ],
+    "lean4_mathlib_name": "hallMatchingsOn",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Hall.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_032",
+    "name": "Burnside's Lemma",
+    "domain": "Combinatorics",
+    "statement": "|X/G| = (1/|G|) sum |Fix(g)|.",
+    "type": "theorem",
+    "keywords": [
+      "Burnside",
+      "orbit counting",
+      "group action"
+    ],
+    "lean4_mathlib_name": "MulAction.sum_card_fixedBy_eq_card_orbits_mul_card_group",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.GroupAction.FixedPoints",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_033",
+    "name": "Cauchy-Davenport Theorem",
+    "domain": "Combinatorics",
+    "statement": "For non-empty A,B subsets of Z/pZ: |A+B| >= min(p, |A|+|B|-1).",
+    "type": "theorem",
+    "keywords": [
+      "Cauchy-Davenport",
+      "sumset",
+      "additive combinatorics"
+    ],
+    "lean4_mathlib_name": "ZMod.cauchy_davenport",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Additive.CauchyDavenport",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_034",
+    "name": "Plunnecke-Ruzsa Inequality",
+    "domain": "Combinatorics",
+    "statement": "If |A+A| <= K|A| then |nA-mA| <= K^{n+m}|A|.",
+    "type": "theorem",
+    "keywords": [
+      "Plunnecke",
+      "Ruzsa",
+      "doubling",
+      "sumset"
+    ],
+    "lean4_mathlib_name": "Set.ruzsa_covering_add",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Additive.RuzsaCovering",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_023",
+    "name": "Young's Inequality",
+    "domain": "Algebra",
+    "statement": "For p,q > 1 with 1/p + 1/q = 1: ab <= a^p/p + b^q/q.",
+    "type": "theorem",
+    "keywords": [
+      "Young",
+      "conjugate exponents",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "NNReal.young_inequality",
+    "lean4_mathlib_import": "Mathlib.Analysis.MeanInequalities",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_024",
+    "name": "Vieta's Formulas",
+    "domain": "Algebra",
+    "statement": "The elementary symmetric polynomials of roots equal (signed) coefficients.",
+    "type": "theorem",
+    "keywords": [
+      "Vieta",
+      "roots",
+      "symmetric",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.coeff_eq_esymm_roots_of_card",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Roots",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_023",
+    "name": "L'Hopital's Rule",
+    "domain": "Analysis",
+    "statement": "If f/g -> 0/0 or inf/inf and f'/ g' -> L, then f/g -> L.",
+    "type": "theorem",
+    "keywords": [
+      "L Hopital",
+      "limit",
+      "indeterminate"
+    ],
+    "lean4_mathlib_name": "deriv.lhopital_zero_nhds",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.LHopital",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_024",
+    "name": "Alternating Series Test",
+    "domain": "Analysis",
+    "statement": "If a_n >= 0, a_n decreasing to 0, then sum (-1)^n a_n converges.",
+    "type": "theorem",
+    "keywords": [
+      "alternating",
+      "Leibniz",
+      "series",
+      "convergence"
+    ],
+    "lean4_mathlib_name": "Antitone.tendsto_alternating_series_of_tendsto_zero",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecificLimits.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_006",
+    "name": "Affine Space",
+    "domain": "Geometry",
+    "statement": "A set with a free transitive action by a vector space.",
+    "type": "definition",
+    "keywords": [
+      "affine",
+      "translation",
+      "vector space"
+    ],
+    "lean4_mathlib_name": "AddTorsor",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_009",
+    "name": "Eigenvalue",
+    "domain": "Linear Algebra",
+    "statement": "lambda is an eigenvalue of A if Av = lambda*v for some v != 0.",
+    "type": "definition",
+    "keywords": [
+      "eigenvalue",
+      "eigenvector",
+      "spectrum"
+    ],
+    "lean4_mathlib_name": "Module.End.HasEigenvalue",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Eigenspace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_011",
+    "name": "Gram-Schmidt Orthogonalization",
+    "domain": "Linear Algebra",
+    "statement": "Any linearly independent set can be orthogonalized.",
+    "type": "theorem",
+    "keywords": [
+      "Gram-Schmidt",
+      "orthogonal",
+      "QR"
+    ],
+    "lean4_mathlib_name": "InnerProductSpace.gramSchmidt",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.GramSchmidtOrtho",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_012",
+    "name": "Invertible iff Nonzero Determinant",
+    "domain": "Linear Algebra",
+    "statement": "A square matrix is invertible iff det(A) != 0.",
+    "type": "theorem",
+    "keywords": [
+      "invertible",
+      "determinant",
+      "nonsingular"
+    ],
+    "lean4_mathlib_name": "Matrix.det_nonsing_inv",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_016",
+    "name": "Orbit-Stabilizer Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "|Orb(x)| * |Stab(x)| = |G| for a group action.",
+    "type": "theorem",
+    "keywords": [
+      "orbit",
+      "stabilizer",
+      "group action"
+    ],
+    "lean4_mathlib_name": "MulAction.card_orbit_mul_card_stabilizer_eq_card_group",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.GroupAction.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_017",
+    "name": "Sylow's Third Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "The number of Sylow p-subgroups divides |G| and is congruent to 1 mod p.",
+    "type": "theorem",
+    "keywords": [
+      "Sylow",
+      "counting",
+      "modular"
+    ],
+    "lean4_mathlib_name": "card_sylow_modEq_one",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Sylow",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_046",
+    "name": "Jacobi Symbol Reciprocity",
+    "domain": "Number Theory",
+    "statement": "For odd a,b: (a/b) = (-1)^(a/2 * b/2) * (b/a) where (a/b) is the Jacobi symbol.",
+    "type": "theorem",
+    "keywords": [
+      "Jacobi",
+      "reciprocity",
+      "quadratic"
+    ],
+    "lean4_mathlib_name": "jacobiSym.quadratic_reciprocity",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_047",
+    "name": "PID Characterization",
+    "domain": "Number Theory",
+    "statement": "R is a PID iff every ideal of R is principal.",
+    "type": "theorem",
+    "keywords": [
+      "PID",
+      "principal ideal",
+      "ring"
+    ],
+    "lean4_mathlib_name": "isPrincipalIdealRing_iff",
+    "lean4_mathlib_import": "Mathlib.RingTheory.PrincipalIdealDomain",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_048",
+    "name": "UFD Polynomial Ring",
+    "domain": "Number Theory",
+    "statement": "If D is a UFD then D[X] is a UFD.",
+    "type": "theorem",
+    "keywords": [
+      "UFD",
+      "polynomial",
+      "factorization"
+    ],
+    "lean4_mathlib_name": "Polynomial.uniqueFactorizationMonoid",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Polynomial.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_035",
+    "name": "Rearrangement Inequality",
+    "domain": "Combinatorics",
+    "statement": "The sum a_i*b_i is maximized when both sequences are similarly sorted.",
+    "type": "theorem",
+    "keywords": [
+      "rearrangement",
+      "sorted",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "antivary_iff_mul_rearrangement",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Rearrangement",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_026",
+    "name": "Weierstrass M-test",
+    "domain": "Analysis",
+    "statement": "If |f_n(x)| <= M_n and sum M_n converges, then sum f_n converges uniformly.",
+    "type": "theorem",
+    "keywords": [
+      "Weierstrass",
+      "uniform convergence",
+      "series"
+    ],
+    "lean4_mathlib_name": "tendstoUniformlyOn_tsum",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.InfiniteSum.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_027",
+    "name": "Arzela-Ascoli Theorem",
+    "domain": "Analysis",
+    "statement": "Pointwise bounded + equicontinuous family on compact space has compact closure.",
+    "type": "theorem",
+    "keywords": [
+      "Arzela-Ascoli",
+      "equicontinuous",
+      "compact"
+    ],
+    "lean4_mathlib_name": "BoundedContinuousFunction.arzela_ascoli",
+    "lean4_mathlib_import": "Mathlib.Topology.ContinuousFunction.Compact",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_028",
+    "name": "Fatou Lemma",
+    "domain": "Analysis",
+    "statement": "integral of liminf f_n <= liminf of integral f_n.",
+    "type": "theorem",
+    "keywords": [
+      "Fatou",
+      "liminf",
+      "Lebesgue",
+      "integral"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.lintegral_liminf_le",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.Lebesgue",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_029",
+    "name": "Fubini Theorem",
+    "domain": "Analysis",
+    "statement": "Integral over product measure equals iterated integral when integrable.",
+    "type": "theorem",
+    "keywords": [
+      "Fubini",
+      "product measure",
+      "iterated integral"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.integral_prod",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.Prod",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_030",
+    "name": "Open Mapping Theorem",
+    "domain": "Analysis",
+    "statement": "A surjective bounded linear map between Banach spaces is an open map.",
+    "type": "theorem",
+    "keywords": [
+      "open mapping",
+      "Banach",
+      "surjective"
+    ],
+    "lean4_mathlib_name": "ContinuousLinearMap.isOpenMap",
+    "lean4_mathlib_import": "Mathlib.Analysis.NormedSpace.OperatorNorm",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_031",
+    "name": "Closed Graph Theorem",
+    "domain": "Analysis",
+    "statement": "A linear map between Banach spaces with closed graph is continuous.",
+    "type": "theorem",
+    "keywords": [
+      "closed graph",
+      "Banach",
+      "continuous"
+    ],
+    "lean4_mathlib_name": "ContinuousLinearMap.ofIsClosedGraph",
+    "lean4_mathlib_import": "Mathlib.Analysis.NormedSpace.OperatorNorm",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_013",
+    "name": "Spectral Theorem",
+    "domain": "Linear Algebra",
+    "statement": "A Hermitian matrix A = U * diag(eigenvalues) * U* for unitary U.",
+    "type": "theorem",
+    "keywords": [
+      "spectral",
+      "Hermitian",
+      "diagonalization",
+      "eigenvalue"
+    ],
+    "lean4_mathlib_name": "Matrix.IsHermitian.spectral_theorem",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Spectrum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_014",
+    "name": "Basis Extension",
+    "domain": "Linear Algebra",
+    "statement": "Every linearly independent set in a vector space can be extended to a basis.",
+    "type": "theorem",
+    "keywords": [
+      "basis",
+      "extension",
+      "linearly independent"
+    ],
+    "lean4_mathlib_name": "Module.Basis.extend",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Basis",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_015",
+    "name": "Row Rank equals Column Rank",
+    "domain": "Linear Algebra",
+    "statement": "rank(A^T) = rank(A) for any matrix A.",
+    "type": "theorem",
+    "keywords": [
+      "rank",
+      "transpose",
+      "matrix"
+    ],
+    "lean4_mathlib_name": "Matrix.rank_transpose",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Rank",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_018",
+    "name": "Third Isomorphism Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "(G/N)/(M/N) is isomorphic to G/M when N is normal in M and M is normal in G.",
+    "type": "theorem",
+    "keywords": [
+      "isomorphism",
+      "quotient",
+      "normal subgroup"
+    ],
+    "lean4_mathlib_name": "QuotientGroup.quotientQuotientEquivQuotient",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.QuotientGroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_019",
+    "name": "Structure Theorem for Finitely Generated Abelian Groups",
+    "domain": "Abstract Algebra",
+    "statement": "Every finitely generated torsion module over a PID is isomorphic to a direct sum of cyclic modules R/(p^e).",
+    "type": "theorem",
+    "keywords": [
+      "structure theorem",
+      "abelian",
+      "cyclic",
+      "direct sum"
+    ],
+    "lean4_mathlib_name": "Module.equiv_directSum_of_isTorsion",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.FreeModule.PID",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_025",
+    "name": "Cauchy-Schwarz Inequality",
+    "domain": "Algebra",
+    "statement": "|<x,y>| <= ||x|| * ||y|| in any inner product space.",
+    "type": "theorem",
+    "keywords": [
+      "Cauchy-Schwarz",
+      "inner product",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "real_inner_le_norm",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_026",
+    "name": "Eisenstein's Criterion",
+    "domain": "Algebra",
+    "statement": "If P is prime, leading coeff not in P, lower coeffs in P, constant not in P^2, and f primitive, then f is irreducible.",
+    "type": "theorem",
+    "keywords": [
+      "Eisenstein",
+      "irreducible",
+      "polynomial",
+      "prime ideal"
+    ],
+    "lean4_mathlib_name": "Polynomial.irreducible_of_eisenstein_criterion",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Polynomial.Eisenstein.IsIntegral",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_006",
+    "name": "Angle Sum of Triangle",
+    "domain": "Geometry",
+    "statement": "The sum of angles in a triangle equals pi.",
+    "type": "theorem",
+    "keywords": [
+      "angle sum",
+      "triangle",
+      "pi"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.angle_add_angle_add_angle_eq_pi",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_027",
+    "name": "Thales' Theorem",
+    "domain": "Geometry",
+    "statement": "An angle inscribed in a semicircle is a right angle.",
+    "type": "theorem",
+    "keywords": [
+      "Thales",
+      "semicircle",
+      "right angle",
+      "diameter"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.Sphere.thales_theorem",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Sphere.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_008",
+    "name": "Orthocenter on Altitude",
+    "domain": "Geometry",
+    "statement": "The orthocenter of a triangle lies on every altitude.",
+    "type": "theorem",
+    "keywords": [
+      "orthocenter",
+      "altitude",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Triangle.orthocenter_mem_altitude",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_009",
+    "name": "Circumcenter Equidistant",
+    "domain": "Geometry",
+    "statement": "All vertices of a simplex are equidistant from the circumcenter.",
+    "type": "theorem",
+    "keywords": [
+      "circumcenter",
+      "equidistant",
+      "circumradius"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.dist_circumcenter_eq_circumradius",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Circumcenter",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_010",
+    "name": "AA Similarity",
+    "domain": "Geometry",
+    "statement": "Two triangles with two equal angles are similar.",
+    "type": "theorem",
+    "keywords": [
+      "similar",
+      "angle",
+      "triangle",
+      "AA"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.similar_of_angle_angle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_011",
+    "name": "Perpendicular Bisector Equidistant",
+    "domain": "Geometry",
+    "statement": "A point lies on the perpendicular bisector of PQ iff it is equidistant from P and Q.",
+    "type": "theorem",
+    "keywords": [
+      "perpendicular bisector",
+      "equidistant"
+    ],
+    "lean4_mathlib_name": "AffineSubspace.mem_perpBisector_iff_dist_eq",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.PerpBisector",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_012",
+    "name": "Equilateral Triangle Angle",
+    "domain": "Geometry",
+    "statement": "Each angle of an equilateral triangle equals pi/3.",
+    "type": "theorem",
+    "keywords": [
+      "equilateral",
+      "angle",
+      "pi/3"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.Equilateral.angle_eq_pi_div_three",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_013",
+    "name": "Exterior Angle Theorem",
+    "domain": "Geometry",
+    "statement": "An exterior angle of a triangle equals the sum of the two non-adjacent interior angles.",
+    "type": "theorem",
+    "keywords": [
+      "exterior angle",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.exterior_angle_eq_angle_add_angle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_014",
+    "name": "Isometry Preserves Distance",
+    "domain": "Geometry",
+    "statement": "An isometry preserves distances: dist(f(x), f(y)) = dist(x, y).",
+    "type": "theorem",
+    "keywords": [
+      "isometry",
+      "distance",
+      "preserves"
+    ],
+    "lean4_mathlib_name": "AffineIsometry.dist_map",
+    "lean4_mathlib_import": "Mathlib.Analysis.Normed.Group.AddTorsor",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_015",
+    "name": "Isometry Preserves Angle",
+    "domain": "Geometry",
+    "statement": "An isometry preserves angles: angle(f(p1), f(p2), f(p3)) = angle(p1, p2, p3).",
+    "type": "theorem",
+    "keywords": [
+      "isometry",
+      "angle",
+      "preserves"
+    ],
+    "lean4_mathlib_name": "AffineIsometry.angle_map",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_016",
+    "name": "Heron's Formula",
+    "domain": "Geometry",
+    "statement": "Area = sqrt(s(s-a)(s-b)(s-c)) where s = (a+b+c)/2.",
+    "type": "theorem",
+    "keywords": [
+      "Heron",
+      "area",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Theorems100.heron",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_007",
+    "name": "Orthocenter",
+    "domain": "Geometry",
+    "statement": "The point where the three altitudes of a triangle meet.",
+    "type": "definition",
+    "keywords": [
+      "orthocenter",
+      "altitude",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Triangle.orthocenter",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_008",
+    "name": "Circumcenter",
+    "domain": "Geometry",
+    "statement": "The point equidistant from all vertices of a simplex.",
+    "type": "definition",
+    "keywords": [
+      "circumcenter",
+      "circumscribed",
+      "equidistant"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.circumcenter",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Circumcenter",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_009",
+    "name": "Nine-Point Circle",
+    "domain": "Geometry",
+    "statement": "The circle passing through the midpoints of sides, feet of altitudes, and midpoints of segments from vertices to orthocenter.",
+    "type": "definition",
+    "keywords": [
+      "nine-point circle",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.ninePointCircle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_010",
+    "name": "Altitude",
+    "domain": "Geometry",
+    "statement": "The perpendicular from a vertex to the opposite side of a simplex.",
+    "type": "definition",
+    "keywords": [
+      "altitude",
+      "perpendicular",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.altitude",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_011",
+    "name": "Incenter",
+    "domain": "Geometry",
+    "statement": "The center of the inscribed circle of a simplex.",
+    "type": "definition",
+    "keywords": [
+      "incenter",
+      "inscribed circle",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.incenter",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Inversion.Radical",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_012",
+    "name": "Centroid",
+    "domain": "Geometry",
+    "statement": "The average (center of mass) of the vertices of a simplex.",
+    "type": "definition",
+    "keywords": [
+      "centroid",
+      "center of mass",
+      "barycenter"
+    ],
+    "lean4_mathlib_name": "Finset.centroid",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Combination",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_049",
+    "name": "Fibonacci Recurrence",
+    "domain": "Number Theory",
+    "statement": "F_{n+2} = F_{n+1} + F_n with F_0=0, F_1=1.",
+    "type": "theorem",
+    "keywords": [
+      "Fibonacci",
+      "recurrence",
+      "sequence"
+    ],
+    "lean4_mathlib_name": "Nat.fib_add_two",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Fib.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_050",
+    "name": "Carmichael Function",
+    "domain": "Number Theory",
+    "statement": "The multiplicative order of units in ZMod n is bounded by the Carmichael function.",
+    "type": "theorem",
+    "keywords": [
+      "Carmichael",
+      "order",
+      "ZMod"
+    ],
+    "lean4_mathlib_name": "ZMod.orderOf_lt",
+    "lean4_mathlib_import": "Mathlib.Data.ZMod.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_051",
+    "name": "Units of ZMod",
+    "domain": "Number Theory",
+    "statement": "The number of units in ZMod n equals phi(n).",
+    "type": "theorem",
+    "keywords": [
+      "units",
+      "ZMod",
+      "totient"
+    ],
+    "lean4_mathlib_name": "ZMod.card_units_eq_totient",
+    "lean4_mathlib_import": "Mathlib.Data.ZMod.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_nt_052",
+    "name": "Squarefree Moebius",
+    "domain": "Number Theory",
+    "statement": "n is squarefree iff mu(n) is nonzero.",
+    "type": "theorem",
+    "keywords": [
+      "squarefree",
+      "Moebius",
+      "mu"
+    ],
+    "lean4_mathlib_name": "Squarefree.moebius_eq",
+    "lean4_mathlib_import": "Mathlib.NumberTheory.ArithmeticFunction",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_016",
+    "name": "Tree",
+    "domain": "Combinatorics",
+    "statement": "A connected acyclic graph.",
+    "type": "definition",
+    "keywords": [
+      "tree",
+      "acyclic",
+      "connected"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.IsTree.IsAcyclic",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_017",
+    "name": "Acyclic Graph",
+    "domain": "Combinatorics",
+    "statement": "A graph with no cycles.",
+    "type": "definition",
+    "keywords": [
+      "acyclic",
+      "cycle-free",
+      "forest"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.IsAcyclic",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_018",
+    "name": "Clique",
+    "domain": "Combinatorics",
+    "statement": "A set of pairwise adjacent vertices in a graph.",
+    "type": "definition",
+    "keywords": [
+      "clique",
+      "complete subgraph"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.IsClique",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Clique",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_019",
+    "name": "Bipartite Graph",
+    "domain": "Combinatorics",
+    "statement": "A graph whose vertices can be partitioned into two sets with edges only between sets.",
+    "type": "definition",
+    "keywords": [
+      "bipartite",
+      "two-colorable"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.IsBipartite",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Bipartite",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_020",
+    "name": "Connected Component",
+    "domain": "Combinatorics",
+    "statement": "A maximal connected subgraph.",
+    "type": "definition",
+    "keywords": [
+      "connected component",
+      "graph"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.ConnectedComponent",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Connectivity",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_021",
+    "name": "Graph Degree",
+    "domain": "Combinatorics",
+    "statement": "The number of edges incident to a vertex.",
+    "type": "definition",
+    "keywords": [
+      "degree",
+      "vertex",
+      "graph"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.degree",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Degree",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_022",
+    "name": "Permutation Sign",
+    "domain": "Combinatorics",
+    "statement": "The sign of a permutation: +1 for even, -1 for odd.",
+    "type": "definition",
+    "keywords": [
+      "permutation",
+      "sign",
+      "parity",
+      "even",
+      "odd"
+    ],
+    "lean4_mathlib_name": "Equiv.Perm.sign",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Perm.Sign",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_023",
+    "name": "Cycle Type",
+    "domain": "Combinatorics",
+    "statement": "The multiset of cycle lengths of a permutation.",
+    "type": "definition",
+    "keywords": [
+      "cycle",
+      "permutation",
+      "type"
+    ],
+    "lean4_mathlib_name": "Equiv.Perm.cycleType",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Perm.Cycle.Type",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_024",
+    "name": "Descending Factorial",
+    "domain": "Combinatorics",
+    "statement": "n^{(k)} = n(n-1)...(n-k+1), the falling factorial.",
+    "type": "definition",
+    "keywords": [
+      "falling factorial",
+      "descending",
+      "permutation"
+    ],
+    "lean4_mathlib_name": "Nat.descFactorial",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Factorial.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_comb_025",
+    "name": "Multinomial Coefficient",
+    "domain": "Combinatorics",
+    "statement": "n! / (k1! * k2! * ... * km!) counts ways to partition n items into groups.",
+    "type": "definition",
+    "keywords": [
+      "multinomial",
+      "partition",
+      "counting"
+    ],
+    "lean4_mathlib_name": "Finsupp.multinomial",
+    "lean4_mathlib_import": "Mathlib.Data.Finsupp.Fintype",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_036",
+    "name": "Powerset Cardinality",
+    "domain": "Combinatorics",
+    "statement": "|P(S)| = 2^|S| for finite set S.",
+    "type": "theorem",
+    "keywords": [
+      "powerset",
+      "cardinality",
+      "exponential"
+    ],
+    "lean4_mathlib_name": "Finset.card_powerset",
+    "lean4_mathlib_import": "Mathlib.Data.Finset.Powerset",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_037",
+    "name": "Product Rule (Counting)",
+    "domain": "Combinatorics",
+    "statement": "|A x B| = |A| * |B| for finite sets.",
+    "type": "theorem",
+    "keywords": [
+      "product rule",
+      "counting",
+      "Cartesian"
+    ],
+    "lean4_mathlib_name": "Finset.card_product",
+    "lean4_mathlib_import": "Mathlib.Data.Finset.Product",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_038",
+    "name": "Choose Maximized at Middle",
+    "domain": "Combinatorics",
+    "statement": "C(n,k) is maximized when k = floor(n/2).",
+    "type": "theorem",
+    "keywords": [
+      "binomial",
+      "maximum",
+      "middle"
+    ],
+    "lean4_mathlib_name": "Nat.choose_le_middle",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Central",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_027",
+    "name": "Polynomial Degree Multiplication",
+    "domain": "Algebra",
+    "statement": "deg(f*g) = deg(f) + deg(g) for nonzero polynomials over a domain.",
+    "type": "theorem",
+    "keywords": [
+      "polynomial",
+      "degree",
+      "multiplication"
+    ],
+    "lean4_mathlib_name": "Polynomial.natDegree_mul",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Degree.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_011",
+    "name": "Polynomial Derivative",
+    "domain": "Algebra",
+    "statement": "Formal derivative of a polynomial.",
+    "type": "definition",
+    "keywords": [
+      "derivative",
+      "polynomial",
+      "formal"
+    ],
+    "lean4_mathlib_name": "Polynomial.derivative",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Derivative",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_028",
+    "name": "Exponential Addition Law",
+    "domain": "Algebra",
+    "statement": "exp(a+b) = exp(a) * exp(b).",
+    "type": "theorem",
+    "keywords": [
+      "exponential",
+      "addition",
+      "homomorphism"
+    ],
+    "lean4_mathlib_name": "Complex.exp_add",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Complex.Analytic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_029",
+    "name": "Log Exp Identity",
+    "domain": "Algebra",
+    "statement": "exp(log(x)) = x for x > 0.",
+    "type": "theorem",
+    "keywords": [
+      "logarithm",
+      "exponential",
+      "inverse"
+    ],
+    "lean4_mathlib_name": "Real.exp_log",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Log.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_013",
+    "name": "Exponential Function",
+    "domain": "Algebra",
+    "statement": "exp(x) = sum x^n/n!, the exponential function.",
+    "type": "definition",
+    "keywords": [
+      "exponential",
+      "exp",
+      "power series"
+    ],
+    "lean4_mathlib_name": "Real.exp",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.ExpDeriv",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_014",
+    "name": "Logarithm Function",
+    "domain": "Algebra",
+    "statement": "log(x) is the inverse of exp on positive reals.",
+    "type": "definition",
+    "keywords": [
+      "logarithm",
+      "log",
+      "inverse"
+    ],
+    "lean4_mathlib_name": "Real.log",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Log.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_015",
+    "name": "Trigonometric Functions",
+    "domain": "Algebra",
+    "statement": "sin and cos defined via exponential: sin(x) = (e^{ix} - e^{-ix})/2i.",
+    "type": "definition",
+    "keywords": [
+      "sin",
+      "cos",
+      "trigonometric"
+    ],
+    "lean4_mathlib_name": "Real.sin",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_030",
+    "name": "Euler Formula",
+    "domain": "Algebra",
+    "statement": "e^{ix} = cos(x) + i*sin(x).",
+    "type": "theorem",
+    "keywords": [
+      "Euler",
+      "exponential",
+      "complex",
+      "trigonometric"
+    ],
+    "lean4_mathlib_name": "Complex.exp_mul_I",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Complex.Analytic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_031",
+    "name": "Binomial Coefficient Positive",
+    "domain": "Algebra",
+    "statement": "C(n,k) > 0 when k <= n.",
+    "type": "theorem",
+    "keywords": [
+      "binomial",
+      "positive"
+    ],
+    "lean4_mathlib_name": "Nat.choose_pos",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_032",
+    "name": "Square Nonnegative",
+    "domain": "Algebra",
+    "statement": "a^2 >= 0 in any linearly ordered semiring.",
+    "type": "theorem",
+    "keywords": [
+      "square",
+      "nonneg",
+      "positive"
+    ],
+    "lean4_mathlib_name": "sq_nonneg",
+    "lean4_mathlib_import": "Mathlib.Algebra.Order.Ring.Lemmas",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_033",
+    "name": "Sum Monotonicity",
+    "domain": "Algebra",
+    "statement": "If f(i) <= g(i) for all i in S, then sum f <= sum g.",
+    "type": "theorem",
+    "keywords": [
+      "sum",
+      "monotone",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "Finset.sum_le_sum",
+    "lean4_mathlib_import": "Mathlib.Algebra.BigOperators.Group.Finset",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_034",
+    "name": "Product Monotonicity",
+    "domain": "Algebra",
+    "statement": "If 0 <= f(i) <= g(i) for all i, then prod f <= prod g.",
+    "type": "theorem",
+    "keywords": [
+      "product",
+      "monotone",
+      "inequality"
+    ],
+    "lean4_mathlib_name": "Finset.prod_le_prod",
+    "lean4_mathlib_import": "Mathlib.Algebra.BigOperators.Group.Finset",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_016",
+    "name": "Noetherian Ring",
+    "domain": "Algebra",
+    "statement": "A ring where every ideal is finitely generated.",
+    "type": "definition",
+    "keywords": [
+      "Noetherian",
+      "ideal",
+      "ascending chain"
+    ],
+    "lean4_mathlib_name": "IsNoetherianRing",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Noetherian",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_018",
+    "name": "Archimedean Property",
+    "domain": "Algebra",
+    "statement": "For any x, there exists n in N with n > x.",
+    "type": "definition",
+    "keywords": [
+      "Archimedean",
+      "unbounded",
+      "natural numbers"
+    ],
+    "lean4_mathlib_name": "Archimedean",
+    "lean4_mathlib_import": "Mathlib.Algebra.Order.Archimedean.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_019",
+    "name": "Well Ordering Principle",
+    "domain": "Algebra",
+    "statement": "Every nonempty subset of natural numbers has a least element.",
+    "type": "definition",
+    "keywords": [
+      "well-ordering",
+      "minimum",
+      "natural numbers"
+    ],
+    "lean4_mathlib_name": "WellFoundedGT",
+    "lean4_mathlib_import": "Mathlib.Order.WellFounded",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_020",
+    "name": "Division Ring",
+    "domain": "Algebra",
+    "statement": "A ring where every nonzero element has a multiplicative inverse.",
+    "type": "definition",
+    "keywords": [
+      "division ring",
+      "skew field",
+      "inverse"
+    ],
+    "lean4_mathlib_name": "DivisionRing",
+    "lean4_mathlib_import": "Mathlib.Algebra.Ring.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_032",
+    "name": "Derivative Power Rule",
+    "domain": "Analysis",
+    "statement": "d/dx (x^n) = n * x^{n-1}.",
+    "type": "theorem",
+    "keywords": [
+      "derivative",
+      "power",
+      "rule"
+    ],
+    "lean4_mathlib_name": "hasDerivAt_pow",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Deriv.Pow",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_033",
+    "name": "Derivative Chain Rule",
+    "domain": "Analysis",
+    "statement": "(f(g(x)))' = f'(g(x)) * g'(x).",
+    "type": "theorem",
+    "keywords": [
+      "chain rule",
+      "composition",
+      "derivative"
+    ],
+    "lean4_mathlib_name": "HasDerivAt.comp",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Deriv.Comp",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_034",
+    "name": "Derivative Product Rule",
+    "domain": "Analysis",
+    "statement": "(f*g)' = f'*g + f*g'.",
+    "type": "theorem",
+    "keywords": [
+      "product rule",
+      "Leibniz",
+      "derivative"
+    ],
+    "lean4_mathlib_name": "HasDerivAt.mul",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Deriv.Mul",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_035",
+    "name": "Derivative Quotient Rule",
+    "domain": "Analysis",
+    "statement": "(f/g)' = (f'*g - f*g') / g^2.",
+    "type": "theorem",
+    "keywords": [
+      "quotient rule",
+      "derivative"
+    ],
+    "lean4_mathlib_name": "HasDerivAt.div",
+    "lean4_mathlib_import": "Mathlib.Analysis.Calculus.Deriv.Mul",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_036",
+    "name": "Integral Linearity",
+    "domain": "Analysis",
+    "statement": "integral(f + g) = integral(f) + integral(g).",
+    "type": "theorem",
+    "keywords": [
+      "integral",
+      "linearity",
+      "addition"
+    ],
+    "lean4_mathlib_name": "MeasureTheory.integral_add",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.Integral.Bochner",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_037",
+    "name": "Cauchy Sequence Convergence",
+    "domain": "Analysis",
+    "statement": "Every Cauchy sequence in a complete metric space converges.",
+    "type": "theorem",
+    "keywords": [
+      "Cauchy",
+      "convergence",
+      "complete"
+    ],
+    "lean4_mathlib_name": "cauchySeq_tendsto_of_complete",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.UniformConvergence",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_009",
+    "name": "Complete Metric Space",
+    "domain": "Analysis",
+    "statement": "A metric space where every Cauchy sequence converges.",
+    "type": "definition",
+    "keywords": [
+      "complete",
+      "Cauchy",
+      "Banach"
+    ],
+    "lean4_mathlib_name": "CompleteSpace",
+    "lean4_mathlib_import": "Mathlib.Topology.UniformSpace.Cauchy",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_010",
+    "name": "Uniform Continuity",
+    "domain": "Analysis",
+    "statement": "f is uniformly continuous if for every eps there exists delta independent of x.",
+    "type": "definition",
+    "keywords": [
+      "uniform",
+      "continuous",
+      "epsilon-delta"
+    ],
+    "lean4_mathlib_name": "UniformContinuous",
+    "lean4_mathlib_import": "Mathlib.Topology.UniformSpace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_011",
+    "name": "Lipschitz Continuity",
+    "domain": "Analysis",
+    "statement": "f is K-Lipschitz if d(f(x),f(y)) <= K * d(x,y) for all x,y.",
+    "type": "definition",
+    "keywords": [
+      "Lipschitz",
+      "bounded",
+      "contraction"
+    ],
+    "lean4_mathlib_name": "LipschitzWith",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Lipschitz",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_038",
+    "name": "Open Ball is Open",
+    "domain": "Analysis",
+    "statement": "The open ball B(x,r) is an open set in a metric space.",
+    "type": "theorem",
+    "keywords": [
+      "open ball",
+      "metric",
+      "topology"
+    ],
+    "lean4_mathlib_name": "Metric.isOpen_ball",
+    "lean4_mathlib_import": "Mathlib.Topology.MetricSpace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_039",
+    "name": "Composition of Limits",
+    "domain": "Analysis",
+    "statement": "If f \u2192 L and g \u2192 M then g(f) \u2192 g(L) when g is continuous.",
+    "type": "theorem",
+    "keywords": [
+      "composition",
+      "limit",
+      "continuity"
+    ],
+    "lean4_mathlib_name": "Filter.Tendsto.comp",
+    "lean4_mathlib_import": "Mathlib.Order.Filter.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_012",
+    "name": "Measurable Set",
+    "domain": "Analysis",
+    "statement": "A set in the sigma-algebra of a measurable space.",
+    "type": "definition",
+    "keywords": [
+      "measurable",
+      "sigma-algebra",
+      "Lebesgue"
+    ],
+    "lean4_mathlib_name": "MeasurableSet",
+    "lean4_mathlib_import": "Mathlib.MeasureTheory.MeasurableSpace.Defs",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_040",
+    "name": "Absolute Convergence implies Convergence",
+    "domain": "Analysis",
+    "statement": "If sum |a_n| converges then sum a_n converges.",
+    "type": "theorem",
+    "keywords": [
+      "absolute convergence",
+      "summable",
+      "norm"
+    ],
+    "lean4_mathlib_name": "Summable.of_norm",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.InfiniteSum.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_041",
+    "name": "Uniform Limit Theorem",
+    "domain": "Analysis",
+    "statement": "Uniform limit of continuous functions is continuous.",
+    "type": "theorem",
+    "keywords": [
+      "uniform limit",
+      "continuous",
+      "convergence"
+    ],
+    "lean4_mathlib_name": "TendstoUniformly.continuous",
+    "lean4_mathlib_import": "Mathlib.Topology.UniformSpace.UniformConvergence",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_013",
+    "name": "Bounded Continuous Function",
+    "domain": "Analysis",
+    "statement": "A continuous function with bounded range.",
+    "type": "definition",
+    "keywords": [
+      "bounded",
+      "continuous",
+      "function space"
+    ],
+    "lean4_mathlib_name": "BoundedContinuousFunction",
+    "lean4_mathlib_import": "Mathlib.Topology.ContinuousFunction.Bounded.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_010",
+    "name": "Matrix Transpose",
+    "domain": "Linear Algebra",
+    "statement": "A^T swaps rows and columns: (A^T)_{ij} = A_{ji}.",
+    "type": "definition",
+    "keywords": [
+      "transpose",
+      "matrix"
+    ],
+    "lean4_mathlib_name": "Matrix.transpose",
+    "lean4_mathlib_import": "Mathlib.Data.Matrix.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_011",
+    "name": "Diagonal Matrix",
+    "domain": "Linear Algebra",
+    "statement": "A matrix with nonzero entries only on the main diagonal.",
+    "type": "definition",
+    "keywords": [
+      "diagonal",
+      "matrix"
+    ],
+    "lean4_mathlib_name": "Matrix.diagonal",
+    "lean4_mathlib_import": "Mathlib.Data.Matrix.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_016",
+    "name": "Determinant of Transpose",
+    "domain": "Linear Algebra",
+    "statement": "det(A^T) = det(A).",
+    "type": "theorem",
+    "keywords": [
+      "determinant",
+      "transpose"
+    ],
+    "lean4_mathlib_name": "Matrix.det_transpose",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Determinant",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_017",
+    "name": "Determinant of Identity",
+    "domain": "Linear Algebra",
+    "statement": "det(I) = 1.",
+    "type": "theorem",
+    "keywords": [
+      "determinant",
+      "identity"
+    ],
+    "lean4_mathlib_name": "Matrix.det_one",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Determinant",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_012",
+    "name": "Trace",
+    "domain": "Linear Algebra",
+    "statement": "tr(A) = sum of diagonal entries.",
+    "type": "definition",
+    "keywords": [
+      "trace",
+      "diagonal",
+      "sum"
+    ],
+    "lean4_mathlib_name": "Matrix.trace",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Trace",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_013",
+    "name": "Characteristic Polynomial",
+    "domain": "Linear Algebra",
+    "statement": "det(A - tI), the characteristic polynomial of matrix A.",
+    "type": "definition",
+    "keywords": [
+      "characteristic polynomial",
+      "eigenvalue",
+      "det"
+    ],
+    "lean4_mathlib_name": "Matrix.charpoly",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_014",
+    "name": "Minimal Polynomial",
+    "domain": "Linear Algebra",
+    "statement": "The monic polynomial of least degree annihilating a linear map.",
+    "type": "definition",
+    "keywords": [
+      "minimal polynomial",
+      "annihilator"
+    ],
+    "lean4_mathlib_name": "minpoly",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Minpoly.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_015",
+    "name": "Eigenspace",
+    "domain": "Linear Algebra",
+    "statement": "ker(A - lambda*I), the eigenspace for eigenvalue lambda.",
+    "type": "definition",
+    "keywords": [
+      "eigenspace",
+      "eigenvalue",
+      "kernel"
+    ],
+    "lean4_mathlib_name": "Module.End.eigenspace",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Eigenspace.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_016",
+    "name": "Linear Independence",
+    "domain": "Linear Algebra",
+    "statement": "Vectors v1,...,vn are linearly independent if no nontrivial linear combination equals zero.",
+    "type": "definition",
+    "keywords": [
+      "linear independence",
+      "basis"
+    ],
+    "lean4_mathlib_name": "LinearIndependent",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.LinearIndependent",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_017",
+    "name": "Span",
+    "domain": "Linear Algebra",
+    "statement": "The smallest submodule containing a given set.",
+    "type": "definition",
+    "keywords": [
+      "span",
+      "submodule",
+      "generate"
+    ],
+    "lean4_mathlib_name": "Submodule.span",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Span.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_018",
+    "name": "Direct Sum",
+    "domain": "Linear Algebra",
+    "statement": "V = U \u2295 W means every v = u + w uniquely.",
+    "type": "definition",
+    "keywords": [
+      "direct sum",
+      "decomposition"
+    ],
+    "lean4_mathlib_name": "DirectSum",
+    "lean4_mathlib_import": "Mathlib.Algebra.DirectSum.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_019",
+    "name": "Dual Space",
+    "domain": "Linear Algebra",
+    "statement": "V* = Hom(V, k), the space of linear functionals.",
+    "type": "definition",
+    "keywords": [
+      "dual",
+      "linear functional"
+    ],
+    "lean4_mathlib_name": "Module.Dual",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dual",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_020",
+    "name": "Bilinear Form",
+    "domain": "Linear Algebra",
+    "statement": "A bilinear map B: V x V -> k.",
+    "type": "definition",
+    "keywords": [
+      "bilinear",
+      "form",
+      "inner product"
+    ],
+    "lean4_mathlib_name": "LinearMap.BilinForm",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.BilinearForm.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_021",
+    "name": "Adjoint",
+    "domain": "Linear Algebra",
+    "statement": "The adjoint T* satisfying <Tv,w> = <v,T*w>.",
+    "type": "definition",
+    "keywords": [
+      "adjoint",
+      "Hermitian",
+      "inner product"
+    ],
+    "lean4_mathlib_name": "LinearMap.adjoint",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Adjoint",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_022",
+    "name": "Orthogonal Complement",
+    "domain": "Linear Algebra",
+    "statement": "W^perp = {v : <v,w> = 0 for all w in W}.",
+    "type": "definition",
+    "keywords": [
+      "orthogonal",
+      "complement",
+      "perpendicular"
+    ],
+    "lean4_mathlib_name": "Submodule.orthogonal",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Projection",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_023",
+    "name": "Tensor Product",
+    "domain": "Linear Algebra",
+    "statement": "V \u2297 W, the universal bilinear construction.",
+    "type": "definition",
+    "keywords": [
+      "tensor product",
+      "bilinear",
+      "universal"
+    ],
+    "lean4_mathlib_name": "TensorProduct",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.TensorProduct.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_024",
+    "name": "Exterior Algebra",
+    "domain": "Linear Algebra",
+    "statement": "The algebra of alternating multilinear forms.",
+    "type": "definition",
+    "keywords": [
+      "exterior",
+      "alternating",
+      "wedge product"
+    ],
+    "lean4_mathlib_name": "ExteriorAlgebra",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.ExteriorAlgebra.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_025",
+    "name": "Finite Dimensional",
+    "domain": "Linear Algebra",
+    "statement": "A module with a finite spanning set.",
+    "type": "definition",
+    "keywords": [
+      "finite dimensional",
+      "basis",
+      "rank"
+    ],
+    "lean4_mathlib_name": "FiniteDimensional",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.Finrank",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_la_026",
+    "name": "Dimension (finrank)",
+    "domain": "Linear Algebra",
+    "statement": "The cardinality of any basis of a finite-dimensional space.",
+    "type": "definition",
+    "keywords": [
+      "dimension",
+      "finrank",
+      "rank"
+    ],
+    "lean4_mathlib_name": "Module.finrank",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.Finrank",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_018",
+    "name": "Quotient Module",
+    "domain": "Linear Algebra",
+    "statement": "M/N is a module for any submodule N of M.",
+    "type": "theorem",
+    "keywords": [
+      "quotient",
+      "module",
+      "submodule"
+    ],
+    "lean4_mathlib_name": "Submodule.Quotient.eq",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Quotient.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_009",
+    "name": "Quotient Group",
+    "domain": "Abstract Algebra",
+    "statement": "G/N is the group of cosets gN with (gN)(hN) = (gh)N.",
+    "type": "definition",
+    "keywords": [
+      "quotient",
+      "coset",
+      "normal"
+    ],
+    "lean4_mathlib_name": "QuotientGroup.eq",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.QuotientGroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_010",
+    "name": "Quotient Ring",
+    "domain": "Abstract Algebra",
+    "statement": "R/I is the ring of cosets a+I with (a+I)(b+I) = ab+I.",
+    "type": "definition",
+    "keywords": [
+      "quotient ring",
+      "ideal",
+      "coset"
+    ],
+    "lean4_mathlib_name": "Ideal.Quotient.eq",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Quotient.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_011",
+    "name": "Kernel of Group Homomorphism",
+    "domain": "Abstract Algebra",
+    "statement": "ker(f) = {g in G : f(g) = e}.",
+    "type": "definition",
+    "keywords": [
+      "kernel",
+      "homomorphism",
+      "normal subgroup"
+    ],
+    "lean4_mathlib_name": "MonoidHom.ker",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_012",
+    "name": "Image of Group Homomorphism",
+    "domain": "Abstract Algebra",
+    "statement": "im(f) = {f(g) : g in G}, a subgroup of H.",
+    "type": "definition",
+    "keywords": [
+      "image",
+      "range",
+      "homomorphism"
+    ],
+    "lean4_mathlib_name": "MonoidHom.range",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_013",
+    "name": "Cyclic Group",
+    "domain": "Abstract Algebra",
+    "statement": "A group generated by a single element.",
+    "type": "definition",
+    "keywords": [
+      "cyclic",
+      "generator"
+    ],
+    "lean4_mathlib_name": "IsCyclic",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.SpecificGroups.Cyclic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_014",
+    "name": "Center of Group",
+    "domain": "Abstract Algebra",
+    "statement": "Z(G) = {g in G : gx = xg for all x in G}.",
+    "type": "definition",
+    "keywords": [
+      "center",
+      "commute",
+      "abelian"
+    ],
+    "lean4_mathlib_name": "Subgroup.center",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Center",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_015",
+    "name": "Simple Group",
+    "domain": "Abstract Algebra",
+    "statement": "A group with no proper nontrivial normal subgroups.",
+    "type": "definition",
+    "keywords": [
+      "simple",
+      "normal subgroup"
+    ],
+    "lean4_mathlib_name": "IsSimpleGroup",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Simple",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_019",
+    "name": "Prime Ideal",
+    "domain": "Abstract Algebra",
+    "statement": "An ideal P where ab in P implies a in P or b in P.",
+    "type": "definition",
+    "keywords": [
+      "prime",
+      "ideal",
+      "ring"
+    ],
+    "lean4_mathlib_name": "Ideal.IsPrime",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_020",
+    "name": "Maximal Ideal",
+    "domain": "Abstract Algebra",
+    "statement": "An ideal M where R/M is a field.",
+    "type": "definition",
+    "keywords": [
+      "maximal",
+      "ideal",
+      "field"
+    ],
+    "lean4_mathlib_name": "Ideal.IsMaximal",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_021",
+    "name": "Kernel of Ring Homomorphism",
+    "domain": "Abstract Algebra",
+    "statement": "ker(f) = {r in R : f(r) = 0}, an ideal of R.",
+    "type": "definition",
+    "keywords": [
+      "kernel",
+      "ring homomorphism",
+      "ideal"
+    ],
+    "lean4_mathlib_name": "RingHom.ker",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_022",
+    "name": "Noetherian Module",
+    "domain": "Abstract Algebra",
+    "statement": "A module where every submodule is finitely generated.",
+    "type": "definition",
+    "keywords": [
+      "Noetherian",
+      "ascending chain",
+      "module"
+    ],
+    "lean4_mathlib_name": "IsNoetherian",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Noetherian",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_024",
+    "name": "Localization",
+    "domain": "Abstract Algebra",
+    "statement": "S^{-1}R, the ring obtained by formally inverting elements of S.",
+    "type": "definition",
+    "keywords": [
+      "localization",
+      "fraction",
+      "multiplicative set"
+    ],
+    "lean4_mathlib_name": "Localization",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Localization.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_025",
+    "name": "Integral Domain",
+    "domain": "Abstract Algebra",
+    "statement": "A commutative ring with no zero divisors.",
+    "type": "definition",
+    "keywords": [
+      "integral domain",
+      "zero divisor"
+    ],
+    "lean4_mathlib_name": "IsDomain",
+    "lean4_mathlib_import": "Mathlib.Algebra.Ring.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_026",
+    "name": "Algebraic Extension",
+    "domain": "Abstract Algebra",
+    "statement": "A field extension where every element satisfies a polynomial over the base field.",
+    "type": "definition",
+    "keywords": [
+      "algebraic",
+      "extension",
+      "minimal polynomial"
+    ],
+    "lean4_mathlib_name": "Algebra.IsAlgebraic",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Algebraic.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_027",
+    "name": "Separable Extension",
+    "domain": "Abstract Algebra",
+    "statement": "A field extension where every element has a separable minimal polynomial.",
+    "type": "definition",
+    "keywords": [
+      "separable",
+      "extension",
+      "inseparable"
+    ],
+    "lean4_mathlib_name": "IsSeparable",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Separable",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_028",
+    "name": "Normal Extension",
+    "domain": "Abstract Algebra",
+    "statement": "A field extension where every irreducible polynomial with a root splits completely.",
+    "type": "definition",
+    "keywords": [
+      "normal",
+      "extension",
+      "splitting"
+    ],
+    "lean4_mathlib_name": "Normal",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Normal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_017",
+    "name": "SSS Congruence",
+    "domain": "Geometry",
+    "statement": "Two triangles are congruent iff all three corresponding sides are equal.",
+    "type": "theorem",
+    "keywords": [
+      "SSS",
+      "congruence",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.triangle_congruent_iff_dist_eq",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_018",
+    "name": "Tangent Perpendicular to Radius",
+    "domain": "Geometry",
+    "statement": "The tangent to a circle at a point is perpendicular to the radius at that point.",
+    "type": "theorem",
+    "keywords": [
+      "tangent",
+      "perpendicular",
+      "radius",
+      "circle"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.Sphere.IsTangentAt.angle_eq_pi_div_two",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Sphere.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_019",
+    "name": "Inscribed Angle Theorem",
+    "domain": "Geometry",
+    "statement": "An inscribed angle is half the central angle subtending the same arc.",
+    "type": "theorem",
+    "keywords": [
+      "inscribed angle",
+      "central angle",
+      "circle"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.Sphere.oangle_eq_pi_sub_two_zsmul_oangle_center_left",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Sphere.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_020",
+    "name": "Collinear iff Angle 0 or Pi",
+    "domain": "Geometry",
+    "statement": "Three points are collinear iff the angle at the middle point is 0 or pi.",
+    "type": "theorem",
+    "keywords": [
+      "collinear",
+      "angle",
+      "degenerate"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.collinear_iff_eq_or_eq_or_angle_eq_zero_or_angle_eq_pi",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_021",
+    "name": "Similar Preserves Angles",
+    "domain": "Geometry",
+    "statement": "Similar triangles have equal corresponding angles.",
+    "type": "theorem",
+    "keywords": [
+      "similar",
+      "angle",
+      "preserve"
+    ],
+    "lean4_mathlib_name": "Similar.angle_eq",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_022",
+    "name": "Orthocenter-Circumcenter Relation",
+    "domain": "Geometry",
+    "statement": "The orthocenter and circumcenter are related by reflection through the nine-point center.",
+    "type": "theorem",
+    "keywords": [
+      "orthocenter",
+      "circumcenter",
+      "Euler line"
+    ],
+    "lean4_mathlib_name": "Affine.Triangle.dist_orthocenter_reflection_circumcenter",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_023",
+    "name": "Betweenness Distance Sum",
+    "domain": "Geometry",
+    "statement": "If B is between A and C then dist(A,B) + dist(B,C) = dist(A,C).",
+    "type": "theorem",
+    "keywords": [
+      "betweenness",
+      "distance",
+      "collinear"
+    ],
+    "lean4_mathlib_name": "Wbtw.dist_add_dist",
+    "lean4_mathlib_import": "Mathlib.Analysis.Normed.Group.AddTorsor",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_024",
+    "name": "Reflection is Involution",
+    "domain": "Geometry",
+    "statement": "Reflecting twice returns to the original point.",
+    "type": "theorem",
+    "keywords": [
+      "reflection",
+      "involution",
+      "symmetry"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.reflection_reflection",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Inversion.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_025",
+    "name": "Affine Independent iff Not Collinear",
+    "domain": "Geometry",
+    "statement": "Three points are affinely independent iff they are not collinear.",
+    "type": "theorem",
+    "keywords": [
+      "affine independence",
+      "collinear"
+    ],
+    "lean4_mathlib_name": "affineIndependent_iff_not_collinear",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Independent",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_geom_026",
+    "name": "Diameter Distance",
+    "domain": "Geometry",
+    "statement": "The distance between endpoints of a diameter equals twice the radius.",
+    "type": "theorem",
+    "keywords": [
+      "diameter",
+      "distance",
+      "radius"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.Sphere.IsDiameter.dist_left_right",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Sphere.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_013",
+    "name": "Sphere/Circle",
+    "domain": "Geometry",
+    "statement": "The set of points at fixed distance (radius) from a center point.",
+    "type": "definition",
+    "keywords": [
+      "sphere",
+      "circle",
+      "radius",
+      "center"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.Sphere",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Sphere.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_014",
+    "name": "Midpoint",
+    "domain": "Geometry",
+    "statement": "The point equidistant from two given points.",
+    "type": "definition",
+    "keywords": [
+      "midpoint",
+      "average"
+    ],
+    "lean4_mathlib_name": "midpoint",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Midpoint",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_015",
+    "name": "Convex Hull",
+    "domain": "Geometry",
+    "statement": "The smallest convex set containing a given set.",
+    "type": "definition",
+    "keywords": [
+      "convex hull",
+      "closure"
+    ],
+    "lean4_mathlib_name": "convexHull",
+    "lean4_mathlib_import": "Mathlib.Analysis.Convex.Hull",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_016",
+    "name": "Collinear",
+    "domain": "Geometry",
+    "statement": "Points that lie on a single line.",
+    "type": "definition",
+    "keywords": [
+      "collinear",
+      "line"
+    ],
+    "lean4_mathlib_name": "Collinear",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Independent",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_017",
+    "name": "Similarity",
+    "domain": "Geometry",
+    "statement": "A bijection that preserves angles and scales distances uniformly.",
+    "type": "definition",
+    "keywords": [
+      "similar",
+      "scale",
+      "angle-preserving"
+    ],
+    "lean4_mathlib_name": "Similar",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Triangle",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_018",
+    "name": "Rotation",
+    "domain": "Geometry",
+    "statement": "A distance-preserving transformation that fixes a center point.",
+    "type": "definition",
+    "keywords": [
+      "rotation",
+      "angle",
+      "isometry"
+    ],
+    "lean4_mathlib_name": "Orientation.rotation",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Oriented.Rotation",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_019",
+    "name": "Reflection",
+    "domain": "Geometry",
+    "statement": "A distance-preserving transformation that mirrors across a hyperplane.",
+    "type": "definition",
+    "keywords": [
+      "reflection",
+      "mirror",
+      "isometry"
+    ],
+    "lean4_mathlib_name": "EuclideanGeometry.reflection",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Inversion.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_020",
+    "name": "Homothety",
+    "domain": "Geometry",
+    "statement": "A transformation that scales all distances from a center by a fixed ratio.",
+    "type": "definition",
+    "keywords": [
+      "homothety",
+      "dilation",
+      "scale"
+    ],
+    "lean4_mathlib_name": "AffineMap.homothety",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.AffineMap",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_021",
+    "name": "Betweenness",
+    "domain": "Geometry",
+    "statement": "B is between A and C if B lies on the segment AC.",
+    "type": "definition",
+    "keywords": [
+      "betweenness",
+      "segment",
+      "between"
+    ],
+    "lean4_mathlib_name": "Wbtw",
+    "lean4_mathlib_import": "Mathlib.Analysis.Normed.Group.AddTorsor",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_022",
+    "name": "Affine Independence",
+    "domain": "Geometry",
+    "statement": "Points that do not all lie in a proper affine subspace.",
+    "type": "definition",
+    "keywords": [
+      "affine independence",
+      "general position"
+    ],
+    "lean4_mathlib_name": "AffineIndependent",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Independent",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_023",
+    "name": "Oriented Angle",
+    "domain": "Geometry",
+    "statement": "The signed angle between two vectors, valued in the circle group.",
+    "type": "definition",
+    "keywords": [
+      "oriented angle",
+      "signed",
+      "direction"
+    ],
+    "lean4_mathlib_name": "Orientation.oangle",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Angle.Oriented.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_024",
+    "name": "Coplanar",
+    "domain": "Geometry",
+    "statement": "Points that lie in a single plane.",
+    "type": "definition",
+    "keywords": [
+      "coplanar",
+      "plane",
+      "3D"
+    ],
+    "lean4_mathlib_name": "Coplanar",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.AffineSpace.Independent",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_025",
+    "name": "Circumradius",
+    "domain": "Geometry",
+    "statement": "The radius of the circumscribed circle/sphere of a simplex.",
+    "type": "definition",
+    "keywords": [
+      "circumradius",
+      "circumscribed"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.circumradius",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Circumcenter",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_geom_026",
+    "name": "Excenter",
+    "domain": "Geometry",
+    "statement": "The center of an excircle of a triangle, opposite to a vertex.",
+    "type": "definition",
+    "keywords": [
+      "excenter",
+      "excircle",
+      "triangle"
+    ],
+    "lean4_mathlib_name": "Affine.Simplex.excenter",
+    "lean4_mathlib_import": "Mathlib.Geometry.Euclidean.Inversion.Radical",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_035",
+    "name": "Weighted AM-GM Inequality",
+    "domain": "Algebra",
+    "statement": "The weighted arithmetic mean is at least the weighted geometric mean.",
+    "type": "theorem",
+    "keywords": [
+      "AM-GM",
+      "weighted",
+      "inequality",
+      "mean"
+    ],
+    "lean4_mathlib_name": "Real.arith_mean_le_rpow_mean",
+    "lean4_mathlib_import": "Mathlib.Analysis.MeanInequalities",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_036",
+    "name": "De Moivre Theorem",
+    "domain": "Algebra",
+    "statement": "cos(a+b) = cos(a)cos(b) - sin(a)sin(b) and the analogous identity for (cos+i*sin)^n.",
+    "type": "theorem",
+    "keywords": [
+      "De Moivre",
+      "complex",
+      "trigonometric",
+      "angle addition"
+    ],
+    "lean4_mathlib_name": "Complex.cos_add",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_019",
+    "name": "Dimension of Sum Formula",
+    "domain": "Linear Algebra",
+    "statement": "dim(U+W) + dim(U\u2229W) = dim(U) + dim(W) for subspaces U, W.",
+    "type": "theorem",
+    "keywords": [
+      "dimension",
+      "sum",
+      "intersection",
+      "subspace"
+    ],
+    "lean4_mathlib_name": "Submodule.finrank_sup_add_finrank_inf_eq",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.Finrank",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_020",
+    "name": "Trace Invariant under Similarity",
+    "domain": "Linear Algebra",
+    "statement": "tr(P^{-1}AP) = tr(A) for any invertible P.",
+    "type": "theorem",
+    "keywords": [
+      "trace",
+      "similarity",
+      "invariant",
+      "conjugation"
+    ],
+    "lean4_mathlib_name": "Matrix.trace_conj",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Trace",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_021",
+    "name": "Rank of Product Bound",
+    "domain": "Linear Algebra",
+    "statement": "rank(AB) <= min(rank(A), rank(B)).",
+    "type": "theorem",
+    "keywords": [
+      "rank",
+      "product",
+      "bound",
+      "composition"
+    ],
+    "lean4_mathlib_name": "LinearMap.rank_comp_le",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Dimension.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_020",
+    "name": "Sylow Second Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "All Sylow p-subgroups of a finite group are conjugate.",
+    "type": "theorem",
+    "keywords": [
+      "Sylow",
+      "conjugate",
+      "p-subgroup"
+    ],
+    "lean4_mathlib_name": "Sylow.conj_eq_normalizer_conj_of_mem",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Sylow",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_021",
+    "name": "Nakayama's Lemma",
+    "domain": "Abstract Algebra",
+    "statement": "If M = IM + N with I in the Jacobson radical, then M = N.",
+    "type": "theorem",
+    "keywords": [
+      "Nakayama",
+      "Jacobson",
+      "local ring"
+    ],
+    "lean4_mathlib_name": "Submodule.eq_bot_of_le_smul_of_le_jacobson_bot",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Nakayama",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_022",
+    "name": "Hilbert Nullstellensatz",
+    "domain": "Abstract Algebra",
+    "statement": "I(V(I)) = radical(I) for ideals in polynomial rings over algebraically closed fields.",
+    "type": "theorem",
+    "keywords": [
+      "Nullstellensatz",
+      "Hilbert",
+      "variety",
+      "radical"
+    ],
+    "lean4_mathlib_name": "MvPolynomial.vanishingIdeal_zeroLocus_eq_radical",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Nullstellensatz",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_023",
+    "name": "Going Up Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "For an integral extension R \u2286 S, every prime of R is the contraction of a prime of S.",
+    "type": "theorem",
+    "keywords": [
+      "going up",
+      "integral",
+      "prime ideal",
+      "extension"
+    ],
+    "lean4_mathlib_name": "Ideal.exists_ideal_over_prime_of_isIntegral",
+    "lean4_mathlib_import": "Mathlib.RingTheory.IntegralClosure.IsIntegral",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_024",
+    "name": "Krull Intersection Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "In a Noetherian integral domain, the intersection of all powers of a proper ideal is zero.",
+    "type": "theorem",
+    "keywords": [
+      "Krull",
+      "intersection",
+      "ideal",
+      "powers"
+    ],
+    "lean4_mathlib_name": "Ideal.iInf_pow_eq_bot_of_isDomain",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_025",
+    "name": "Krull's Theorem (Maximal Ideal Existence)",
+    "domain": "Abstract Algebra",
+    "statement": "Every nonzero ring has a maximal ideal.",
+    "type": "theorem",
+    "keywords": [
+      "Krull",
+      "maximal ideal",
+      "Zorn"
+    ],
+    "lean4_mathlib_name": "Ideal.exists_maximal",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_026",
+    "name": "Correspondence Theorem (Groups)",
+    "domain": "Abstract Algebra",
+    "statement": "There is a bijection between subgroups of G/N and subgroups of G containing N.",
+    "type": "theorem",
+    "keywords": [
+      "correspondence",
+      "lattice",
+      "subgroup",
+      "quotient"
+    ],
+    "lean4_mathlib_name": "Subgroup.map_comap_eq",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.QuotientGroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_022",
+    "name": "Determinant Scalar Multiplication",
+    "domain": "Linear Algebra",
+    "statement": "det(cA) = c^n * det(A) for n\u00d7n matrix A.",
+    "type": "theorem",
+    "keywords": [
+      "determinant",
+      "scalar",
+      "power"
+    ],
+    "lean4_mathlib_name": "Matrix.det_smul",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Determinant",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_023",
+    "name": "Trace of Product Commutes",
+    "domain": "Linear Algebra",
+    "statement": "tr(AB) = tr(BA).",
+    "type": "theorem",
+    "keywords": [
+      "trace",
+      "product",
+      "commute"
+    ],
+    "lean4_mathlib_name": "Matrix.trace_mul_comm",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Trace",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_024",
+    "name": "Characteristic Polynomial Degree",
+    "domain": "Linear Algebra",
+    "statement": "The characteristic polynomial of an n\u00d7n matrix has degree n.",
+    "type": "theorem",
+    "keywords": [
+      "characteristic polynomial",
+      "degree",
+      "dimension"
+    ],
+    "lean4_mathlib_name": "Matrix.charpoly_natDegree_eq_dim",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_025",
+    "name": "Minimal Polynomial Divides Characteristic",
+    "domain": "Linear Algebra",
+    "statement": "The minimal polynomial of a matrix divides its characteristic polynomial.",
+    "type": "theorem",
+    "keywords": [
+      "minimal polynomial",
+      "characteristic polynomial",
+      "divides"
+    ],
+    "lean4_mathlib_name": "Matrix.minpoly_dvd_charpoly",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Minpoly",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_026",
+    "name": "Similar Matrices Same Characteristic Polynomial",
+    "domain": "Linear Algebra",
+    "statement": "If B = P^{-1}AP then charpoly(A) = charpoly(B).",
+    "type": "theorem",
+    "keywords": [
+      "similar",
+      "characteristic polynomial",
+      "invariant"
+    ],
+    "lean4_mathlib_name": "LinearEquiv.charpoly_conj",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_027",
+    "name": "Orthogonal Complement Dimension",
+    "domain": "Linear Algebra",
+    "statement": "dim(W) + dim(W^perp) = dim(V) for subspace W of inner product space V.",
+    "type": "theorem",
+    "keywords": [
+      "orthogonal complement",
+      "dimension",
+      "codimension"
+    ],
+    "lean4_mathlib_name": "Submodule.finrank_add_finrank_orthogonal",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Projection",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_028",
+    "name": "Adjoint of Composition",
+    "domain": "Linear Algebra",
+    "statement": "(ST)* = T*S* for linear maps S, T.",
+    "type": "theorem",
+    "keywords": [
+      "adjoint",
+      "composition",
+      "contravariant"
+    ],
+    "lean4_mathlib_name": "LinearMap.adjoint_comp",
+    "lean4_mathlib_import": "Mathlib.Analysis.InnerProductSpace.Adjoint",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_029",
+    "name": "Positive Definite iff Eigenvalues Positive",
+    "domain": "Linear Algebra",
+    "statement": "A Hermitian matrix is positive definite iff all eigenvalues are positive.",
+    "type": "theorem",
+    "keywords": [
+      "positive definite",
+      "eigenvalue",
+      "Hermitian"
+    ],
+    "lean4_mathlib_name": "Matrix.PosDef.eigenvalues_pos",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Spectrum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_030",
+    "name": "Change of Basis",
+    "domain": "Linear Algebra",
+    "statement": "Matrix of composition equals product of matrices: [ST]_B = [S]_B [T]_B.",
+    "type": "theorem",
+    "keywords": [
+      "change of basis",
+      "matrix representation",
+      "composition"
+    ],
+    "lean4_mathlib_name": "LinearMap.toMatrix_comp",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.ToLin",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_la_031",
+    "name": "Eigenvalues of Hermitian are Real",
+    "domain": "Linear Algebra",
+    "statement": "All eigenvalues of a Hermitian (self-adjoint) matrix are real.",
+    "type": "theorem",
+    "keywords": [
+      "Hermitian",
+      "eigenvalue",
+      "real",
+      "self-adjoint"
+    ],
+    "lean4_mathlib_name": "Matrix.IsHermitian.eigenvalues_eq",
+    "lean4_mathlib_import": "Mathlib.LinearAlgebra.Matrix.Spectrum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_027",
+    "name": "p-Group Has Nontrivial Center",
+    "domain": "Abstract Algebra",
+    "statement": "If G is a p-group then Z(G) is nontrivial.",
+    "type": "theorem",
+    "keywords": [
+      "p-group",
+      "center",
+      "nontrivial"
+    ],
+    "lean4_mathlib_name": "IsPGroup.center_nontrivial",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.PGroup",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_028",
+    "name": "Index Formula",
+    "domain": "Abstract Algebra",
+    "statement": "|G| = |G/H| * |H| for finite group G and subgroup H.",
+    "type": "theorem",
+    "keywords": [
+      "index",
+      "Lagrange",
+      "coset",
+      "counting"
+    ],
+    "lean4_mathlib_name": "Subgroup.card_eq_card_quotient_mul_card_subgroup",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Lagrange",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_029",
+    "name": "Maximal Ideal iff Quotient is Field",
+    "domain": "Abstract Algebra",
+    "statement": "I is maximal iff R/I is a field.",
+    "type": "theorem",
+    "keywords": [
+      "maximal ideal",
+      "quotient",
+      "field"
+    ],
+    "lean4_mathlib_name": "Ideal.Quotient.maximal_ideal_iff_isField_quotient",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Quotient.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_030",
+    "name": "Prime Ideal iff Quotient is Domain",
+    "domain": "Abstract Algebra",
+    "statement": "P is prime iff R/P is an integral domain.",
+    "type": "theorem",
+    "keywords": [
+      "prime ideal",
+      "quotient",
+      "integral domain"
+    ],
+    "lean4_mathlib_name": "Ideal.Quotient.isDomain_iff_prime",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Quotient.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_031",
+    "name": "Maximal Ideal is Prime",
+    "domain": "Abstract Algebra",
+    "statement": "Every maximal ideal is a prime ideal.",
+    "type": "theorem",
+    "keywords": [
+      "maximal",
+      "prime",
+      "ideal"
+    ],
+    "lean4_mathlib_name": "Ideal.IsMaximal.isPrime",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_032",
+    "name": "Simple Group Characterization",
+    "domain": "Abstract Algebra",
+    "statement": "G is simple iff it has no proper nontrivial normal subgroups.",
+    "type": "theorem",
+    "keywords": [
+      "simple",
+      "normal subgroup",
+      "characterization"
+    ],
+    "lean4_mathlib_name": "isSimpleGroup_iff",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Simple",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_033",
+    "name": "Fixed Field of Galois Group",
+    "domain": "Abstract Algebra",
+    "statement": "The fixed field of Gal(E/F) equals F for a Galois extension.",
+    "type": "theorem",
+    "keywords": [
+      "fixed field",
+      "Galois",
+      "correspondence"
+    ],
+    "lean4_mathlib_name": "IsGalois.fixedField_fixingSubgroup",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Galois.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_034",
+    "name": "Finite Extension is Algebraic",
+    "domain": "Abstract Algebra",
+    "statement": "Every finite field extension is algebraic.",
+    "type": "theorem",
+    "keywords": [
+      "finite",
+      "algebraic",
+      "extension"
+    ],
+    "lean4_mathlib_name": "Field.isAlgebraic_of_finite_intermediateField",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_035",
+    "name": "Localization is Flat",
+    "domain": "Abstract Algebra",
+    "statement": "Localization of a commutative ring at a multiplicative set is a flat module.",
+    "type": "theorem",
+    "keywords": [
+      "localization",
+      "flat",
+      "module"
+    ],
+    "lean4_mathlib_name": "IsLocalization.flat",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Localization.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_037",
+    "name": "Bernoulli Inequality",
+    "domain": "Algebra",
+    "statement": "(1+x)^n >= 1 + nx for x >= -1 and n >= 1.",
+    "type": "theorem",
+    "keywords": [
+      "Bernoulli",
+      "inequality",
+      "power"
+    ],
+    "lean4_mathlib_name": "one_add_mul_le_pow",
+    "lean4_mathlib_import": "Mathlib.Algebra.Order.Ring.Lemmas",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_038",
+    "name": "Difference of Squares",
+    "domain": "Algebra",
+    "statement": "a^2 - b^2 = (a+b)(a-b).",
+    "type": "theorem",
+    "keywords": [
+      "difference of squares",
+      "factoring",
+      "identity"
+    ],
+    "lean4_mathlib_name": "sq_sub_sq",
+    "lean4_mathlib_import": "Mathlib.Algebra.GroupPower.Ring",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_039",
+    "name": "Telescoping Sum",
+    "domain": "Algebra",
+    "statement": "sum_{i=0}^{n-1} (a_{i+1} - a_i) = a_n - a_0.",
+    "type": "theorem",
+    "keywords": [
+      "telescoping",
+      "sum",
+      "cancellation"
+    ],
+    "lean4_mathlib_name": "Finset.sum_range_sub",
+    "lean4_mathlib_import": "Mathlib.Algebra.BigOperators.Intervals",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_040",
+    "name": "Least Upper Bound Property",
+    "domain": "Algebra",
+    "statement": "Every nonempty bounded-above subset of R has a supremum.",
+    "type": "theorem",
+    "keywords": [
+      "supremum",
+      "completeness",
+      "real numbers",
+      "LUB"
+    ],
+    "lean4_mathlib_name": "Real.isLUB_sSup",
+    "lean4_mathlib_import": "Mathlib.Topology.Order.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_041",
+    "name": "Supremum Bound",
+    "domain": "Algebra",
+    "statement": "If every element of S is <= b, then sup(S) <= b.",
+    "type": "theorem",
+    "keywords": [
+      "supremum",
+      "bound",
+      "completeness"
+    ],
+    "lean4_mathlib_name": "Real.sSup_le",
+    "lean4_mathlib_import": "Mathlib.Topology.Order.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_042",
+    "name": "Every Field is Integral Domain",
+    "domain": "Algebra",
+    "statement": "Every field is an integral domain (no zero divisors).",
+    "type": "theorem",
+    "keywords": [
+      "field",
+      "integral domain",
+      "zero divisor"
+    ],
+    "lean4_mathlib_name": "IsField.isDomain",
+    "lean4_mathlib_import": "Mathlib.Algebra.Field.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_043",
+    "name": "Characteristic is 0 or Prime",
+    "domain": "Algebra",
+    "statement": "The characteristic of a ring is either 0 or a prime number.",
+    "type": "theorem",
+    "keywords": [
+      "characteristic",
+      "prime",
+      "ring"
+    ],
+    "lean4_mathlib_name": "CharP.char_is_prime_or_zero",
+    "lean4_mathlib_import": "Mathlib.Algebra.CharP.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_044",
+    "name": "Exponential is Convex",
+    "domain": "Algebra",
+    "statement": "The function exp(x) is convex on R.",
+    "type": "theorem",
+    "keywords": [
+      "exponential",
+      "convex",
+      "Jensen"
+    ],
+    "lean4_mathlib_name": "convexOn_exp",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.ExpDeriv",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_045",
+    "name": "Logarithm Inequality",
+    "domain": "Algebra",
+    "statement": "ln(x) <= x - 1 for all x > 0, with equality iff x = 1.",
+    "type": "theorem",
+    "keywords": [
+      "logarithm",
+      "inequality",
+      "bound"
+    ],
+    "lean4_mathlib_name": "Real.log_le_sub_one_of_pos",
+    "lean4_mathlib_import": "Mathlib.Analysis.SpecialFunctions.Log.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_046",
+    "name": "Frobenius Endomorphism is Injective",
+    "domain": "Algebra",
+    "statement": "The Frobenius map x -> x^p is injective in characteristic p.",
+    "type": "theorem",
+    "keywords": [
+      "Frobenius",
+      "injective",
+      "characteristic p"
+    ],
+    "lean4_mathlib_name": "frobenius_inj",
+    "lean4_mathlib_import": "Mathlib.FieldTheory.Finite.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_alg_047",
+    "name": "Polynomial Derivative Product Rule",
+    "domain": "Algebra",
+    "statement": "(f * g)' = f' * g + f * g' for polynomials.",
+    "type": "theorem",
+    "keywords": [
+      "derivative",
+      "product rule",
+      "Leibniz",
+      "polynomial"
+    ],
+    "lean4_mathlib_name": "Polynomial.derivative_mul",
+    "lean4_mathlib_import": "Mathlib.Algebra.Polynomial.Derivative",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_040",
+    "name": "Union Bound",
+    "domain": "Combinatorics",
+    "statement": "|A \u222a B| \u2264 |A| + |B| for finite sets.",
+    "type": "theorem",
+    "keywords": [
+      "union",
+      "bound",
+      "cardinality",
+      "counting"
+    ],
+    "lean4_mathlib_name": "Finset.card_union_le",
+    "lean4_mathlib_import": "Mathlib.Data.Finset.Card",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_041",
+    "name": "Number of Permutations",
+    "domain": "Combinatorics",
+    "statement": "|S_n| = n!, the symmetric group on n elements has n! permutations.",
+    "type": "theorem",
+    "keywords": [
+      "permutation",
+      "factorial",
+      "symmetric group"
+    ],
+    "lean4_mathlib_name": "Fintype.card_perm",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Perm.Finite",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_042",
+    "name": "Catalan Closed Form",
+    "domain": "Combinatorics",
+    "statement": "C_n = C(2n,n)/(n+1).",
+    "type": "theorem",
+    "keywords": [
+      "Catalan",
+      "closed form",
+      "binomial"
+    ],
+    "lean4_mathlib_name": "catalan_eq_centralBinom_div",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.Catalan",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_043",
+    "name": "Even Number of Odd-Degree Vertices",
+    "domain": "Combinatorics",
+    "statement": "In any graph, the number of vertices with odd degree is even.",
+    "type": "theorem",
+    "keywords": [
+      "odd degree",
+      "even",
+      "graph",
+      "handshaking"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.even_card_odd_degree_vertices",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.DegreeSum",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_044",
+    "name": "Double Counting",
+    "domain": "Combinatorics",
+    "statement": "Counting edges from both sides of a bipartite graph gives equal sums.",
+    "type": "theorem",
+    "keywords": [
+      "double counting",
+      "bipartite",
+      "edges"
+    ],
+    "lean4_mathlib_name": "Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.DoubleCounting",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_045",
+    "name": "Stars and Bars",
+    "domain": "Combinatorics",
+    "statement": "The number of ways to put n identical items into k bins equals C(n+k-1, k-1).",
+    "type": "theorem",
+    "keywords": [
+      "stars and bars",
+      "multichoose",
+      "distribution"
+    ],
+    "lean4_mathlib_name": "Nat.multichoose_eq",
+    "lean4_mathlib_import": "Mathlib.Data.Nat.Choose.Multinomial",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_046",
+    "name": "Chromatic Number at most |V|",
+    "domain": "Combinatorics",
+    "statement": "chi(G) <= |V(G)| for any graph G.",
+    "type": "theorem",
+    "keywords": [
+      "chromatic number",
+      "upper bound",
+      "coloring"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.chromaticNumber_le_card",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Coloring",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_047",
+    "name": "Bipartite iff No Odd Cycle",
+    "domain": "Combinatorics",
+    "statement": "A graph is bipartite iff it contains no odd-length cycle.",
+    "type": "theorem",
+    "keywords": [
+      "bipartite",
+      "odd cycle",
+      "characterization"
+    ],
+    "lean4_mathlib_name": "SimpleGraph.isBipartite_iff_exists_isBipartiteWith",
+    "lean4_mathlib_import": "Mathlib.Combinatorics.SimpleGraph.Bipartite",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_comb_048",
+    "name": "Permutation Sign is Multiplicative",
+    "domain": "Combinatorics",
+    "statement": "sgn(sigma * tau) = sgn(sigma) * sgn(tau).",
+    "type": "theorem",
+    "keywords": [
+      "permutation",
+      "sign",
+      "multiplicative",
+      "homomorphism"
+    ],
+    "lean4_mathlib_name": "Equiv.Perm.sign_mul",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Perm.Sign",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_036",
+    "name": "Cayley's Theorem",
+    "domain": "Abstract Algebra",
+    "statement": "Every group embeds injectively into a symmetric (permutation) group.",
+    "type": "theorem",
+    "keywords": [
+      "Cayley",
+      "permutation",
+      "embedding",
+      "faithful"
+    ],
+    "lean4_mathlib_name": "MulAction.toPerm_injective",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.GroupAction.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_042",
+    "name": "Continuous Image of Compact is Compact",
+    "domain": "Analysis",
+    "statement": "If S is compact and f is continuous, then f(S) is compact.",
+    "type": "theorem",
+    "keywords": [
+      "compact",
+      "continuous",
+      "image",
+      "preservation"
+    ],
+    "lean4_mathlib_name": "IsCompact.image",
+    "lean4_mathlib_import": "Mathlib.Topology.Compactness.Compact",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_043",
+    "name": "Monotone Sequence Converges",
+    "domain": "Analysis",
+    "statement": "Every bounded monotone sequence of reals converges.",
+    "type": "theorem",
+    "keywords": [
+      "monotone",
+      "bounded",
+      "convergence",
+      "sequence"
+    ],
+    "lean4_mathlib_name": "Real.tendsto_of_bddAbove_monotone",
+    "lean4_mathlib_import": "Mathlib.Topology.Algebra.Order.MonotoneLimits",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_aa_037",
+    "name": "First Isomorphism Theorem (Rings)",
+    "domain": "Abstract Algebra",
+    "statement": "R/ker(f) is isomorphic to im(f) for any surjective ring homomorphism f.",
+    "type": "theorem",
+    "keywords": [
+      "isomorphism",
+      "kernel",
+      "ring",
+      "quotient"
+    ],
+    "lean4_mathlib_name": "RingHom.quotientKerEquivOfSurjective",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Ideal.Quotient.Operations",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_anal_014",
+    "name": "Cauchy Sequence",
+    "domain": "Analysis",
+    "statement": "A sequence where terms eventually become arbitrarily close to each other.",
+    "type": "definition",
+    "keywords": [
+      "Cauchy",
+      "sequence",
+      "convergence"
+    ],
+    "lean4_mathlib_name": "CauchySeq",
+    "lean4_mathlib_import": "Mathlib.Topology.UniformSpace.Cauchy",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_031",
+    "name": "Subgroup",
+    "domain": "Abstract Algebra",
+    "statement": "A subset of a group closed under the group operation and inverses.",
+    "type": "definition",
+    "keywords": [
+      "subgroup",
+      "closed",
+      "subset"
+    ],
+    "lean4_mathlib_name": "Subgroup",
+    "lean4_mathlib_import": "Mathlib.GroupTheory.Subgroup.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_044",
+    "name": "Hahn-Banach Theorem",
+    "domain": "Analysis",
+    "statement": "Disjoint convex sets (one open) can be separated by a hyperplane.",
+    "type": "theorem",
+    "keywords": [
+      "Hahn-Banach",
+      "separation",
+      "convex",
+      "functional analysis"
+    ],
+    "lean4_mathlib_name": "geometric_hahn_banach_open",
+    "lean4_mathlib_import": "Mathlib.Analysis.NormedSpace.HahnBanach.Separation",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "thm_anal_045",
+    "name": "Uniform Boundedness Principle (Banach-Steinhaus)",
+    "domain": "Analysis",
+    "statement": "A pointwise bounded family of bounded linear operators is uniformly bounded.",
+    "type": "theorem",
+    "keywords": [
+      "Banach-Steinhaus",
+      "uniform boundedness",
+      "functional analysis"
+    ],
+    "lean4_mathlib_name": "banach_steinhaus",
+    "lean4_mathlib_import": "Mathlib.Analysis.NormedSpace.BanachSteinhaus",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_021",
+    "name": "Roots of Unity",
+    "domain": "Algebra",
+    "statement": "The n-th roots of unity are elements x with x^n = 1.",
+    "type": "definition",
+    "keywords": [
+      "roots of unity",
+      "cyclic",
+      "primitive root"
+    ],
+    "lean4_mathlib_name": "rootsOfUnity",
+    "lean4_mathlib_import": "Mathlib.RingTheory.RootsOfUnity.Basic",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_alg_022",
+    "name": "Convex Function",
+    "domain": "Algebra",
+    "statement": "f is convex on S if f(tx + (1-t)y) <= tf(x) + (1-t)f(y) for t in [0,1].",
+    "type": "definition",
+    "keywords": [
+      "convex",
+      "function",
+      "Jensen"
+    ],
+    "lean4_mathlib_name": "ConvexOn",
+    "lean4_mathlib_import": "Mathlib.Analysis.Convex.Function",
+    "lean4_status": "verified"
+  },
+  {
+    "id": "def_aa_032",
+    "name": "Jacobson Radical",
+    "domain": "Abstract Algebra",
+    "statement": "The intersection of all maximal ideals of a ring.",
+    "type": "definition",
+    "keywords": [
+      "Jacobson",
+      "radical",
+      "maximal ideal",
+      "Nakayama"
+    ],
+    "lean4_mathlib_name": "Ideal.jacobson",
+    "lean4_mathlib_import": "Mathlib.RingTheory.Jacobson",
+    "lean4_status": "verified"
+  }
+]
