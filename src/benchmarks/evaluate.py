@@ -14,7 +14,10 @@ error-guided attempts (the paper's runs used 32, i.e. pass@32):
 A problem counts as solved only if the Lean file compiles cleanly and passes the statement check
 (src/statement_check.py). PutnamBench answer slots are filled with the benchmark's answers.
 Each run writes eval_<benchmark>_<mode>.json, an incremental .jsonl, a .log and run_config.json
-into --output-dir (default: a timestamped outputs/experiments/ directory).
+into --output-dir (default: a timestamped outputs/experiments/ directory). The result file keeps
+only the final attempt of each problem; pass --save-trajectories to also write
+trajectories_<benchmark>_<mode>.jsonl with, per problem, the Explorer's context block and every
+attempt's code and Lean verdict (the paper's runs were made without this flag).
 
 Usage:
     # One mode, parallel (default), with the released graph
@@ -426,12 +429,15 @@ CONTEXT_BUILDERS = {
 
 def evaluate_single_problem(problem: Dict, eval_mode: str, max_attempts: int,
                             lean_temp_dir: str, explorer: ExplorerAgent = None,
-                            kg: MathKG = None) -> Dict:
+                            kg: MathKG = None, save_trajectories: bool = False) -> Dict:
     """
     Evaluate a single benchmark problem. Thread-safe.
 
     Each call creates its own ProverAgent and Lean4Verifier with a unique
     temp directory to avoid file conflicts during parallel execution.
+    With save_trajectories, the returned dict carries a "trajectory" entry (the Explorer's
+    context block, the supporting MathKG node ids, and every attempt's code and Lean verdict),
+    which run_evaluation writes to a separate file.
     """
     # Create per-worker Prover with unique temp dir
     prover = ProverAgent()
@@ -451,7 +457,7 @@ def evaluate_single_problem(problem: Dict, eval_mode: str, max_attempts: int,
     )
     elapsed = time.time() - start_time
 
-    return {
+    result = {
         "problem_id": problem["id"],
         "domain": problem["domain"],
         "status": proof_result["status"],
@@ -461,6 +467,24 @@ def evaluate_single_problem(problem: Dict, eval_mode: str, max_attempts: int,
         "lean4_code": proof_result.get("lean4_code", ""),
         "rejected_empty_verifications": proof_result.get("rejected_empty_verifications", 0),
     }
+    if save_trajectories:
+        result["trajectory"] = {
+            "context": conjecture.get("lean4_proof_sketch", ""),       # Explorer context block ("" for prover_only)
+            "supporting_theorem_ids": conjecture.get("supporting_theorem_ids", []),
+            "attempts": [
+                {
+                    "attempt": h.get("attempt"),
+                    "code": h.get("code", ""),
+                    "status": h.get("result", {}).get("status"),
+                    "errors": h.get("result", {}).get("errors", []),
+                    "warnings": h.get("result", {}).get("warnings", []),
+                    "time_ms": h.get("result", {}).get("time_ms"),
+                    "statement_check": h.get("statement_check"),      # present when the attempt compiled
+                }
+                for h in proof_result.get("attempt_history", [])
+            ],
+        }
+    return result
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -470,7 +494,8 @@ def evaluate_single_problem(problem: Dict, eval_mode: str, max_attempts: int,
 def run_evaluation(benchmark: str, problems: List[Dict],
                    eval_mode: str = "prover_only", kg_path: str = None,
                    max_attempts: int = 3, output_dir: str = None,
-                   parallel: bool = None, max_workers: int = None) -> Dict:
+                   parallel: bool = None, max_workers: int = None,
+                   save_trajectories: bool = False) -> Dict:
     """
     Run evaluation on benchmark problems.
 
@@ -479,6 +504,9 @@ def run_evaluation(benchmark: str, problems: List[Dict],
         parallel: If True, use ThreadPoolExecutor. Defaults to config.EVAL_PARALLEL.
         max_workers: Max concurrent evaluations. Defaults to config.EVAL_MAX_WORKERS.
         output_dir: If None, auto-generates experiment directory with descriptive naming.
+        save_trajectories: Also write trajectories_<benchmark>_<mode>.jsonl (one line per
+            problem: Explorer context block, supporting node ids, every attempt's code and
+            Lean verdict). Off by default; the result file is unchanged either way.
     """
     if parallel is None:
         parallel = getattr(config, 'EVAL_PARALLEL', False)
@@ -551,6 +579,7 @@ def run_evaluation(benchmark: str, problems: List[Dict],
     # Incremental results file (written after each problem)
     os.makedirs(output_dir, exist_ok=True)
     incremental_path = Path(output_dir) / f"eval_{benchmark}_{eval_mode}_incremental.jsonl"
+    trajectories_path = Path(output_dir) / f"trajectories_{benchmark}_{eval_mode}.jsonl"
 
     # --- Resume support ---
     # If an incremental file already exists (e.g. from a run interrupted by a
@@ -604,7 +633,9 @@ def run_evaluation(benchmark: str, problems: List[Dict],
             lean_temp_dir=lean_tmp,
             explorer=explorer,
             kg=kg,
+            save_trajectories=save_trajectories,
         )
+        trajectory = result.pop("trajectory", None)   # kept out of the result record
 
         with lock:
             counters["completed"] += 1
@@ -630,6 +661,15 @@ def run_evaluation(benchmark: str, problems: List[Dict],
             # Write result incrementally (one JSON object per line)
             with open(incremental_path, "a") as f:
                 f.write(json.dumps(result) + "\n")
+            if trajectory is not None:
+                with open(trajectories_path, "a") as f:
+                    f.write(json.dumps({
+                        "problem_id": result["problem_id"],
+                        "domain": result["domain"],
+                        "eval_mode": eval_mode,
+                        "status": result["status"],
+                        **trajectory,
+                    }) + "\n")
 
         return result
 
@@ -752,6 +792,8 @@ def run_evaluation(benchmark: str, problems: List[Dict],
         # benchmark's ground-truth answers (Task 2) by the loader.
         "statement_check": True,
         "putnambench_answers": "inlined",
+        "save_trajectories": save_trajectories,
+        "trajectories_file": trajectories_path.name if save_trajectories else None,
         "problem_ids_file": os.environ.get("EVAL_PROBLEM_IDS_FILE"),
         "timestamp": datetime.now().isoformat(),
         "total_time_seconds": results.get("total_time_seconds", 0),
@@ -810,6 +852,9 @@ def main():
                         help="Number of parallel workers (default: config.EVAL_MAX_WORKERS)")
     parser.add_argument("--problem-ids", type=str, default=None,
                         help="Path to a text file with one problem id per line; evaluate only these problems")
+    parser.add_argument("--save-trajectories", action="store_true",
+                        help="Also write trajectories_<benchmark>_<mode>.jsonl: per problem, the Explorer's "
+                             "context block and every attempt's code and Lean verdict (off by default)")
     args = parser.parse_args()
 
     # Load problems
@@ -850,6 +895,7 @@ def main():
         output_dir=args.output_dir,
         parallel=parallel,
         max_workers=max_workers,
+        save_trajectories=args.save_trajectories,
     )
 
     # The results path is printed by run_evaluation ("Results saved to: ...").

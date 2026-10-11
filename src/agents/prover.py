@@ -99,6 +99,7 @@ class ProverAgent(BaseAgent):
                 # Lean4Verifier) AND the statement check passes: assigned theorem present with its
                 # statement unchanged, supplied definitions intact, no sorry/admit/axiom (src/statement_check.py).
                 ok, reason = check_statement_fidelity(current_code, lean4_sketch)
+                attempt_history[-1]["statement_check"] = {"ok": ok, "reason": reason}
                 if not ok:
                     rejected_empty_verifications += 1
                     self.log(f"Attempt {attempt_num} compiled but failed the statement check: {reason} (total rejected: {rejected_empty_verifications})")

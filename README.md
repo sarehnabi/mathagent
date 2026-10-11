@@ -87,6 +87,10 @@ python -m src.benchmarks.evaluate --benchmark minif2f --eval-mode with_kg \
 
 `scripts/run_full_ablation.sh` loops this over the four augmentation modes and the three benchmarks (next subsection).
 
+Add `--save-trajectories` to also write `trajectories_<benchmark>_<mode>.jsonl`: one line per problem with
+the Explorer's context block, the supporting MathKG node ids, and every attempt's Lean code and verdict.
+The result file is unchanged by the flag.
+
 ### Running the full experiment
 
 Run one model through all four modes and all three benchmarks with:
@@ -118,6 +122,7 @@ Scripts:
 | `scripts/download_mathlib_data.sh` | Download and preprocess the Mathlib declaration index used by Layer 2 retrieval |
 | `scripts/reprocess_edges.py` | Re-apply edge post-processing (type restrictions, deduplication, conflict resolution, inverses) to a cached `edges.json` without re-running the LLM |
 | `scripts/plot_venn_complementarity.py` | Generate Figure 4 (complementarity Venn diagrams) from the result files |
+| `scripts/compute_paper_numbers.py` | Compute the paper's tables from the released result files (Tables 2, 3, 4, 8, 9, 10, 12, Figures 3 and 4, McNemar p-values); `--check` compares every number with the paper |
 
 ## Released data and results
 
@@ -127,8 +132,22 @@ Scripts:
 | `outputs/experiments/exp_04302026_0611_mathlib_fundamentals_verified_364n/mathkg_clean.json` | The released graph: 364 nodes, 9,434 edges |
 | `outputs/experiments/<run>/<benchmark>_<mode>/eval_*.json` | Per-problem results of the 28 evaluation runs (status, attempts, final Lean code, errors) with each run's `run_config.json` |
 
-A record with status `verified` is a solve counted in the paper; `statement_check_failed` marks a
-proof that compiles but fails the statement-fidelity check of Appendix F.
+Each record in a run's `<benchmark>_<mode>/eval_<benchmark>_<mode>.json` has the fields:
+
+- `problem_id`, `domain`
+- `status`: `verified` (a solve counted in the paper), `failed`, `error`, or `statement_check_failed`
+  (a proof that compiles but fails the statement-fidelity check of Appendix F)
+- `attempts`: the number of attempts used, 1 to 32
+- `lean4_code`: the final attempt's Lean file
+- `errors`: the Lean error messages of the final attempt, up to three; empty when solved
+- `time_seconds`, `rejected_empty_verifications`
+
+The evaluator kept only the final attempt of each problem, so per-attempt trajectories and the
+Explorer's retrieval contexts were not persisted for these runs. The evaluator now has a
+`--save-trajectories` flag (see Usage) that writes them for new runs.
+
+`python scripts/compute_paper_numbers.py` computes every table of the paper from these files;
+`--check` verifies each number against the published values.
 
 Each run directory holds one subfolder per augmentation mode (`prover_only`, `with_kg`,
 `with_mathlib`, `full_system`):
@@ -153,6 +172,15 @@ The paper's tables map to these files as follows:
   five run directories; a solve is a record with status `verified`.
 - Tables 8, 9, 10 and Figure 4 (Sonnet, three benchmarks): the Sonnet run directory and the
   merged PutnamBench directory.
+
+## Versions
+
+| Tag | What it is |
+|---|---|
+| `v1.0` | The code, data, and results as released with the arXiv paper (arXiv:2609.34460v1). |
+| `v1.1` | Adds the conference poster, the `--save-trajectories` evaluator flag, `scripts/compute_paper_numbers.py`, and this documentation. Released data and results are unchanged. |
+
+To get exactly the paper's version: `git checkout v1.0`.
 
 ## Project page
 
